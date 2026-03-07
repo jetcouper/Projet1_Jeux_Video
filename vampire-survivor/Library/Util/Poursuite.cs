@@ -13,26 +13,55 @@ public partial class Poursuite : Node2D
     [Export]
     public float Velocity = 100.0f;
 
+    [Export]
+    private AnimatedSprite2D _Anim;
+
     public override void _PhysicsProcess(double InDelta)
     {
         base._PhysicsProcess(InDelta);
         Poursuivant.EnsureValid();
         Cible.EnsureValid();
 
-        // Calcul du mouvement vers la cible
         Vector2 direction = Poursuivant.GlobalPosition.DirectionTo(Cible.GlobalPosition);
+        float distance = Poursuivant.GlobalPosition.DistanceTo(Cible.GlobalPosition);
         Vector2 deplacement = direction * Velocity * (float)InDelta;
 
-        Poursuivant.GlobalPosition += deplacement;
-
-        // Retourne le sprite selon la direction
-        if (deplacement.X != 0)
+        // Se déplace seulement si a distance du joueur
+        if (distance > 2.0f)
         {
-            float directionX = deplacement.X > 0 ? 1 : -1;
-            Poursuivant.Scale = new Vector2(
-                Math.Abs(Poursuivant.Scale.X) * directionX,
-                Poursuivant.Scale.Y
-            );
+            Poursuivant.GlobalPosition += deplacement;
+        }
+
+        if (_Anim != null)
+        {
+            if (distance > 2.0f)
+            {
+                string anim = "";
+
+                if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+                {
+                    if (direction.X > 0)
+                        anim = "Droite";
+                    else
+                        anim = "Gauche";
+                }
+                else
+                {
+                    if (direction.Y > 0)
+                        anim = "Bas";
+                    else
+                        anim = "Haut";
+                }
+
+                // Change d'animation seulement si elle n est pas deja jouée
+                if (_Anim.Animation != anim)
+                    _Anim.Play(anim);
+            }
+            else
+            {
+                if (_Anim.Animation != "Pause")
+                    _Anim.Play("Pause");
+            }
         }
     }
 }
