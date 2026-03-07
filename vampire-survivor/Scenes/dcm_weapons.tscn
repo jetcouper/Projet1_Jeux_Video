@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bw85oosby2qek"]
+
+[ext_resource type="Script" uid="uid://ce3cpmvgj4fbs" path="res://src/WeaponSpawner.cs" id="1_gugx3"]
+[ext_resource type="Texture2D" uid="uid://7pyxlpq5ptbq" path="res://Pictures/Weapons/Battle axe.png" id="2_l7nyn"]
+[ext_resource type="Script" uid="uid://b05y0x20dq3l7" path="res://src/EditorDebugOnly.cs" id="3_eyuae"]
+
+[node name="DCM_Weapons" type="Node2D" unique_id=1886240174 node_paths=PackedStringArray("timer")]
+scale = Vector2(0.74999994, 0.74999994)
+script = ExtResource("1_gugx3")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=1562558247]
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1111850016]
+modulate = Color(2.0214916e-06, 0.5243852, 0.24708003, 1)
+texture = ExtResource("2_l7nyn")
+script = ExtResource("3_eyuae")
