@@ -152,22 +152,6 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("3_jhopv")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pp0qa"]
-atlas = ExtResource("3_jhopv")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ys4w"]
-atlas = ExtResource("3_jhopv")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_33f03"]
-atlas = ExtResource("3_jhopv")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s6tpd"]
-atlas = ExtResource("3_jhopv")
-region = Rect2(192, 0, 64, 64)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_mxc1a"]
 animations = [{
 "frames": [{
@@ -229,28 +213,28 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 15.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_w78v1")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_34kcy")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_ernpd")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_uabj4")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_8wn2q")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_uoe0h")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_3vwoc")
 }, {
-"duration": 1.0,
+"duration": 0.11,
 "texture": SubResource("AtlasTexture_kukk6")
 }],
 "loop": true,
@@ -301,23 +285,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"Pause",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 0.11,
-"texture": SubResource("AtlasTexture_pp0qa")
-}, {
-"duration": 0.11,
-"texture": SubResource("AtlasTexture_5ys4w")
-}, {
-"duration": 0.11,
-"texture": SubResource("AtlasTexture_33f03")
-}, {
-"duration": 0.11,
-"texture": SubResource("AtlasTexture_s6tpd")
-}],
-"loop": true,
-"name": &"default",
 "speed": 5.0
 }]
 
@@ -478,6 +445,7 @@ _Life = NodePath("DPM_LIFE_AND_VISUAL")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2057114842]
 sprite_frames = SubResource("SpriteFrames_mxc1a")
+animation = &"Bas"
 speed_scale = 0.1
 
 [node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=1123885198 node_paths=PackedStringArray("_Cible", "_Life")]
