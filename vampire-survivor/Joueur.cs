@@ -12,6 +12,13 @@ public partial class Joueur : Node2D
         set { SimplePlayer.EnsureValid().IsActive = value; }
     }
 
+    [Export]
+    public TileMapLayer CollisionLayer
+    {
+        get => SimplePlayer.EnsureValid().collisionLayer;
+        set { SimplePlayer.EnsureValid().collisionLayer = value; }
+    }
+
     [ExportGroup("Internal")]
     [Export]
     SimplePlayer SimplePlayer;
