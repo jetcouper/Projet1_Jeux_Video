@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bapcspn3jqo5b"]
 
 [ext_resource type="Texture2D" uid="uid://syohaqmvfxvp" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/characters/main character/walk and idle.png" id="1_2d0qe"]
-[ext_resource type="Script" uid="uid://bbnvbxmsk663x" path="res://Joueur.cs" id="1_nhxrk"]
+[ext_resource type="Script" uid="uid://bbnvbxmsk663x" path="res://src/Joueur.cs" id="1_nhxrk"]
 [ext_resource type="Script" uid="uid://283t4avf0ebq" path="res://Library/Util/SimplePlayer.cs" id="2_mc3kx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0tex"]

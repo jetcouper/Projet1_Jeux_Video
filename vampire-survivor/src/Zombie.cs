@@ -1,7 +1,7 @@
 using Godot;
 using Utils;
 
-public partial class Zombie : Node2D
+public partial class Zombie : Node2D, IKillable
 {
     [ExportGroup("External")]
     [Export]
@@ -11,12 +11,17 @@ public partial class Zombie : Node2D
         set { _Poursuite.EnsureValid().Cible = value; }
     }
 
+    [Export]
+    private Node INodeMedCrystal;
+
     [ExportGroup("Internal")]
     [Export]
     Poursuite _Poursuite;
 
     [Export]
     DpmLifeAndVisual _Life;
+
+    private IDeathHandler _gestionnaireMort;
 
     public bool IsDead
     {
@@ -36,5 +41,12 @@ public partial class Zombie : Node2D
             .SetEase(Tween.EaseType.Out);
 
         tween.TweenProperty(this, "modulate:a", 1.0f, 0.6f);
+
+        _gestionnaireMort = INodeMedCrystal as IDeathHandler;
+    }
+
+    public void NotifyDeath()
+    {
+        _gestionnaireMort?.HandleDeath(GlobalPosition);
     }
 }

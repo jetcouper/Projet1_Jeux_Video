@@ -25,7 +25,13 @@ public partial class Poursuite : Node2D
 
         base._PhysicsProcess(InDelta);
         Poursuivant.EnsureValid();
-        Cible.EnsureValid();
+
+        if (Poursuivant == null || Cible == null)
+        {
+            return;
+        }
+
+        Poursuivant.EnsureValid();
 
         Vector2 direction = Poursuivant.GlobalPosition.DirectionTo(Cible.GlobalPosition);
         float distance = Poursuivant.GlobalPosition.DistanceTo(Cible.GlobalPosition);

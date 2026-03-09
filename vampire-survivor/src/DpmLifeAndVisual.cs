@@ -71,13 +71,18 @@ public partial class DpmLifeAndVisual : Node
         RootToEliminate.SetPhysicsProcess(false);
         RootToEliminate.SetProcess(false);
 
+        if (RootToEliminate is IKillable identity)
+        {
+            identity.NotifyDeath();
+        }
+
         if (DeathAnimation == null)
         {
             RootToEliminate.QueueFree();
             return;
         }
 
-        //Cache le zombie
+        // Cache le zombie
         var sprite = RootToEliminate.GetNodeOrNull<AnimatedSprite2D>("AnimatedSprite2D");
         if (sprite != null)
             sprite.Visible = false;

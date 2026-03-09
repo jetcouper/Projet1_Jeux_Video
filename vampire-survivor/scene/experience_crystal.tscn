@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://vlwrsssjubjy"]
+
+[ext_resource type="Texture2D" uid="uid://pyb806tysc1q" path="res://Pictures/ExperienceCrystal.png" id="1_bxkl1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvv1t"]
+atlas = ExtResource("1_bxkl1")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djeww"]
+atlas = ExtResource("1_bxkl1")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48mvn"]
+atlas = ExtResource("1_bxkl1")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biv77"]
+atlas = ExtResource("1_bxkl1")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8yen0"]
+animations = [{
+"frames": [{
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_yvv1t")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_djeww")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_48mvn")
+}, {
+"duration": 0.7,
+"texture": SubResource("AtlasTexture_biv77")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ExperienceCrystal" type="Node2D" unique_id=1107133244]
+scale = Vector2(0.5, 0.5)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1439105230]
+sprite_frames = SubResource("SpriteFrames_8yen0")
+autoplay = "default"
