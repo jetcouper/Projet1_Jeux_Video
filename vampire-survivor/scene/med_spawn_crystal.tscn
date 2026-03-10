@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cojq0mshuedxi"]
+
+[ext_resource type="Script" uid="uid://blcjeii61gxav" path="res://src/MedCrystal.cs" id="1_4tdw2"]
+
+[node name="MED_SpawnCrystal" type="Node2D" unique_id=234446096 node_paths=PackedStringArray("INodeCristalSpawner")]
+script = ExtResource("1_4tdw2")
+INodeCristalSpawner = NodePath("")
