@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://byjlg4ij2a247" path="res://Pictures/Enemies/Vampires1/Idle/Vampires1_Idle_full.png" id="3_pshfi"]
 [ext_resource type="Texture2D" uid="uid://dknmjv26svs31" path="res://Pictures/Enemies/Vampires2/Run/Vampires2_Run_full.png" id="3_w2rvo"]
 [ext_resource type="Script" uid="uid://nhi5c876d7rb" path="res://src/DpmDamagePhysical.cs" id="4_ku2w2"]
-[ext_resource type="Script" uid="uid://dr5dka1xdl1wr" path="res://src/Poursuite.cs" id="5_7fiyl"]
+[ext_resource type="Script" uid="uid://drk56km3rfboe" path="res://src/PoursuiteEtArret.cs" id="5_vny1d"]
 [ext_resource type="Script" uid="uid://bdyv6fxu1p0q5" path="res://src/DpmLifeAndVisual.cs" id="6_3u5of"]
 [ext_resource type="Texture2D" uid="uid://c16cix3mk20y7" path="res://Pictures/explosions.png" id="7_i0m2g"]
 
@@ -459,11 +459,8 @@ _Life = NodePath("../DPM_LIFE_AND_VISUAL")
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_2ep7w")
 
-[node name="DPM_Poursuite" type="Node2D" parent="." unique_id=990251089 node_paths=PackedStringArray("Poursuivant", "_Anim")]
-script = ExtResource("5_7fiyl")
-Poursuivant = NodePath("..")
-Velocity = 15.0
-_Anim = NodePath("../AnimatedSprite2D")
+[node name="DPM_Poursuite" type="Node2D" parent="." unique_id=990251089]
+script = ExtResource("5_vny1d")
 
 [node name="DPM_LIFE_AND_VISUAL" type="Node2D" parent="." unique_id=1855268806 node_paths=PackedStringArray("RootToEliminate", "DeathAnimation")]
 script = ExtResource("6_3u5of")

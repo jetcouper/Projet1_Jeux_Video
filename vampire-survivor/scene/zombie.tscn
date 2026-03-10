@@ -463,6 +463,7 @@ shape = SubResource("CapsuleShape2D_2ep7w")
 script = ExtResource("3_lnshm")
 Poursuivant = NodePath("..")
 Velocity = 10.0
+StopMove = 0.0
 _Anim = NodePath("../AnimatedSprite2D")
 
 [node name="DPM_LIFE_AND_VISUAL" type="Node2D" parent="." unique_id=1855268806 node_paths=PackedStringArray("RootToEliminate", "DeathAnimation")]

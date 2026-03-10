@@ -14,6 +14,9 @@ public partial class Poursuite : Node2D
     public float Velocity = 100.0f;
 
     [Export]
+    private float StopMove = 50.0f;
+
+    [Export]
     private AnimatedSprite2D _Anim;
 
     public override void _PhysicsProcess(double InDelta)
@@ -23,9 +26,6 @@ public partial class Poursuite : Node2D
             return;
         }
 
-        base._PhysicsProcess(InDelta);
-        Poursuivant.EnsureValid();
-
         if (Poursuivant == null || Cible == null)
         {
             return;
@@ -33,46 +33,46 @@ public partial class Poursuite : Node2D
 
         Poursuivant.EnsureValid();
 
-        Vector2 direction = Poursuivant.GlobalPosition.DirectionTo(Cible.GlobalPosition);
         float distance = Poursuivant.GlobalPosition.DistanceTo(Cible.GlobalPosition);
-        Vector2 deplacement = direction * Velocity * (float)InDelta;
+        Vector2 direction = Poursuivant.GlobalPosition.DirectionTo(Cible.GlobalPosition);
 
-        // Se déplace seulement si a distance du joueur
-        if (distance > 2.0f)
+        if (distance > StopMove)
         {
+            Vector2 deplacement = direction * Velocity * (float)InDelta;
             Poursuivant.GlobalPosition += deplacement;
-        }
 
-        if (_Anim != null)
+            UpdateAnimation(direction, false);
+        }
+        else
         {
-            if (distance > 2.0f)
-            {
-                string anim = "";
-
-                if (Math.Abs(direction.X) > Math.Abs(direction.Y))
-                {
-                    if (direction.X > 0)
-                        anim = "Droite";
-                    else
-                        anim = "Gauche";
-                }
-                else
-                {
-                    if (direction.Y > 0)
-                        anim = "Bas";
-                    else
-                        anim = "Haut";
-                }
-
-                // Change d'animation seulement si elle n est pas deja jouée
-                if (_Anim.Animation != anim)
-                    _Anim.Play(anim);
-            }
-            else
-            {
-                if (_Anim.Animation != "Pause")
-                    _Anim.Play("Pause");
-            }
+            UpdateAnimation(direction, true);
         }
+    }
+
+    private void UpdateAnimation(Vector2 direction, bool isPaused)
+    {
+        if (_Anim == null)
+            return;
+
+        if (isPaused)
+        {
+            if (_Anim.Animation != "Pause")
+                _Anim.Play("Pause");
+            return;
+        }
+
+        string anim = "";
+
+        if (Math.Abs(direction.X) > Math.Abs(direction.Y))
+        {
+            anim = direction.X > 0 ? "Droite" : "Gauche";
+        }
+        else
+        {
+            anim = direction.Y > 0 ? "Bas" : "Haut";
+        }
+
+        if (_Anim.Animation != anim)
+            _Anim.Play(anim);
     }
 }
