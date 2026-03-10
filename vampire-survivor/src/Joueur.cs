@@ -63,6 +63,6 @@ public partial class Joueur : Node2D
     public void addScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        GD.Print(score);
+        
     }
 }
