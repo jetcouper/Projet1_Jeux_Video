@@ -234,6 +234,7 @@ animations = [{
 [node name="Joueur" type="Node2D" unique_id=249153935 node_paths=PackedStringArray("SimplePlayer")]
 script = ExtResource("1_nhxrk")
 SimplePlayer = NodePath("DPM_SimpleMouvement")
+CameraZoom = 4.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=80082269]
 texture_filter = 1
@@ -251,10 +252,10 @@ shape = SubResource("CircleShape2D_r0tex")
 position = Vector2(-7, 0)
 scale = Vector2(4.791149, 0.86808515)
 zoom = Vector2(2.5, 2.5)
-limit_left = -500
-limit_top = -300
-limit_right = 500
-limit_bottom = 300
+limit_left = -600
+limit_top = -400
+limit_right = 600
+limit_bottom = 400
 
 [node name="DPM_SimpleMouvement" type="Node2D" parent="." unique_id=1453364333 node_paths=PackedStringArray("NodeToControl", "AnimatedSprite2D")]
 script = ExtResource("2_mc3kx")
