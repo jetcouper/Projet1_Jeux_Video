@@ -29,7 +29,7 @@ public partial class WeaponSpawner : Node2D
             usable.setPlayer(player);
             usable.Use();
 
-            timer.Stop(); //à enlever si on veut que les armes spawnent à intervalle régulier. Mettre Timer.WaitTime à qqch
+            //timer.Stop(); //à enlever si on veut que les armes spawnent à intervalle régulier. Mettre Timer.WaitTime à qqch
         }
     }
 }

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://db23jfbu2nt52"]
+
+[ext_resource type="Script" uid="uid://dhqygg7tngjhm" path="res://src/Bullets.cs" id="1_h3wt2"]
+[ext_resource type="Texture2D" uid="uid://dkdb0p7x0uxkd" path="res://Pictures/Weapons/Green Effect and Bullet 16x16.png" id="1_r4o4n"]
+[ext_resource type="Script" uid="uid://cdurxb8fglpg8" path="res://src/DpmMovementBullet.cs" id="2_h3wt2"]
+[ext_resource type="Script" uid="uid://cbuuyr1e3q5cn" path="res://src/EntityAnimation.cs" id="3_biy0t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_biy0t"]
+atlas = ExtResource("1_r4o4n")
+region = Rect2(160, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kmyy"]
+atlas = ExtResource("1_r4o4n")
+region = Rect2(176, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gklnu"]
+atlas = ExtResource("1_r4o4n")
+region = Rect2(192, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7di8l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_biy0t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kmyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gklnu")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_plxdt"]
+radius = 11.0
+
+[node name="Bullets" type="Node2D" unique_id=1335090651 node_paths=PackedStringArray("DpmMovement", "entityAnimation")]
+script = ExtResource("1_h3wt2")
+DpmMovement = NodePath("DPMMovement")
+entityAnimation = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=487215797]
+sprite_frames = SubResource("SpriteFrames_7di8l")
+animation = &"Shoot"
+frame_progress = 0.038093094
+script = ExtResource("3_biy0t")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=510759407]
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=803575829]
+shape = SubResource("CircleShape2D_plxdt")
+
+[node name="DPMMovement" type="Node2D" parent="." unique_id=692767655 node_paths=PackedStringArray("NodeToControl")]
+rotation = -1.5707964
+script = ExtResource("2_h3wt2")
+NodeToControl = NodePath("..")

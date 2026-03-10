@@ -69,10 +69,6 @@ public partial class DpmMovement : Node2D
 
         NodeToControl.RotationDegrees = (_lastDirection == 1) ? 180 : 0;
 
-        GD.Print(
-            $"Swing step {steps + 1}: Position = {NodeToControl.GlobalPosition}, Direction = {_lastDirection}"
-        );
-
         Positionning();
 
         WeaponAppear();
