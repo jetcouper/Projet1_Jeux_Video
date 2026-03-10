@@ -240,7 +240,8 @@ CameraZoom = 4.0
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_euu4v")
 animation = &"down"
-frame_progress = 0.52412736
+frame = 3
+frame_progress = 0.5274788
 offset = Vector2(0, -10)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=96940721]
