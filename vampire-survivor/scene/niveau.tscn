@@ -326,3 +326,10 @@ ICristalSpawner = NodePath("DCM_SpawnerCrystal")
 position = Vector2(-123, -78)
 Cible = NodePath("../Joueur")
 INodeMedCrystal = NodePath("../MED_SpawnCrystal")
+
+[node name="MED_SpawnCrystal" parent="." unique_id=234446096 node_paths=PackedStringArray("ICristalSpawner", "IEnemy") instance=ExtResource("7_8cgin")]
+ICristalSpawner = NodePath("../DCM_SpawnerCrystal")
+IEnemy = NodePath("../Zombie")
+
+[node name="DCM_SpawnerCrystal" parent="." unique_id=1012352925 node_paths=PackedStringArray("Player") instance=ExtResource("8_w3lm2")]
+Player = NodePath("../Joueur")

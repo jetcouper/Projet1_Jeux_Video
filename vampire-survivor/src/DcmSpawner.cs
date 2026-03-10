@@ -7,11 +7,19 @@ public partial class DcmSpawner : Node2D, ISpawner
     [Export]
     private PackedScene SpawneeScene; // experience_crystal.tscn
 
+    [Export]
+    private Node2D Player;
+
     public void SpawnAt(Vector2 position)
     {
         SpawneeScene.EnsureValid();
 
         Node2D newInstance = SpawneeScene.Instantiate<Node2D>();
+        if (newInstance is ExperienceCrystal crystal)
+        {
+            crystal.setPlayer(Player);
+        }
+        
         newInstance.EnsureValid();
 
         AddChild(newInstance);

@@ -10,6 +10,7 @@
 script = ExtResource("1_nhxrk")
 SimplePlayer = NodePath("DPM_SimpleMouvement")
 CameraZoom = 5.0
+gatherRadius = 100.0
 
 [node name="Area2D" type="Area2D" parent="." unique_id=96940721]
 
