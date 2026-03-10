@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
 [ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/zombie.tscn" id="5_i0u5r"]
 [ext_resource type="PackedScene" uid="uid://cojq0mshuedxi" path="res://scene/med_spawn_crystal.tscn" id="7_8cgin"]
-[ext_resource type="PackedScene" uid="uid://bnimxajajwgpa" path="res://scene/zombie_presse.tscn" id="8_8cgin"]
+[ext_resource type="PackedScene" uid="uid://lwhnrr546r72" path="res://scene/tortue.tscn" id="8_8cgin"]
 [ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/dcm_spawner_crystal.tscn" id="8_w3lm2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
@@ -318,33 +318,32 @@ tile_set = SubResource("TileSet_8yen0")
 
 [node name="TileMapLayerCollision" type="TileMapLayer" parent="." unique_id=465757204]
 
-[node name="Zombie" parent="." unique_id=1217042035 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("5_i0u5r")]
-position = Vector2(-175, -33)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
-[node name="ZombiePresse" parent="." unique_id=1057256387 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
-position = Vector2(-138, -29)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
-[node name="ZombiePresse2" parent="." unique_id=1107803232 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
-position = Vector2(142, -32)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
-[node name="ZombiePresse3" parent="." unique_id=755320262 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
-position = Vector2(5, -56)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
-[node name="ZombiePresse4" parent="." unique_id=132587022 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
-position = Vector2(9, 104)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
-[node name="MED_SpawnCrystal" parent="." unique_id=234446096 node_paths=PackedStringArray("ICristalSpawner", "IEnemy") instance=ExtResource("7_8cgin")]
+[node name="MED_SpawnCrystal" parent="." unique_id=234446096 node_paths=PackedStringArray("ICristalSpawner") instance=ExtResource("7_8cgin")]
 ICristalSpawner = NodePath("../DCM_SpawnerCrystal")
-IEnemy = NodePath("../Zombie")
 
 [node name="DCM_SpawnerCrystal" parent="." unique_id=1012352925 instance=ExtResource("8_w3lm2")]
+
+[node name="Zombie" parent="." unique_id=1217042035 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("5_i0u5r")]
+position = Vector2(-147, -55)
+Cible = NodePath("../Joueur")
+INodeMedCrystal = NodePath("../MED_SpawnCrystal")
+
+[node name="Tortue" parent="." unique_id=1057558548 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
+position = Vector2(5, -132)
+Cible = NodePath("../Joueur")
+INodeMedCrystal = NodePath("../MED_SpawnCrystal")
+
+[node name="Tortue2" parent="." unique_id=732414223 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
+position = Vector2(-116, 5)
+Cible = NodePath("../Joueur")
+INodeMedCrystal = NodePath("../MED_SpawnCrystal")
+
+[node name="Tortue3" parent="." unique_id=608184583 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
+position = Vector2(11, 68)
+Cible = NodePath("../Joueur")
+INodeMedCrystal = NodePath("../MED_SpawnCrystal")
+
+[node name="Tortue4" parent="." unique_id=987754838 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
+position = Vector2(154, -2)
+Cible = NodePath("../Joueur")
+INodeMedCrystal = NodePath("../MED_SpawnCrystal")

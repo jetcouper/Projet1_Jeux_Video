@@ -289,6 +289,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ep7w"]
+radius = 6.0
+height = 22.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e2dmd"]
 atlas = ExtResource("7_2ep7w")
@@ -454,6 +456,7 @@ _Cible = NodePath("..")
 _Life = NodePath("../DPM_LIFE_AND_VISUAL")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DPM_DAMAGE_PHYSICAL" unique_id=1763204071]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_2ep7w")
 
 [node name="DPM_Poursuite" type="Node2D" parent="." unique_id=990251089 node_paths=PackedStringArray("Poursuivant", "_Anim")]
