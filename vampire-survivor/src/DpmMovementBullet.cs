@@ -14,6 +14,8 @@ public partial class DpmMovementBullet : Node2D
 
     private float _speed = 0.1f;
 
+    public float angle;
+
     private int _direction;
 
     public override void _Process(double delta)
@@ -27,32 +29,21 @@ public partial class DpmMovementBullet : Node2D
 
     public void StartSwing()
     {
-        _direction = rand.Next(0, 4);
+        // Set sword rotation
+        NodeToControl.RotationDegrees = angle;
 
-        float[] rotations = { 135, 45, 315, 225 };
+        // Offset from player using the angle
+        Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * DistFromPlayer;
 
-        Vector2[] offsets =
-        {
-            new Vector2(0, DistFromPlayer),
-            new Vector2(DistFromPlayer, 0),
-            new Vector2(0, -DistFromPlayer),
-            new Vector2(-DistFromPlayer, 0),
-        };
-
-        NodeToControl.RotationDegrees = rotations[_direction];
-        NodeToControl.GlobalPosition = Player.GlobalPosition + offsets[_direction];
+        NodeToControl.GlobalPosition = Player.GlobalPosition + offset;
     }
 
     public void Positionning()
     {
-        Vector2[] directions =
-        {
-            new Vector2(0, 1),
-            new Vector2(1, 0),
-            new Vector2(0, -1),
-            new Vector2(-1, 0),
-        };
+        float angle = Mathf.DegToRad(this.angle); // if your angle is in degrees
 
-        NodeToControl.GlobalPosition += directions[_direction] * _speed;
+        Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+
+        NodeToControl.GlobalPosition += direction * _speed;
     }
 }

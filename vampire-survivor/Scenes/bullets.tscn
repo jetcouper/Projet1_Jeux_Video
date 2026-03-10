@@ -7,15 +7,15 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_biy0t"]
 atlas = ExtResource("1_r4o4n")
-region = Rect2(160, 16, 16, 16)
+region = Rect2(160, 160, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3kmyy"]
 atlas = ExtResource("1_r4o4n")
-region = Rect2(176, 16, 16, 16)
+region = Rect2(176, 160, 16, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gklnu"]
 atlas = ExtResource("1_r4o4n")
-region = Rect2(192, 16, 16, 16)
+region = Rect2(192, 160, 16, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7di8l"]
 animations = [{
@@ -37,7 +37,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxdt"]
 radius = 11.0
 
-[node name="Bullets" type="Node2D" unique_id=1335090651 node_paths=PackedStringArray("DpmMovement", "entityAnimation")]
+[node name="SprayBullets" type="Node2D" unique_id=1335090651 node_paths=PackedStringArray("DpmMovement", "entityAnimation")]
 script = ExtResource("1_h3wt2")
 DpmMovement = NodePath("DPMMovement")
 entityAnimation = NodePath("AnimatedSprite2D")
@@ -45,7 +45,7 @@ entityAnimation = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=487215797]
 sprite_frames = SubResource("SpriteFrames_7di8l")
 animation = &"Shoot"
-frame_progress = 0.038093094
+frame_progress = 0.51488656
 script = ExtResource("3_biy0t")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=510759407]

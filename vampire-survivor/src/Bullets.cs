@@ -10,8 +10,11 @@ public partial class Bullets : Node2D, IUseable
     [Export]
     EntityAnimation entityAnimation;
 
+    public float angle;
+
     public void Use()
     {
+        DpmMovement.angle = angle;
         DpmMovement.StartSwing();
         entityAnimation.Play("Shoot");
     }
