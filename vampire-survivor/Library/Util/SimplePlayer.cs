@@ -91,8 +91,8 @@ public partial class SimplePlayer : Node
         }
 
         NodeToControl.GlobalPosition = new Vector2(
-            Mathf.Clamp(NodeToControl.GlobalPosition.X, -500, 500),
-            Mathf.Clamp(NodeToControl.GlobalPosition.Y, -300, 300)
+            Mathf.Clamp(NodeToControl.GlobalPosition.X, -600, 600),
+            Mathf.Clamp(NodeToControl.GlobalPosition.Y, -400, 400)
         );
     }
 }

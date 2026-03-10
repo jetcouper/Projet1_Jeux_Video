@@ -140,7 +140,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -157,7 +157,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -240,6 +240,7 @@ CameraZoom = 4.0
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_euu4v")
 animation = &"down"
+frame_progress = 0.52412736
 offset = Vector2(0, -10)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=96940721]
@@ -252,10 +253,6 @@ shape = SubResource("CircleShape2D_r0tex")
 position = Vector2(-7, 0)
 scale = Vector2(4.791149, 0.86808515)
 zoom = Vector2(2.5, 2.5)
-limit_left = -600
-limit_top = -400
-limit_right = 600
-limit_bottom = 400
 
 [node name="DPM_SimpleMouvement" type="Node2D" parent="." unique_id=1453364333 node_paths=PackedStringArray("NodeToControl", "AnimatedSprite2D")]
 script = ExtResource("2_mc3kx")
