@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://c3rg8lwhgcehs" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm inside free.png" id="3_yvv1t"]
 [ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
 [ext_resource type="PackedScene" uid="uid://cojq0mshuedxi" path="res://scene/med_spawn_crystal.tscn" id="7_8cgin"]
-[ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/zombie.tscn" id="8_8cgin"]
 [ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/dcm_spawner_crystal.tscn" id="8_w3lm2"]
 [ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/gene.tscn" id="9_w3lm2"]
 
@@ -323,17 +322,7 @@ ICristalSpawner = NodePath("DCM_SpawnerCrystal")
 
 [node name="DCM_SpawnerCrystal" parent="MED_SpawnCrystal" unique_id=1012352925 instance=ExtResource("8_w3lm2")]
 
-[node name="Zombie" parent="." unique_id=1236530350 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("8_8cgin")]
-position = Vector2(-58, -73)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal")
-
 [node name="Gene" parent="." unique_id=1217042035 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("9_w3lm2")]
-position = Vector2(146, -53)
-Cible = NodePath("../Joueur")
-INodeMedCrystal = NodePath("../MED_SpawnCrystal/DCM_SpawnerCrystal")
-
-[node name="Gene2" parent="." unique_id=1371503902 node_paths=PackedStringArray("Cible", "INodeMedCrystal") instance=ExtResource("9_w3lm2")]
-position = Vector2(-119, -34)
+position = Vector2(-123, -78)
 Cible = NodePath("../Joueur")
 INodeMedCrystal = NodePath("../MED_SpawnCrystal")
