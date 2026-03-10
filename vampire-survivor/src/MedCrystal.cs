@@ -1,8 +1,9 @@
 using System;
 using Godot;
 
-public partial class MedCrystal : Node2D, IDeathHandler
+public partial class MedCrystal: Node2D, IDeathHandler 
 {
+
     [ExportGroup("Drop")]
     [Export]
     private EAlgoDeath Algo = EAlgoDeath.eSpawnCristal;

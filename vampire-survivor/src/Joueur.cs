@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks.Dataflow;
 using Godot;
 using Utils;
 
@@ -19,6 +20,11 @@ public partial class Joueur : Node2D
     [Export]
     private float CameraZoom = 3f;
     private Camera2D _camera;
+
+    [Export]
+    public float gatherRadius = 10f;
+
+    public int score = 0;
 
     public override void _Ready()
     {
@@ -52,5 +58,11 @@ public partial class Joueur : Node2D
     {
         base._Process(delta);
         _camera.Zoom = new Vector2(CameraZoom, CameraZoom);
+    }
+
+    public void addScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        GD.Print(score);
     }
 }
