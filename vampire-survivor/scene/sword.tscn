@@ -2,15 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://cwsf8s162b3u3" path="res://Pictures/Weapons/Sword.png" id="1_6wdhb"]
 [ext_resource type="Script" uid="uid://ixastu02nuyw" path="res://src/Sword.cs" id="1_d6wag"]
-[ext_resource type="Script" uid="uid://b3r6li6rve0q3" path="res://src/DpmMovement.cs" id="2_d6wag"]
+[ext_resource type="Script" uid="uid://b3r6li6rve0q3" path="res://src/DpmMovementSword.cs" id="2_d6wag"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kb2vl"]
 radius = 7.070429
 height = 25.453545
 
-[node name="Sword" type="Node2D" unique_id=1426487271 node_paths=PackedStringArray("DpmMovement")]
+[node name="Sword" type="Node2D" unique_id=1426487271 node_paths=PackedStringArray("DpmMovementSword")]
+rotation = -0.7853982
 script = ExtResource("1_d6wag")
-DpmMovement = NodePath("DPM_Movement")
+DpmMovementSword = NodePath("DPMMovementSword")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=559478429]
 rotation = -0.7853982
@@ -23,7 +24,7 @@ position = Vector2(0, 2.3841858e-07)
 rotation = -0.7719535
 shape = SubResource("CapsuleShape2D_kb2vl")
 
-[node name="DPM_Movement" type="Node2D" parent="." unique_id=1287439166 node_paths=PackedStringArray("NodeToControl", "TimerSwing", "TimerHold")]
+[node name="DPMMovementSword" type="Node2D" parent="." unique_id=1287439166 node_paths=PackedStringArray("NodeToControl", "TimerSwing", "TimerHold")]
 script = ExtResource("2_d6wag")
 NodeToControl = NodePath("..")
 TimerSwing = NodePath("../TimerSwing")

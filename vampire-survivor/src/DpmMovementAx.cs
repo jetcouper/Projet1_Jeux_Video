@@ -24,8 +24,6 @@ public partial class DpmMovementAx : Node2D
 		TimerHold.OneShot = true;
 		TimerHold.WaitTime = 0.75f;
 		TimerHold.Timeout += RestartSwing;
-
-		StartSwing(); 
 	}
 
 	public override void _Process(double delta)
@@ -82,9 +80,9 @@ public partial class DpmMovementAx : Node2D
 		NodeToControl.Visible = true;
 		Tween tween = CreateTween();
 
-	NodeToControl.RotationDegrees = -180f;
+	NodeToControl.RotationDegrees = -225f;
 
-	tween.TweenProperty(NodeToControl, "rotation_degrees", 0f, 0.2f)
+	tween.TweenProperty(NodeToControl, "rotation_degrees", -45f, 0.2f)
 		.SetTrans(Tween.TransitionType.Expo)
 		.SetEase(Tween.EaseType.Out);
 

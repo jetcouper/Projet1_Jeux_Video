@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
 [ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/dcm_spawner_crystal.tscn" id="6_amv5i"]
 [ext_resource type="PackedScene" uid="uid://cojq0mshuedxi" path="res://scene/med_spawn_crystal.tscn" id="7_8cgin"]
-[ext_resource type="PackedScene" uid="uid://duce0ycqjhn00" path="res://scene/sword.tscn" id="8_8cgin"]
-[ext_resource type="PackedScene" uid="uid://bw85oosby2qek" path="res://scene/dcm_weapons.tscn" id="8_w3lm2"]
+[ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/med_weapon_spawner.tscn" id="8_w3lm2"]
+[ext_resource type="Script" uid="uid://ct8ktof44r8s6" path="res://src/MedWeaponSpawner.cs" id="9_1i35a"]
 [ext_resource type="PackedScene" uid="uid://61evwrft01ol" path="res://scene/boss.tscn" id="10_pjqhk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
@@ -330,6 +330,8 @@ position = Vector2(-193, -5)
 Cible = NodePath("../Joueur")
 INodeMedCrystal = NodePath("../MED_SpawnCrystal")
 
-[node name="DCM_Weapons" parent="." unique_id=1886240174 node_paths=PackedStringArray("player") instance=ExtResource("8_w3lm2")]
-Weapon = ExtResource("8_8cgin")
+[node name="Node2D" type="Node2D" parent="Boss" unique_id=374433293]
+
+[node name="MED_WeaponSpawner" parent="." unique_id=1602847216 node_paths=PackedStringArray("player") instance=ExtResource("8_w3lm2")]
+script = ExtResource("9_1i35a")
 player = NodePath("../Joueur")

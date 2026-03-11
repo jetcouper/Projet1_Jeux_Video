@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dx6w4lygl8kk5"]
+
+[ext_resource type="Script" uid="uid://dn8d6hfsllhu1" path="res://src/DcmSprayBulletSpawner.cs" id="1_g8hbr"]
+[ext_resource type="Script" uid="uid://doljwao0ku2ys" path="res://Library/Util/EditorDebugOnly.cs" id="2_0q6uy"]
+
+[node name="Node2D" type="Node2D" unique_id=368652204 node_paths=PackedStringArray("timer")]
+script = ExtResource("1_g8hbr")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="." unique_id=1759716535]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=738688186]
+script = ExtResource("2_0q6uy")

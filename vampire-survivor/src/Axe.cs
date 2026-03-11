@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Ax : Node2D, IUseable
+public partial class Axe : Node2D, IUseable
 {
 	[ExportGroup("Internal")]
 	[Export]

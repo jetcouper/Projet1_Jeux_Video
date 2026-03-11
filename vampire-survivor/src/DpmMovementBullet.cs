@@ -3,47 +3,43 @@ using Godot;
 
 public partial class DpmMovementBullet : Node2D
 {
-    [ExportGroup("External")]
-    [Export]
-    public Node2D NodeToControl;
+	[ExportGroup("External")]
+	[Export]
+	public Node2D NodeToControl;
 
-    public Node2D Player;
+	public Node2D Player;
 
-    [Export]
-    public float DistFromPlayer = 25f;
+	public float DistFromPlayer = 50f;
+	
+	public float AngularSpeed = 1f;
 
-    private float _speed = 0.1f;
+	private float _speed = 50f;
 
-    public float angle;
+	public float startingPosition; 
 
-    private int _direction;
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		MoveBullet(delta);
+	}
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
+	public void StartSwing()
+	{
+		Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition));
+		NodeToControl.GlobalPosition = Player.GlobalPosition + offset * DistFromPlayer;
+		NodeToControl.Rotation = startingPosition + 55; 
+	}
 
-        Positionning();
-    }
+	private void MoveBullet(double delta)
+	{
+		startingPosition += AngularSpeed * (float)delta; 
+		DistFromPlayer += _speed * (float)delta;
 
-    private Random rand = new Random();
+		
+		// Move bullet straight along its angle
+		Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition)) * DistFromPlayer;
+		NodeToControl.GlobalPosition = Player.GlobalPosition + offset;
 
-    public void StartSwing()
-    {
-        // Set sword rotation
-        NodeToControl.RotationDegrees = angle;
-
-        // Offset from player using the angle
-        Vector2 offset = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * DistFromPlayer;
-
-        NodeToControl.GlobalPosition = Player.GlobalPosition + offset;
-    }
-
-    public void Positionning()
-    {
-        float angle = Mathf.DegToRad(this.angle); // if your angle is in degrees
-
-        Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-
-        NodeToControl.GlobalPosition += direction * _speed;
-    }
+		NodeToControl.Rotation = startingPosition + 55;
+	}
 }

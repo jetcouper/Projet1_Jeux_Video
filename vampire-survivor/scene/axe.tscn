@@ -8,6 +8,7 @@
 radius = 11.0
 
 [node name="Ax" type="Node2D" unique_id=1832805832 node_paths=PackedStringArray("DpmMovementAx")]
+rotation = -0.7853982
 script = ExtResource("1_6c5hp")
 DpmMovementAx = NodePath("DPMMovementAx")
 

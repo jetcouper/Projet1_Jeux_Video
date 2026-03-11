@@ -3,17 +3,17 @@ using Godot;
 
 public partial class Sword : Node2D, IUseable
 {
-    [ExportGroup("Internal")]
-    [Export]
-    private DpmMovement DpmMovement;
+	[ExportGroup("Internal")]
+	[Export]
+	private DpmMovementSword DpmMovementSword;
 
-    public void Use()
-    {
-        DpmMovement.StartSwing();
-    }
+	public void Use()
+	{
+		DpmMovementSword.StartSwing();
+	}
 
-    public void setPlayer(Node2D player)
-    {
-        DpmMovement.Player = player;
-    }
+	public void setPlayer(Node2D player)
+	{
+		DpmMovementSword.Player = player;
+	}
 }

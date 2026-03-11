@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bw85oosby2qek"]
 
-[ext_resource type="Script" uid="uid://ce3cpmvgj4fbs" path="res://src/WeaponSpawner.cs" id="1_gugx3"]
+[ext_resource type="Script" uid="uid://ce3cpmvgj4fbs" path="res://src/DcmWeaponSpawner.cs" id="1_gugx3"]
 [ext_resource type="Texture2D" uid="uid://7pyxlpq5ptbq" path="res://Pictures/Weapons/Battle axe.png" id="2_l7nyn"]
-[ext_resource type="Script" path="res://Library/Util/EditorDebugOnly.cs" id="3_l7nyn"]
+[ext_resource type="Script" uid="uid://doljwao0ku2ys" path="res://Library/Util/EditorDebugOnly.cs" id="3_l7nyn"]
 
 [node name="DCM_Weapons" type="Node2D" unique_id=1886240174 node_paths=PackedStringArray("timer")]
 scale = Vector2(0.74999994, 0.74999994)
