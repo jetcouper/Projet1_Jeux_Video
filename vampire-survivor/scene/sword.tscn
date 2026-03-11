@@ -9,11 +9,11 @@ radius = 7.070429
 height = 25.453545
 
 [node name="Sword" type="Node2D" unique_id=1426487271 node_paths=PackedStringArray("DpmMovement")]
-rotation = -1.5707964
 script = ExtResource("1_d6wag")
 DpmMovement = NodePath("DPM_Movement")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=559478429]
+rotation = -0.7853982
 texture = ExtResource("1_6wdhb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=803515282]
