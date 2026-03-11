@@ -8,8 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://cejei0t145hhm" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/farm objects free.png" id="5_yvv1t"]
 [ext_resource type="Texture2D" uid="uid://ciicdem6lx6mr" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/plants free.png" id="6_djeww"]
 [ext_resource type="Script" uid="uid://b2716dewiacno" path="res://Library/DCM/DcmWindSystem.cs" id="8_1i35a"]
+[ext_resource type="Texture2D" uid="uid://g1e5kbhsw4me" path="res://Pictures/Bird_v002_blue_and_yellow_small.png" id="9_4btnw"]
 [ext_resource type="Texture2D" uid="uid://dncdor46pla6m" path="res://Pictures/Clouds V2/Clouds V2.png" id="9_pjqhk"]
 [ext_resource type="Script" uid="uid://brc86xuy7k5py" path="res://Library/Util/Oscillation.cs" id="10_4btnw"]
+[ext_resource type="Script" uid="uid://dgom1hisn48t7" path="res://Library/Util/OscillationOiseau.cs" id="10_pjrin"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -683,6 +685,75 @@ texture = ExtResource("5_yvv1t")
 sources/0 = SubResource("TileSetAtlasSource_8nem0")
 sources/1 = SubResource("TileSetAtlasSource_usnht")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrhym"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(0, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34wgf"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(32, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tru2c"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(64, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw4fi"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(96, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwjk0"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(0, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y0lgb"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(32, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_buiwa"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(64, 147, 32, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v72vu"]
+atlas = ExtResource("9_4btnw")
+region = Rect2(96, 147, 32, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tror8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrhym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34wgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tru2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw4fi")
+}],
+"loop": true,
+"name": &"moveLeft",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwjk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y0lgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_buiwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v72vu")
+}],
+"loop": true,
+"name": &"moveRight",
+"speed": 8.0
+}]
+
 [node name="Niveau" type="Node2D" unique_id=899712626]
 script = ExtResource("1_h10ha")
 
@@ -712,6 +783,117 @@ z_index = 10
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD8/wAAAQADAAQAAAAEAPz/AQADAAQAAAAJAAIAAQADAAQAAAD9/wcAAQADAAQAAADy/wIAAQAFAAEAAADs//3/AQADAAQAAADp/wUAAQADAAQAAADh////AQADAAQAAADi/wQAAQADAAQAAADj//P/AQADAAQAAADl//D/AQADAAQAAADt//T/AQADAAQAAADx/+//AQADAAQAAAD5//P/AQADAAQAAAAAAPD/AQADAAQAAAAMAPP/AQADAAQAAAAGAPD/AQADAAQAAAAeAPH/AQADAAQAAAAcAPn/AQADAAQAAAAhAPj/AQADAAQAAAAgAP7/AQADAAQAAAAWAAgAAQADAAQAAAAUABAAAQADAAQAAAAbABQAAQADAAQAAAAMABQAAQADAAQAAAD+/xMAAQADAAQAAADx/xQAAQADAAQAAADo/xQAAQADAAQAAADn/w4AAQADAAQAAADd/xUAAQADAAQAAADd/wUAAQADAAQAAADw//3/AQACAAQAAADo/wAAAQACAAQAAADg//P/AQACAAQAAADp/+3/AQACAAQAAAD2/+7/AQACAAQAAAAIAO7/AQACAAQAAAAEAPT/AQACAAQAAAANAPn/AQACAAQAAAAUAPv/AQACAAQAAAAbAPX/AQACAAQAAAAhAPD/AQACAAQAAAAjAPz/AQACAAQAAAAbAAUAAQADAAAAAAAaAAwAAQACAAQAAAAiAA4AAQACAAQAAAAYABEAAQACAAQAAAASABUAAQACAAQAAAAJABIAAQAHAAAAAAADABQAAQACAAQAAAD5/xUAAQACAAQAAADg/w4AAQACAAQAAADh/xEAAQACAAQAAADl/wIAAQACAAQAAADe//j/AQACAAQAAADc//3/AQACAAQAAAD0//b/AQACAAQAAADe/+3/AQACAAQAAADe/+j/AQACAAQAAADx/+n/AQACAAQAAAABAOj/AQACAAQAAAAGAOr/AQADAAAAAAAGAOv/AQADAAEAAAAGAOz/AQADAAIAAAAHAOr/AQAEAAAAAAAHAOv/AQAEAAEAAAAHAOz/AQAEAAIAAAAIAOr/AQAFAAAAAAAIAOv/AQAFAAEAAAAIAOz/AQAFAAIAAADn/+b/AQADAAAAAADn/+f/AQADAAEAAADn/+j/AQADAAIAAADo/+b/AQAEAAAAAADo/+f/AQAEAAEAAADo/+j/AQAEAAIAAADp/+b/AQAFAAAAAADp/+f/AQAFAAEAAADp/+j/AQAFAAIAAADg/+z/AQADAAAAAADg/+3/AQADAAEAAADg/+7/AQADAAIAAADh/+z/AQAEAAAAAADh/+3/AQAEAAEAAADh/+7/AQAEAAIAAADi/+z/AQAFAAAAAADi/+3/AQAFAAEAAADi/+7/AQAFAAIAAADb//H/AQADAAAAAADb//L/AQADAAEAAADb//P/AQADAAIAAADc//H/AQAEAAAAAADc//L/AQAEAAEAAADc//P/AQAEAAIAAADd//H/AQAFAAAAAADd//L/AQAFAAEAAADd//P/AQAFAAIAAADq/wEAAQADAAAAAADq/wIAAQADAAEAAADq/wMAAQADAAIAAADr/wEAAQAEAAAAAADr/wIAAQAEAAEAAADr/wMAAQAEAAIAAADs/wEAAQAFAAAAAADs/wIAAQAFAAEAAADs/wMAAQAFAAIAAADw/wEAAQADAAAAAADw/wIAAQADAAEAAADw/wMAAQADAAIAAADx/wEAAQAEAAAAAADx/wIAAQAEAAEAAADx/wMAAQAEAAIAAADy/wEAAQAFAAAAAADy/wMAAQAFAAIAAADj/wcAAQADAAAAAADj/wgAAQADAAEAAADj/wkAAQADAAIAAADk/wcAAQAEAAAAAADk/wgAAQAEAAEAAADk/wkAAQAEAAIAAADl/wcAAQAFAAAAAADl/wgAAQAFAAEAAADl/wkAAQAFAAIAAADb/w4AAQAGAAAAAADb/w8AAQAGAAEAAADb/xAAAQAGAAIAAADc/w4AAQAHAAAAAADc/w8AAQAHAAEAAADc/xAAAQAHAAIAAADd/w4AAQAIAAAAAADd/w8AAQAIAAEAAADd/xAAAQAIAAIAAADu/wcAAQAGAAAAAADu/wgAAQAGAAEAAADu/wkAAQAGAAIAAADv/wcAAQAHAAAAAADv/wgAAQAHAAEAAADv/wkAAQAHAAIAAADw/wcAAQAIAAAAAADw/wgAAQAIAAEAAADw/wkAAQAIAAIAAADj/xIAAQAGAAAAAADj/xMAAQAGAAEAAADj/xQAAQAGAAIAAADk/xIAAQAHAAAAAADk/xMAAQAHAAEAAADk/xQAAQAHAAIAAADl/xIAAQAIAAAAAADl/xMAAQAIAAEAAADl/xQAAQAIAAIAAAD7/w4AAQAGAAAAAAD7/w8AAQAGAAEAAAD7/xAAAQAGAAIAAAD8/w4AAQAHAAAAAAD8/w8AAQAHAAEAAAD8/xAAAQAHAAIAAAD9/w4AAQAIAAAAAAD9/w8AAQAIAAEAAAD9/xAAAQAIAAIAAAD6/wcAAQAGAAAAAAD6/wgAAQAGAAEAAAD6/wkAAQAGAAIAAAD7/wcAAQAHAAAAAAD7/wgAAQAHAAEAAAD7/wkAAQAHAAIAAAD8/wcAAQAIAAAAAAD8/wgAAQAIAAEAAAD8/wkAAQAIAAIAAAARAAcAAQAGAAAAAAARAAgAAQAGAAEAAAARAAkAAQAGAAIAAAASAAcAAQAHAAAAAAASAAgAAQAHAAEAAAASAAkAAQAHAAIAAAATAAcAAQAIAAAAAAATAAgAAQAIAAEAAAATAAkAAQAIAAIAAAAIABIAAQAGAAAAAAAIABMAAQAGAAEAAAAIABQAAQAGAAIAAAAJABMAAQAHAAEAAAAJABQAAQAHAAIAAAAKABIAAQAIAAAAAAAKABMAAQAIAAEAAAAKABQAAQAIAAIAAAAVABAAAQAGAAAAAAAVABEAAQAGAAEAAAAVABIAAQAGAAIAAAAWABAAAQAHAAAAAAAWABEAAQAHAAEAAAAWABIAAQAHAAIAAAAXABAAAQAIAAAAAAAXABEAAQAIAAEAAAAXABIAAQAIAAIAAAAMAP7/AQAGAAAAAAAMAP//AQAGAAEAAAAMAAAAAQAGAAIAAAANAP7/AQAHAAAAAAANAP//AQAHAAEAAAANAAAAAQAHAAIAAAAOAP7/AQAIAAAAAAAOAP//AQAIAAEAAAAOAAAAAQAIAAIAAAAOAPn/AQADAAAAAAAOAPr/AQADAAEAAAAOAPv/AQADAAIAAAAPAPn/AQAEAAAAAAAPAPr/AQAEAAEAAAAPAPv/AQAEAAIAAAAQAPn/AQAFAAAAAAAQAPr/AQAFAAEAAAAQAPv/AQAFAAIAAAAbAAYAAQADAAEAAAAbAAcAAQADAAIAAAAcAAUAAQAEAAAAAAAcAAYAAQAEAAEAAAAcAAcAAQAEAAIAAAAdAAUAAQAFAAAAAAAdAAYAAQAFAAEAAAAdAAcAAQAFAAIAAADv/+r/AQADAAAAAADv/+v/AQADAAEAAADv/+z/AQADAAIAAADw/+r/AQAEAAAAAADw/+v/AQAEAAEAAADw/+z/AQAEAAIAAADx/+r/AQAFAAAAAADx/+v/AQAFAAEAAADx/+z/AQAFAAIAAAAVAPT/AQADAAUAAAAeAOv/AQADAAUAAAAZAOr/AQADAAQAAAAbAO7/AQADAAQAAAD4//D/AQADAAUAAADp//D/AQADAAUAAADo/wkAAQADAAUAAAAAABYAAQADAAUAAAAMABcAAQADAAUAAAD+//z/AQADAAQAAAA=")
 tile_set = SubResource("TileSet_iw4um")
+
+[node name="DCM_BirdSystem" type="Node2D" parent="." unique_id=2079409851]
+script = ExtResource("8_1i35a")
+
+[node name="Oiseau" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1938381632]
+position = Vector2(-221, -243)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau" unique_id=412502460 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau2" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1115231202]
+position = Vector2(190, -247)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau2" unique_id=2143348630 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau3" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1578745463]
+position = Vector2(175, 242)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau3" unique_id=1139610836 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau4" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1957069189]
+position = Vector2(-203, 236)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau4" unique_id=406889246 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau5" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=625777688]
+position = Vector2(-275, 51)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau5" unique_id=603223371 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau6" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1624583805]
+position = Vector2(90, -392)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau6" unique_id=248039589 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau7" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=754199310]
+position = Vector2(247, 346)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau7" unique_id=1267179753 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau8" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=755395350]
+position = Vector2(506, 263)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau8" unique_id=1622990344 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau9" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=595475954]
+position = Vector2(645, 180)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau9" unique_id=860821942 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau10" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=955665643]
+position = Vector2(649, -266)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau10" unique_id=519178147 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau11" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=2092183931]
+position = Vector2(645, -148)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau11" unique_id=1278924620 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
+
+[node name="Oiseau12" type="AnimatedSprite2D" parent="DCM_BirdSystem" unique_id=1661371556]
+position = Vector2(-288, -350)
+sprite_frames = SubResource("SpriteFrames_tror8")
+animation = &"moveLeft"
+
+[node name="OscillationOiseau" type="Node2D" parent="DCM_BirdSystem/Oiseau12" unique_id=1428378124 node_paths=PackedStringArray("node")]
+script = ExtResource("10_pjrin")
+node = NodePath("..")
 
 [node name="DCM_WindSystem" type="Node2D" parent="." unique_id=591551047]
 z_index = 100
