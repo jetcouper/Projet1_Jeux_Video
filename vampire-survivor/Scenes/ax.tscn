@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bebif4hcw0rwu"]
+
+[ext_resource type="Script" uid="uid://cg6wqh6l5saws" path="res://src/Ax.cs" id="1_6c5hp"]
+[ext_resource type="Texture2D" uid="uid://7pyxlpq5ptbq" path="res://Pictures/Weapons/Battle axe.png" id="2_pfxjg"]
+[ext_resource type="Script" uid="uid://c0pia3uebv22j" path="res://src/DpmMovementAx.cs" id="3_pfxjg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn04u"]
+radius = 11.0
+
+[node name="Ax" type="Node2D" unique_id=1832805832 node_paths=PackedStringArray("DpmMovementAx")]
+script = ExtResource("1_6c5hp")
+DpmMovementAx = NodePath("DPMMovementAx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1494871034]
+rotation = 3.1415927
+texture = ExtResource("2_pfxjg")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1591338629]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1658702518]
+position = Vector2(1, 1)
+shape = SubResource("CircleShape2D_nn04u")
+
+[node name="DPMMovementAx" type="Node2D" parent="." unique_id=1455754551 node_paths=PackedStringArray("NodeToControl", "TimerHold")]
+script = ExtResource("3_pfxjg")
+NodeToControl = NodePath("..")
+TimerHold = NodePath("../TimerHold")
+
+[node name="TimerHold" type="Timer" parent="." unique_id=1104995843]

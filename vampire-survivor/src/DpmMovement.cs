@@ -16,7 +16,7 @@ public partial class DpmMovement : Node2D
     public Node2D Player;
 
     [Export]
-    public float DistFromPlayer = 25f;
+    public float DistFromPlayer = 50f;
 
     private int maxSteps = 3;
     private int steps = 0;
@@ -39,7 +39,6 @@ public partial class DpmMovement : Node2D
     public void StartSwing()
     {
         steps = 0;
-        NodeToControl.Scale = new Vector2(1f, 1f);
         TimerSwing.Start();
     }
 
@@ -72,6 +71,7 @@ public partial class DpmMovement : Node2D
         Positionning();
 
         WeaponAppear();
+
         steps++;
     }
 
@@ -94,5 +94,10 @@ public partial class DpmMovement : Node2D
             .TweenProperty(NodeToControl, "scale", new Vector2(1.5f, 1.5f), 0.25f)
             .SetTrans(Tween.TransitionType.Back)
             .SetEase(Tween.EaseType.Out);
+
+        tween
+        .TweenProperty(NodeToControl, "scale", Vector2.One, 0.15f)
+        .SetTrans(Tween.TransitionType.Quad)
+        .SetEase(Tween.EaseType.In);
     }
 }
