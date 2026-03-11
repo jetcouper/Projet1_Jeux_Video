@@ -1,12 +1,15 @@
 [gd_scene format=4 uid="uid://drlngo8i03oqf"]
 
-[ext_resource type="Script" uid="uid://kyx2obnnasc7" path="res://Niveau.cs" id="1_djeww"]
+[ext_resource type="Script" uid="uid://kyx2obnnasc7" path="res://src/Niveau.cs" id="1_h10ha"]
 [ext_resource type="Texture2D" uid="uid://ca53phtqi2vsf" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/spring farm tilemap.png" id="1_nba45"]
 [ext_resource type="Texture2D" uid="uid://do4nlmqudf237" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm bridges free.png" id="2_i0u5r"]
 [ext_resource type="Texture2D" uid="uid://c3rg8lwhgcehs" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm inside free.png" id="3_yvv1t"]
-[ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://joueur.tscn" id="4_djeww"]
+[ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
 [ext_resource type="Texture2D" uid="uid://cejei0t145hhm" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/farm objects free.png" id="5_yvv1t"]
 [ext_resource type="Texture2D" uid="uid://ciicdem6lx6mr" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/plants free.png" id="6_djeww"]
+[ext_resource type="Script" uid="uid://b2716dewiacno" path="res://Library/DCM/DcmWindSystem.cs" id="8_1i35a"]
+[ext_resource type="Texture2D" uid="uid://dncdor46pla6m" path="res://Pictures/Clouds V2/Clouds V2.png" id="9_pjqhk"]
+[ext_resource type="Script" uid="uid://brc86xuy7k5py" path="res://Library/Util/Oscillation.cs" id="10_4btnw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -681,7 +684,7 @@ sources/0 = SubResource("TileSetAtlasSource_8nem0")
 sources/1 = SubResource("TileSetAtlasSource_usnht")
 
 [node name="Niveau" type="Node2D" unique_id=899712626]
-script = ExtResource("1_djeww")
+script = ExtResource("1_h10ha")
 
 [node name="TileMapLayerSol" type="TileMapLayer" parent="." unique_id=433406639]
 z_index = -1
@@ -709,3 +712,175 @@ z_index = 10
 texture_filter = 1
 tile_map_data = PackedByteArray("AAD8/wAAAQADAAQAAAAEAPz/AQADAAQAAAAJAAIAAQADAAQAAAD9/wcAAQADAAQAAADy/wIAAQAFAAEAAADs//3/AQADAAQAAADp/wUAAQADAAQAAADh////AQADAAQAAADi/wQAAQADAAQAAADj//P/AQADAAQAAADl//D/AQADAAQAAADt//T/AQADAAQAAADx/+//AQADAAQAAAD5//P/AQADAAQAAAAAAPD/AQADAAQAAAAMAPP/AQADAAQAAAAGAPD/AQADAAQAAAAeAPH/AQADAAQAAAAcAPn/AQADAAQAAAAhAPj/AQADAAQAAAAgAP7/AQADAAQAAAAWAAgAAQADAAQAAAAUABAAAQADAAQAAAAbABQAAQADAAQAAAAMABQAAQADAAQAAAD+/xMAAQADAAQAAADx/xQAAQADAAQAAADo/xQAAQADAAQAAADn/w4AAQADAAQAAADd/xUAAQADAAQAAADd/wUAAQADAAQAAADw//3/AQACAAQAAADo/wAAAQACAAQAAADg//P/AQACAAQAAADp/+3/AQACAAQAAAD2/+7/AQACAAQAAAAIAO7/AQACAAQAAAAEAPT/AQACAAQAAAANAPn/AQACAAQAAAAUAPv/AQACAAQAAAAbAPX/AQACAAQAAAAhAPD/AQACAAQAAAAjAPz/AQACAAQAAAAbAAUAAQADAAAAAAAaAAwAAQACAAQAAAAiAA4AAQACAAQAAAAYABEAAQACAAQAAAASABUAAQACAAQAAAAJABIAAQAHAAAAAAADABQAAQACAAQAAAD5/xUAAQACAAQAAADg/w4AAQACAAQAAADh/xEAAQACAAQAAADl/wIAAQACAAQAAADe//j/AQACAAQAAADc//3/AQACAAQAAAD0//b/AQACAAQAAADe/+3/AQACAAQAAADe/+j/AQACAAQAAADx/+n/AQACAAQAAAABAOj/AQACAAQAAAAGAOr/AQADAAAAAAAGAOv/AQADAAEAAAAGAOz/AQADAAIAAAAHAOr/AQAEAAAAAAAHAOv/AQAEAAEAAAAHAOz/AQAEAAIAAAAIAOr/AQAFAAAAAAAIAOv/AQAFAAEAAAAIAOz/AQAFAAIAAADn/+b/AQADAAAAAADn/+f/AQADAAEAAADn/+j/AQADAAIAAADo/+b/AQAEAAAAAADo/+f/AQAEAAEAAADo/+j/AQAEAAIAAADp/+b/AQAFAAAAAADp/+f/AQAFAAEAAADp/+j/AQAFAAIAAADg/+z/AQADAAAAAADg/+3/AQADAAEAAADg/+7/AQADAAIAAADh/+z/AQAEAAAAAADh/+3/AQAEAAEAAADh/+7/AQAEAAIAAADi/+z/AQAFAAAAAADi/+3/AQAFAAEAAADi/+7/AQAFAAIAAADb//H/AQADAAAAAADb//L/AQADAAEAAADb//P/AQADAAIAAADc//H/AQAEAAAAAADc//L/AQAEAAEAAADc//P/AQAEAAIAAADd//H/AQAFAAAAAADd//L/AQAFAAEAAADd//P/AQAFAAIAAADq/wEAAQADAAAAAADq/wIAAQADAAEAAADq/wMAAQADAAIAAADr/wEAAQAEAAAAAADr/wIAAQAEAAEAAADr/wMAAQAEAAIAAADs/wEAAQAFAAAAAADs/wIAAQAFAAEAAADs/wMAAQAFAAIAAADw/wEAAQADAAAAAADw/wIAAQADAAEAAADw/wMAAQADAAIAAADx/wEAAQAEAAAAAADx/wIAAQAEAAEAAADx/wMAAQAEAAIAAADy/wEAAQAFAAAAAADy/wMAAQAFAAIAAADj/wcAAQADAAAAAADj/wgAAQADAAEAAADj/wkAAQADAAIAAADk/wcAAQAEAAAAAADk/wgAAQAEAAEAAADk/wkAAQAEAAIAAADl/wcAAQAFAAAAAADl/wgAAQAFAAEAAADl/wkAAQAFAAIAAADb/w4AAQAGAAAAAADb/w8AAQAGAAEAAADb/xAAAQAGAAIAAADc/w4AAQAHAAAAAADc/w8AAQAHAAEAAADc/xAAAQAHAAIAAADd/w4AAQAIAAAAAADd/w8AAQAIAAEAAADd/xAAAQAIAAIAAADu/wcAAQAGAAAAAADu/wgAAQAGAAEAAADu/wkAAQAGAAIAAADv/wcAAQAHAAAAAADv/wgAAQAHAAEAAADv/wkAAQAHAAIAAADw/wcAAQAIAAAAAADw/wgAAQAIAAEAAADw/wkAAQAIAAIAAADj/xIAAQAGAAAAAADj/xMAAQAGAAEAAADj/xQAAQAGAAIAAADk/xIAAQAHAAAAAADk/xMAAQAHAAEAAADk/xQAAQAHAAIAAADl/xIAAQAIAAAAAADl/xMAAQAIAAEAAADl/xQAAQAIAAIAAAD7/w4AAQAGAAAAAAD7/w8AAQAGAAEAAAD7/xAAAQAGAAIAAAD8/w4AAQAHAAAAAAD8/w8AAQAHAAEAAAD8/xAAAQAHAAIAAAD9/w4AAQAIAAAAAAD9/w8AAQAIAAEAAAD9/xAAAQAIAAIAAAD6/wcAAQAGAAAAAAD6/wgAAQAGAAEAAAD6/wkAAQAGAAIAAAD7/wcAAQAHAAAAAAD7/wgAAQAHAAEAAAD7/wkAAQAHAAIAAAD8/wcAAQAIAAAAAAD8/wgAAQAIAAEAAAD8/wkAAQAIAAIAAAARAAcAAQAGAAAAAAARAAgAAQAGAAEAAAARAAkAAQAGAAIAAAASAAcAAQAHAAAAAAASAAgAAQAHAAEAAAASAAkAAQAHAAIAAAATAAcAAQAIAAAAAAATAAgAAQAIAAEAAAATAAkAAQAIAAIAAAAIABIAAQAGAAAAAAAIABMAAQAGAAEAAAAIABQAAQAGAAIAAAAJABMAAQAHAAEAAAAJABQAAQAHAAIAAAAKABIAAQAIAAAAAAAKABMAAQAIAAEAAAAKABQAAQAIAAIAAAAVABAAAQAGAAAAAAAVABEAAQAGAAEAAAAVABIAAQAGAAIAAAAWABAAAQAHAAAAAAAWABEAAQAHAAEAAAAWABIAAQAHAAIAAAAXABAAAQAIAAAAAAAXABEAAQAIAAEAAAAXABIAAQAIAAIAAAAMAP7/AQAGAAAAAAAMAP//AQAGAAEAAAAMAAAAAQAGAAIAAAANAP7/AQAHAAAAAAANAP//AQAHAAEAAAANAAAAAQAHAAIAAAAOAP7/AQAIAAAAAAAOAP//AQAIAAEAAAAOAAAAAQAIAAIAAAAOAPn/AQADAAAAAAAOAPr/AQADAAEAAAAOAPv/AQADAAIAAAAPAPn/AQAEAAAAAAAPAPr/AQAEAAEAAAAPAPv/AQAEAAIAAAAQAPn/AQAFAAAAAAAQAPr/AQAFAAEAAAAQAPv/AQAFAAIAAAAbAAYAAQADAAEAAAAbAAcAAQADAAIAAAAcAAUAAQAEAAAAAAAcAAYAAQAEAAEAAAAcAAcAAQAEAAIAAAAdAAUAAQAFAAAAAAAdAAYAAQAFAAEAAAAdAAcAAQAFAAIAAADv/+r/AQADAAAAAADv/+v/AQADAAEAAADv/+z/AQADAAIAAADw/+r/AQAEAAAAAADw/+v/AQAEAAEAAADw/+z/AQAEAAIAAADx/+r/AQAFAAAAAADx/+v/AQAFAAEAAADx/+z/AQAFAAIAAAAVAPT/AQADAAUAAAAeAOv/AQADAAUAAAAZAOr/AQADAAQAAAAbAO7/AQADAAQAAAD4//D/AQADAAUAAADp//D/AQADAAUAAADo/wkAAQADAAUAAAAAABYAAQADAAUAAAAMABcAAQADAAUAAAD+//z/AQADAAQAAAA=")
 tile_set = SubResource("TileSet_iw4um")
+
+[node name="DCM_WindSystem" type="Node2D" parent="." unique_id=591551047]
+z_index = 100
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("8_1i35a")
+
+[node name="Nuage" type="Sprite2D" parent="DCM_WindSystem" unique_id=2145428798 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(595, -330.00003)
+scale = Vector2(4.0019174, 4.0019174)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage2" type="Sprite2D" parent="DCM_WindSystem" unique_id=1175436280 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-139, 334)
+scale = Vector2(2.1540124, 2.1540124)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(10.15094, 84.870605, 94.951965, 35.36801)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage3" type="Sprite2D" parent="DCM_WindSystem" unique_id=423763511 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(546, 117)
+scale = Vector2(1.818385, 1.818385)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(65.5927, 49.821217, 54.485855, 71.691925)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage4" type="Sprite2D" parent="DCM_WindSystem" unique_id=1122925913 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-238.99994, -304)
+scale = Vector2(2.6411471, 2.6411471)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(0, 50.139847, 128, 35.049385)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage5" type="Sprite2D" parent="DCM_WindSystem" unique_id=129528626 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(326, 233)
+scale = Vector2(1.6641473, 1.6641473)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(0, 8.71785, 128, 41.421997)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage6" type="Sprite2D" parent="DCM_WindSystem" unique_id=1517339444 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-173, 168)
+scale = Vector2(3.4981327, 3.4981327)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(12.062721, 82.00293, 52.25544, 37.917053)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage7" type="Sprite2D" parent="DCM_WindSystem" unique_id=1486245205 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-508, -295)
+scale = Vector2(1.6357841, 1.6357841)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(68.46037, 20.825817, 59.539627, 66.59383)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage8" type="Sprite2D" parent="DCM_WindSystem" unique_id=546114464 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(421, -183)
+scale = Vector2(2.2299147, 2.2299147)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(10.15094, 84.870605, 94.951965, 35.36801)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage9" type="Sprite2D" parent="DCM_WindSystem" unique_id=892304283 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(218.99998, 125)
+scale = Vector2(1.4429264, 1.4429264)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(0, 50.139847, 128, 35.049385)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage10" type="Sprite2D" parent="DCM_WindSystem" unique_id=2011932966 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(71.999985, -205.00002)
+scale = Vector2(2.2744074, 2.2744074)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(68.46037, 20.825817, 59.539627, 66.59383)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage11" type="Sprite2D" parent="DCM_WindSystem" unique_id=1248234114 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-141.00002, -107)
+scale = Vector2(1.6165657, 1.6165657)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(10.15094, 84.870605, 94.951965, 35.36801)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage12" type="Sprite2D" parent="DCM_WindSystem" unique_id=547389046 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(286, -31)
+scale = Vector2(1.9298246, 1.9298246)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(65.5927, 49.821217, 54.485855, 71.691925)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage13" type="Sprite2D" parent="DCM_WindSystem" unique_id=2132528491 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-446.00003, -84)
+scale = Vector2(4.12, 4.12)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage14" type="Sprite2D" parent="DCM_WindSystem" unique_id=720172653 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-476, 75.00001)
+scale = Vector2(2.0851064, 2.0851064)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
+script = ExtResource("10_4btnw")
+node = NodePath(".")
+
+[node name="Nuage15" type="Sprite2D" parent="DCM_WindSystem" unique_id=647163215 node_paths=PackedStringArray("node")]
+modulate = Color(1, 1, 1, 0.5686275)
+texture_filter = 1
+position = Vector2(-469, 269)
+scale = Vector2(2.475, 2.475)
+texture = ExtResource("9_pjqhk")
+region_enabled = true
+region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
+script = ExtResource("10_4btnw")
+node = NodePath(".")

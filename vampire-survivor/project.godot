@@ -24,10 +24,19 @@ window/size/viewport_height=1080
 
 project/assembly_name="Vampire_Survivor"
 
+[layer_names]
+
+2d_render/layer_1="Player"
+2d_render/layer_2="Zombie"
+2d_render/layer_5=" "
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Zombie"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
