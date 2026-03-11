@@ -4,14 +4,12 @@ using Utils;
 
 public partial class DpmLifeAndVisual : Node
 {
-    [ExportGroup("External")]
     [Export]
     public Node2D RootToEliminate;
 
     [Export]
     public AnimatedSprite2D DeathAnimation;
 
-    [ExportGroup("Internal")]
     [Export]
     public int LifePoints = 2;
 

@@ -1,7 +1,7 @@
 using Godot;
 using Utils;
 
-public partial class Zombie : Node2D, IKillable
+public partial class Ennemy : Node2D, IKillable
 {
     [ExportGroup("External")]
     [Export]

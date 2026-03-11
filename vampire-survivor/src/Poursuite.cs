@@ -11,7 +11,7 @@ public partial class Poursuite : Node2D
     private Node2D Poursuivant;
 
     [Export]
-    public float Velocity = 100.0f;
+    public float Velocity = 10.0f;
 
     [Export]
     private float StopMove = 50.0f;
@@ -21,7 +21,7 @@ public partial class Poursuite : Node2D
 
     public override void _PhysicsProcess(double InDelta)
     {
-        if (Poursuivant is Zombie zombie && zombie.IsDead)
+        if (Poursuivant is Ennemy ennemy && ennemy.IsDead)
         {
             return;
         }
