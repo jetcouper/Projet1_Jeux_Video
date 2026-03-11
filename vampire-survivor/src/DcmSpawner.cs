@@ -19,10 +19,11 @@ public partial class DcmSpawner : Node2D, ISpawner
         {
             crystal.setPlayer(Player);
         }
-        
+
         newInstance.EnsureValid();
 
-        AddChild(newInstance);
+        // Méthode différée pour spawn apres la fin de gestion des collisions
+        CallDeferred(Node.MethodName.AddChild, newInstance);
 
         newInstance.GlobalPosition = position;
     }

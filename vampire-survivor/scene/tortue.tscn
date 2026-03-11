@@ -450,6 +450,7 @@ sprite_frames = SubResource("SpriteFrames_mxc1a")
 animation = &"Pause"
 
 [node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=1123885198 node_paths=PackedStringArray("_Cible", "_Life")]
+collision_layer = 2
 script = ExtResource("4_qljbx")
 _Cible = NodePath("..")
 _Life = NodePath("../DPM_LIFE_AND_VISUAL")
@@ -463,6 +464,7 @@ shape = SubResource("CapsuleShape2D_2ep7w")
 script = ExtResource("5_cx6jt")
 Poursuivant = NodePath("..")
 Velocity = 5.0
+StopMove = 0.0
 _Anim = NodePath("../AnimatedSprite2D")
 
 [node name="DPM_LIFE_AND_VISUAL" type="Node2D" parent="." unique_id=1855268806 node_paths=PackedStringArray("RootToEliminate", "DeathAnimation")]
