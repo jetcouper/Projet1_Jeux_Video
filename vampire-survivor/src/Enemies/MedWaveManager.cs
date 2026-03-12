@@ -1,0 +1,140 @@
+using System;
+using Godot;
+
+public partial class MedWaveManager : Node
+{
+    [ExportGroup("Internal")]
+    [Export]
+    private DcmEnemySpawner ZombieSpawner;
+
+    [Export]
+    private DcmEnemySpawner ZombiePresseSpawner;
+
+    [Export]
+    private DcmEnemySpawner TortueSpawner;
+
+    [Export]
+    private DcmEnemySpawner GeneSpawner;
+
+    [Export]
+    private DcmEnemySpawner BossSpawner;
+
+    [Export]
+    private Vector2 SpawnInterval = new Vector2(1.0f, 2.0f);
+
+    public enum EGamePhase
+    {
+        eWave1_Zombie,
+        eWave2_ZombiePresse,
+        eWave3_Tortue,
+        eWave4_Gene,
+        eFinalBoss,
+    }
+
+    public EGamePhase CurrentPhase;
+
+    private double _gameTime = 0;
+    private int _playerLevel = 1;
+    private Timer _spawnTimer;
+
+    public override void _Ready()
+    {
+        CurrentPhase = EGamePhase.eWave1_Zombie;
+
+        _spawnTimer = new Timer();
+        _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
+        _spawnTimer.Timeout += ExecuteSpawnAlgo;
+        AddChild(_spawnTimer);
+
+        _spawnTimer.Start();
+    }
+
+    public override void _Process(double delta)
+    {
+        _gameTime += delta;
+        UpdateGamePhase();
+    }
+
+    public void ReceiveNewLevel(int newLevel)
+    {
+        _playerLevel = newLevel;
+        UpdateGamePhase();
+    }
+
+    private void UpdateGamePhase()
+    {
+        EGamePhase newPhase = CurrentPhase;
+
+        if (_gameTime > 150 || _playerLevel >= 10)
+            newPhase = EGamePhase.eFinalBoss;
+        else if (_gameTime > 100 || _playerLevel >= 8)
+            newPhase = EGamePhase.eWave4_Gene;
+        else if (_gameTime > 90 || _playerLevel >= 5)
+            newPhase = EGamePhase.eWave3_Tortue;
+        else if (_gameTime > 45 || _playerLevel >= 3)
+            newPhase = EGamePhase.eWave2_ZombiePresse;
+
+        if (newPhase != CurrentPhase)
+        {
+            CurrentPhase = newPhase;
+
+            switch (CurrentPhase)
+            {
+                case EGamePhase.eWave2_ZombiePresse:
+                    SpawnInterval = new Vector2(1.0f, 1.5f);
+                    break;
+                case EGamePhase.eWave3_Tortue:
+                    SpawnInterval = new Vector2(0.7f, 1.2f);
+                    break;
+                case EGamePhase.eWave4_Gene:
+                    SpawnInterval = new Vector2(0.4f, 0.8f);
+                    break;
+                case EGamePhase.eFinalBoss:
+                    _spawnTimer.Stop();
+                    ExecuteSpawnAlgo();
+                    return;
+            }
+
+            _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
+        }
+    }
+
+    private void ExecuteSpawnAlgo()
+    {
+        switch (CurrentPhase)
+        {
+            case EGamePhase.eWave1_Zombie:
+                ZombieSpawner?.SpawnEnemy();
+                break;
+
+            case EGamePhase.eWave2_ZombiePresse:
+                ZombieSpawner?.SpawnEnemy();
+                if (GD.Randi() % 3 == 0)
+                    ZombiePresseSpawner?.SpawnEnemy();
+                break;
+
+            case EGamePhase.eWave3_Tortue:
+                ZombieSpawner?.SpawnEnemy();
+                ZombiePresseSpawner?.SpawnEnemy();
+                if (GD.Randi() % 4 == 0)
+                    TortueSpawner?.SpawnEnemy();
+                break;
+
+            case EGamePhase.eWave4_Gene:
+                ZombieSpawner?.SpawnEnemy();
+                ZombiePresseSpawner?.SpawnEnemy();
+
+                int randValue = (int)(GD.Randi() % 3);
+                if (randValue == 0)
+                    TortueSpawner?.SpawnEnemy();
+                else if (randValue == 1)
+                    GeneSpawner?.SpawnEnemy();
+                break;
+
+            case EGamePhase.eFinalBoss:
+                BossSpawner?.SpawnEnemy();
+                break;
+        }
+        _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
+    }
+}

@@ -1,17 +1,26 @@
 [gd_scene format=4 uid="uid://drlngo8i03oqf"]
 
 [ext_resource type="Script" uid="uid://kyx2obnnasc7" path="res://src/Niveau.cs" id="1_h10ha"]
-[ext_resource type="Texture2D" uid="uid://ca53phtqi2vsf" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/spring farm tilemap.png" id="1_nba45"]
-[ext_resource type="Texture2D" uid="uid://do4nlmqudf237" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm bridges free.png" id="2_i0u5r"]
-[ext_resource type="Texture2D" uid="uid://c3rg8lwhgcehs" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm inside free.png" id="3_yvv1t"]
+[ext_resource type="Texture2D" uid="uid://ca53phtqi2vsf" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/spring farm tilemap.png" id="1_nba45"]
+[ext_resource type="Texture2D" uid="uid://do4nlmqudf237" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm bridges free.png" id="2_i0u5r"]
+[ext_resource type="Texture2D" uid="uid://c3rg8lwhgcehs" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm inside free.png" id="3_yvv1t"]
 [ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
-[ext_resource type="Texture2D" uid="uid://cejei0t145hhm" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/farm objects free.png" id="5_yvv1t"]
-[ext_resource type="Texture2D" uid="uid://ciicdem6lx6mr" path="res://Pictures/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/plants free.png" id="6_djeww"]
+[ext_resource type="Texture2D" uid="uid://cejei0t145hhm" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/farm objects free.png" id="5_yvv1t"]
+[ext_resource type="Texture2D" uid="uid://ciicdem6lx6mr" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/plants free.png" id="6_djeww"]
 [ext_resource type="Script" uid="uid://b2716dewiacno" path="res://Library/DCM/DcmWindSystem.cs" id="8_1i35a"]
 [ext_resource type="Texture2D" uid="uid://g1e5kbhsw4me" path="res://Pictures/Bird_v002_blue_and_yellow_small.png" id="9_4btnw"]
 [ext_resource type="Texture2D" uid="uid://dncdor46pla6m" path="res://Pictures/Clouds V2/Clouds V2.png" id="9_pjqhk"]
 [ext_resource type="Script" uid="uid://brc86xuy7k5py" path="res://Library/Util/Oscillation.cs" id="10_4btnw"]
 [ext_resource type="Script" uid="uid://dgom1hisn48t7" path="res://Library/Util/OscillationOiseau.cs" id="10_pjrin"]
+[ext_resource type="PackedScene" uid="uid://lwhnrr546r72" path="res://scene/Enemies/tortue.tscn" id="13_pjrin"]
+[ext_resource type="Script" uid="uid://u5cfok1bs4em" path="res://src/Enemies/MedWaveManager.cs" id="13_rrhym"]
+[ext_resource type="Script" uid="uid://bii1thu5a16v5" path="res://src/Enemies/DCM/DcmEnemySpawner.cs" id="14_34wgf"]
+[ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/Enemies/zombie.tscn" id="15_34wgf"]
+[ext_resource type="PackedScene" uid="uid://bnimxajajwgpa" path="res://scene/Enemies/zombie_presse.tscn" id="16_pwjk0"]
+[ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/Enemies/gene.tscn" id="18_y0lgb"]
+[ext_resource type="PackedScene" uid="uid://61evwrft01ol" path="res://scene/Enemies/boss.tscn" id="19_y0lgb"]
+[ext_resource type="Script" uid="uid://blcjeii61gxav" path="res://src/Crystal/MedCrystal.cs" id="20_buiwa"]
+[ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Crystal/dcm_spawner_crystal.tscn" id="21_v72vu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -777,6 +786,7 @@ tile_set = SubResource("TileSet_48mvn")
 [node name="Joueur" parent="." unique_id=249153935 node_paths=PackedStringArray("CollisionLayer") instance=ExtResource("4_djeww")]
 y_sort_enabled = true
 CollisionLayer = NodePath("../TileMapLayerCollision")
+gatherRadius = 50.0
 
 [node name="TileMapLayerDecoration" type="TileMapLayer" parent="." unique_id=1604753950]
 z_index = 10
@@ -1066,3 +1076,53 @@ region_enabled = true
 region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
 script = ExtResource("10_4btnw")
 node = NodePath(".")
+
+[node name="MED_Spawner_Crystal" type="Node2D" parent="." unique_id=1102595160 node_paths=PackedStringArray("ICristalSpawner")]
+script = ExtResource("20_buiwa")
+ICristalSpawner = NodePath("DCM_SpawnerCrystal")
+
+[node name="DCM_SpawnerCrystal" parent="MED_Spawner_Crystal" unique_id=1012352925 node_paths=PackedStringArray("Player") instance=ExtResource("21_v72vu")]
+Player = NodePath("../../Joueur")
+
+[node name="MED_Game" type="Node2D" parent="." unique_id=762441559 node_paths=PackedStringArray("ZombieSpawner", "ZombiePresseSpawner", "TortueSpawner", "GeneSpawner", "BossSpawner")]
+script = ExtResource("13_rrhym")
+ZombieSpawner = NodePath("DCM_Spawner_Zombie")
+ZombiePresseSpawner = NodePath("DCM_Spawner_ZombiePresse")
+TortueSpawner = NodePath("DCM_Spawner_Tortue")
+GeneSpawner = NodePath("DCM_Spawner_Gene")
+BossSpawner = NodePath("DCM_Spawner_Boss")
+
+[node name="DCM_Spawner_Zombie" type="Node2D" parent="MED_Game" unique_id=722274160 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("14_34wgf")
+EnemyScene = ExtResource("15_34wgf")
+Player = NodePath("../../Joueur")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
+
+[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="MED_Game" unique_id=1003608116 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("14_34wgf")
+EnemyScene = ExtResource("16_pwjk0")
+Player = NodePath("../../Joueur")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
+
+[node name="DCM_Spawner_Tortue" type="Node2D" parent="MED_Game" unique_id=1306268895 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("14_34wgf")
+EnemyScene = ExtResource("13_pjrin")
+Player = NodePath("../../Joueur")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
+
+[node name="DCM_Spawner_Gene" type="Node2D" parent="MED_Game" unique_id=942263563 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("14_34wgf")
+EnemyScene = ExtResource("18_y0lgb")
+Player = NodePath("../../Joueur")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
+
+[node name="DCM_Spawner_Boss" type="Node2D" parent="MED_Game" unique_id=970987243 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("14_34wgf")
+EnemyScene = ExtResource("19_y0lgb")
+Player = NodePath("../../Joueur")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("../../MED_Spawner_Crystal")

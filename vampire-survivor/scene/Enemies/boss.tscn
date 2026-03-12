@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://61evwrft01ol"]
 
-[ext_resource type="Script" uid="uid://b1j62cajjq5ni" path="res://src/Ennemy.cs" id="1_tcgrh"]
+[ext_resource type="Script" uid="uid://b1j62cajjq5ni" path="res://src/Enemies/Base/Ennemy.cs" id="1_tcgrh"]
 [ext_resource type="Texture2D" uid="uid://b1lj3nx1e0oqo" path="res://Pictures/Enemies/Boss/Walk/Boss_Walk_full.png" id="2_ex4t5"]
 [ext_resource type="Texture2D" uid="uid://d3dbkym2jthac" path="res://Pictures/Enemies/Boss/Run/Boss_Run_full.png" id="3_gtfqc"]
 [ext_resource type="Texture2D" uid="uid://i8q08kxkihe" path="res://Pictures/Enemies/Boss/Idle/Boss_Idle_full.png" id="3_tcgrh"]
-[ext_resource type="Script" uid="uid://nhi5c876d7rb" path="res://src/DpmDamagePhysical.cs" id="4_27m4v"]
-[ext_resource type="Script" uid="uid://dr5dka1xdl1wr" path="res://src/Poursuite.cs" id="5_b5yaj"]
-[ext_resource type="Script" uid="uid://bdyv6fxu1p0q5" path="res://src/DpmLifeAndVisual.cs" id="6_ar14e"]
+[ext_resource type="Script" uid="uid://nhi5c876d7rb" path="res://src/Enemies/DPM/DpmDamagePhysical.cs" id="4_27m4v"]
+[ext_resource type="Script" uid="uid://dr5dka1xdl1wr" path="res://src/Enemies/Base/Poursuite.cs" id="5_b5yaj"]
+[ext_resource type="Script" uid="uid://bdyv6fxu1p0q5" path="res://src/Enemies/DPM/DpmLifeAndVisual.cs" id="6_ar14e"]
 [ext_resource type="Texture2D" uid="uid://c16cix3mk20y7" path="res://Pictures/explosions.png" id="7_8yuaj"]
-[ext_resource type="Script" uid="uid://o66pgqjwyprl" path="res://src/DcmBossSpawner.cs" id="7_gtfqc"]
-[ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/zombie.tscn" id="11_ar14e"]
-[ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/gene.tscn" id="11_b5yaj"]
-[ext_resource type="PackedScene" uid="uid://bnimxajajwgpa" path="res://scene/zombie_presse.tscn" id="12_ar14e"]
+[ext_resource type="Script" uid="uid://o66pgqjwyprl" path="res://src/Enemies/DCM/DcmBossSpawner.cs" id="7_gtfqc"]
+[ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/Enemies/zombie.tscn" id="11_ar14e"]
+[ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/Enemies/gene.tscn" id="11_b5yaj"]
+[ext_resource type="PackedScene" uid="uid://bnimxajajwgpa" path="res://scene/Enemies/zombie_presse.tscn" id="12_ar14e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27m4v"]
 atlas = ExtResource("2_ex4t5")
@@ -482,8 +482,8 @@ script = ExtResource("7_gtfqc")
 Root = NodePath("..")
 EnemyScenes = Array[PackedScene]([ExtResource("11_ar14e"), ExtResource("11_b5yaj"), ExtResource("12_ar14e")])
 IntervalRange = Vector2(4, 8)
-SpawnRadiusMin = 140.0
-SpawnRadiusMax = 220.0
+SpawnRadiusMin = 70.0
+SpawnRadiusMax = 160.0
 
 [node name="DeathAnimation" type="AnimatedSprite2D" parent="." unique_id=1064355430]
 visible = false
