@@ -11,7 +11,7 @@ public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
 	[Export]
 	private Timer timer;
 
-	public void Spawn(Node2D player, float typeWeapon)
+	public void Spawn(Node2D player, float typeWeapon, int count = 0)
 	{
 		GD.Print("Spawn Weapon");
 		Node2D weapon = Weapon.Instantiate<Node2D>();

@@ -11,7 +11,7 @@ public partial class DpmMovementBullet : Node2D
 
 	public float DistFromPlayer = 50f;
 	
-	public float AngularSpeed = 1f;
+	public float AngularSpeed;
 
 	private float _speed = 50f;
 

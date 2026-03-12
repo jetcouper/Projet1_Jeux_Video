@@ -21,6 +21,9 @@ public partial class MedWeaponSpawner : Node2D
     [Export]
     private DcmSprayBulletSpawner CircularSprayBullets;
 
+    [Export]
+    private DcmSprayBulletSpawner LinearSpiralBullets;
+
 	[Export]
 	public EAlgoSelectionCible InAlgoSelectionWeapon;
 
@@ -28,11 +31,10 @@ public partial class MedWeaponSpawner : Node2D
     {
         eSword,
 		eAxe,
-        eBoxingGlove,
         eLinearSprayBullets,
         eCircularSprayBullets,
-        eSeekingBullet,
-        eExplosionBullet
+        eLinearSpiralBullets,
+
     }
 
 	public override void _Ready() {
@@ -57,24 +59,25 @@ public partial class MedWeaponSpawner : Node2D
 					SpawnerAxe.Spawn(player, 0);
 				}
                 break;
-            case EAlgoSelectionCible.eBoxingGlove:
-                { }
-                break;
             case EAlgoSelectionCible.eLinearSprayBullets:
                 {
-                   LinearSprayBullets.Spawn(player, 0);
+                   LinearSprayBullets.Spawn(player, 0, 12);
                 }
                 break;
             case EAlgoSelectionCible.eCircularSprayBullets:
                 {
-                    CircularSprayBullets.Spawn(player, 1);
+                    CircularSprayBullets.Spawn(player, 1, 12);
 
                 }
                 break;
+            case EAlgoSelectionCible.eLinearSpiralBullets:
+            {
+                LinearSpiralBullets.Spawn(player, 0);
+
+            }
+            break;
             default:
-            case EAlgoSelectionCible.eExplosionBullet:
-                { }
-                break;
+            break;
         }
 
     }

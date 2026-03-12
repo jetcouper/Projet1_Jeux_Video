@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://duce0ycqjhn00"]
 
 [ext_resource type="Texture2D" uid="uid://cwsf8s162b3u3" path="res://Pictures/Weapons/Sword.png" id="1_6wdhb"]
-[ext_resource type="Script" uid="uid://ixastu02nuyw" path="res://src/Sword.cs" id="1_d6wag"]
-[ext_resource type="Script" uid="uid://b3r6li6rve0q3" path="res://src/DpmMovementSword.cs" id="2_d6wag"]
+[ext_resource type="Script" uid="uid://ixastu02nuyw" path="res://src/Weapons/Useable/Sword.cs" id="1_d6wag"]
+[ext_resource type="Script" uid="uid://b3r6li6rve0q3" path="res://src/Weapons/DPM/DpmMovementSword.cs" id="2_d6wag"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kb2vl"]
 radius = 7.070429

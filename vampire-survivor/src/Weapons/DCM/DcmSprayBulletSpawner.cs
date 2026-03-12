@@ -7,11 +7,11 @@ public partial class DcmSprayBulletSpawner : Node2D, IWeaponSpawner
 	[Export]
 	public PackedScene Weapon;
 
-    [ExportGroup("Internal")]
+	[ExportGroup("Internal")]
 	[Export]
 	private Timer timer;
 
-	public void Spawn(Node2D player, float typeWeapon)
+	public void Spawn(Node2D player, float typeWeapon, int count = 0)
 	{
 		int bulletCount = 12;
 		float angleStep = 2 * Mathf.Pi / bulletCount;

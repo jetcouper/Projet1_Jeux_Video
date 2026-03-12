@@ -4,37 +4,37 @@ using Utils;
 
 public partial class DcmSpawner : Node2D, ISpawner
 {
-    [Export]
-    private PackedScene SpawneeScene; // experience_crystal.tscn
+	[Export]
+	private PackedScene SpawneeScene; // experience_crystal.tscn
 
-    [Export]
-    private Node2D Player;
+	[Export]
+	private Node2D Player;
 
-    public void SpawnAt(Vector2 position)
-    {
-        SpawneeScene.EnsureValid();
+	public void SpawnAt(Vector2 position)
+	{
+		SpawneeScene.EnsureValid();
 
-        Node2D newInstance = SpawneeScene.Instantiate<Node2D>();
-        if (newInstance is ExperienceCrystal crystal)
-        {
-            crystal.setPlayer(Player);
-        }
+		Node2D newInstance = SpawneeScene.Instantiate<Node2D>();
+		if (newInstance is ExperienceCrystal crystal)
+		{
+			crystal.setPlayer(Player);
+		}
 
-        newInstance.EnsureValid();
+		newInstance.EnsureValid();
 
-        // Méthode différée pour spawn apres la fin de gestion des collisions
-        CallDeferred(Node.MethodName.AddChild, newInstance);
+		// Méthode différée pour spawn apres la fin de gestion des collisions
+		CallDeferred(Node.MethodName.AddChild, newInstance);
 
-        newInstance.GlobalPosition = position;
-    }
+		newInstance.GlobalPosition = position;
+	}
 
-    public IEnumerable<Node2D> GatherChildren()
-    {
-        return ChildManipulator.GatherChildren(SpawneeScene, this);
-    }
+	public IEnumerable<Node2D> GatherChildren()
+	{
+		return ChildManipulator.GatherChildren(SpawneeScene, this);
+	}
 
-    public IEnumerable<Node2D> GetCibles()
-    {
-        return GatherChildren();
-    }
+	public IEnumerable<Node2D> GetCibles()
+	{
+		return GatherChildren();
+	}
 }
