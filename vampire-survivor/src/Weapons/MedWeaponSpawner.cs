@@ -17,16 +17,6 @@ public partial class MedWeaponSpawner : Node2D
 
 	[Export]
 	private DcmBulletSpawner BulletSpawner;
-
-	// [Export]
-	// private DcmSprayBulletSpawner CircularSprayBullets;
-
-	// [Export]
-	// private DcmSprayBulletSpawner LinearSpiralBullets;
-
-	// [Export]
-	// private DcmSprayBulletSpawner CircularSpiralBullets;
-
 	[Export]
 	public EAlgoSelectionCible InAlgoSelectionWeapon;
 
@@ -43,7 +33,6 @@ public partial class MedWeaponSpawner : Node2D
 
 	public override void _Ready() {
 		base._Ready();
-		//InAlgoSelectionWeapon = EAlgoSelectionCible.eSword; // Changer pour que ce soit au hasard 
 		Spawn();
 	}
 

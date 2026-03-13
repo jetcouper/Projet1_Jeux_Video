@@ -1,8 +1,17 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Utils;
+using static MedPositions;
 
 public partial class MedWaveManager : Node
 {
+    [ExportGroup("External")]
+    [Export]
+    public MedPositions MedPositions;
+
     [ExportGroup("Internal")]
     [Export]
     private DcmEnemySpawner ZombieSpawner;
@@ -136,5 +145,18 @@ public partial class MedWaveManager : Node
                 break;
         }
         _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
+    }
+
+    public IEnumerable<Ennemy> GatherAllEnemies()
+    {
+        return new[] { ZombieSpawner, ZombiePresseSpawner, TortueSpawner, GeneSpawner, BossSpawner }
+            .Where(spawner => spawner != null)
+            .SelectMany(spawner => spawner.GatherChildren())
+            .OfType<Ennemy>();
+    }
+
+    public Node2D GetPlayer()
+    {
+        return MedPositions.EnsureValid().choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
     }
 }

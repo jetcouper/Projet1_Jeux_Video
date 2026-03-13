@@ -1,12 +1,13 @@
+using System.Collections.Generic;
 using Godot;
 
 public partial class DcmEnemySpawner : Node2D
 {
     [Export]
-    private PackedScene EnemyScene;
+    public MedWaveManager MedWaveManager;
 
     [Export]
-    private Node2D Player;
+    private PackedScene EnemyScene;
 
     [Export]
     private float SpawnDistance = 100f;
@@ -14,8 +15,11 @@ public partial class DcmEnemySpawner : Node2D
     [Export]
     private Node MedCrystalNode;
 
+    private Node2D Player;
+
     public void SpawnEnemy()
     {
+        Player = MedWaveManager.GetPlayer();
         if (EnemyScene == null || Player == null)
             return;
 
@@ -44,5 +48,10 @@ public partial class DcmEnemySpawner : Node2D
 
         enemyInstance.GlobalPosition = spawnPosition;
         CallDeferred(Node.MethodName.AddChild, enemyInstance);
+    }
+
+    public IEnumerable<Node2D> GatherChildren()
+    {
+        return ChildManipulator.GatherChildren(EnemyScene, this);
     }
 }

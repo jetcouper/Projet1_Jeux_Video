@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://786yqbvcxp7s"]
+
+[ext_resource type="Script" uid="uid://u5cfok1bs4em" path="res://src/Enemies/MedWaveManager.cs" id="1_jxlqv"]
+[ext_resource type="Script" uid="uid://bii1thu5a16v5" path="res://src/Enemies/DCM/DcmEnemySpawner.cs" id="2_8o6i3"]
+[ext_resource type="PackedScene" uid="uid://imbdhd6buuda" path="res://scene/Enemies/zombie.tscn" id="3_0m831"]
+[ext_resource type="PackedScene" uid="uid://bnimxajajwgpa" path="res://scene/Enemies/zombie_presse.tscn" id="4_3vskx"]
+[ext_resource type="PackedScene" uid="uid://lwhnrr546r72" path="res://scene/Enemies/tortue.tscn" id="5_052x4"]
+[ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/Enemies/gene.tscn" id="6_gyor7"]
+[ext_resource type="PackedScene" uid="uid://61evwrft01ol" path="res://scene/Enemies/boss.tscn" id="7_31a4n"]
+
+[node name="MED_Game" type="Node2D" unique_id=1808883268 node_paths=PackedStringArray("ZombieSpawner", "ZombiePresseSpawner", "TortueSpawner", "GeneSpawner", "BossSpawner")]
+script = ExtResource("1_jxlqv")
+ZombieSpawner = NodePath("DCM_Spawner_Zombie")
+ZombiePresseSpawner = NodePath("DCM_Spawner_ZombiePresse")
+TortueSpawner = NodePath("DCM_Spawner_Tortue")
+GeneSpawner = NodePath("DCM_Spawner_Gene")
+BossSpawner = NodePath("DCM_Spawner_Boss")
+
+[node name="DCM_Spawner_Zombie" type="Node2D" parent="." unique_id=1876382418 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("2_8o6i3")
+EnemyScene = ExtResource("3_0m831")
+Player = NodePath("")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("")
+
+[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="." unique_id=5669512 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("2_8o6i3")
+EnemyScene = ExtResource("4_3vskx")
+Player = NodePath("")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("")
+
+[node name="DCM_Spawner_Tortue" type="Node2D" parent="." unique_id=2013123889 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("2_8o6i3")
+EnemyScene = ExtResource("5_052x4")
+Player = NodePath("")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("")
+
+[node name="DCM_Spawner_Gene" type="Node2D" parent="." unique_id=123897704 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("2_8o6i3")
+EnemyScene = ExtResource("6_gyor7")
+Player = NodePath("")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("")
+
+[node name="DCM_Spawner_Boss" type="Node2D" parent="." unique_id=670650656 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+script = ExtResource("2_8o6i3")
+EnemyScene = ExtResource("7_31a4n")
+Player = NodePath("")
+SpawnDistance = 300.0
+MedCrystalNode = NodePath("")

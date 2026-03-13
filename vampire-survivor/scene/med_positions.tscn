@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cprcraam0v6yu"]
+
+[ext_resource type="Script" uid="uid://cr2q6djbv66ek" path="res://src/MedPositions.cs" id="1_5pg5e"]
+[ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="2_edt2k"]
+[ext_resource type="PackedScene" uid="uid://786yqbvcxp7s" path="res://scene/Enemies/med_game.tscn" id="3_awcw3"]
+[ext_resource type="PackedScene" uid="uid://cojq0mshuedxi" path="res://scene/Crystal/med_spawn_crystal.tscn" id="4_7xwkj"]
+[ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/Weapons/med_weapon_spawner.tscn" id="5_p2wgv"]
+
+[node name="MED_Positions" type="Node2D" unique_id=531024973 node_paths=PackedStringArray("joueur", "medWaveManager", "medCrystal", "medWeaponSpawner")]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_5pg5e")
+joueur = NodePath("Joueur")
+medWaveManager = NodePath("MED_Game")
+medCrystal = NodePath("MED_SpawnCrystal")
+medWeaponSpawner = NodePath("MED_WeaponSpawner")
+
+[node name="Joueur" parent="." unique_id=249153935 instance=ExtResource("2_edt2k")]
+
+[node name="MED_Game" parent="." unique_id=1808883268 instance=ExtResource("3_awcw3")]
+
+[node name="MED_SpawnCrystal" parent="." unique_id=234446096 instance=ExtResource("4_7xwkj")]
+
+[node name="MED_WeaponSpawner" parent="." unique_id=1602847216 instance=ExtResource("5_p2wgv")]
