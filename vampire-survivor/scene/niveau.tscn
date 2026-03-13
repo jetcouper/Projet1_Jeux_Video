@@ -21,10 +21,12 @@
 [ext_resource type="PackedScene" uid="uid://vj5snnsje65e" path="res://scene/Enemies/gene.tscn" id="18_y0lgb"]
 [ext_resource type="PackedScene" uid="uid://61evwrft01ol" path="res://scene/Enemies/boss.tscn" id="19_y0lgb"]
 [ext_resource type="Script" uid="uid://blcjeii61gxav" path="res://src/Crystal/MedCrystal.cs" id="20_buiwa"]
-[ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Crystal/dcm_spawner_crystal.tscn" id="21_v72vu"]
+[ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Collectables/dcm_spawner_crystal.tscn" id="21_v72vu"]
+[ext_resource type="Script" uid="uid://xtr1chikx1ai" path="res://src/Enemies/DCM/DcmTreasureSpawner.cs" id="22_fe3a4"]
 [ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/Weapons/med_weapon_spawner.tscn" id="22_u60jg"]
 [ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
 [ext_resource type="Script" uid="uid://c7xq5o6w32ijb" path="res://src/Items/Item.cs" id="24_fe3a4"]
+[ext_resource type="PackedScene" uid="uid://cix5400m56pu8" path="res://scene/Collectables/tresor.tscn" id="23_fe3a4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -1150,6 +1152,12 @@ Player = NodePath("../../Joueur")
 FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
+
+[node name="DCM_Spawner_Tresor" type="Node2D" parent="MED_Game" unique_id=1188526759 node_paths=PackedStringArray("validTiles", "Player")]
+script = ExtResource("22_fe3a4")
+TresorScene = ExtResource("23_fe3a4")
+validTiles = NodePath("../../TileMapLayerSol")
+Player = NodePath("../../Joueur")
 
 [node name="MED_WeaponSpawner" parent="." unique_id=1602847216 node_paths=PackedStringArray("player") instance=ExtResource("22_u60jg")]
 player = NodePath("../Joueur")

@@ -14,16 +14,17 @@ public partial class ExperienceCrystal : Node2D
     [Export]
     int ScoreValue = 1;
 
+    private bool gatherEntered = false;
+
     public override void _Process(double delta)
     {
-        Vector2 direction = GlobalPosition.DirectionTo(Player.GlobalPosition);
-        float distance = GlobalPosition.DistanceTo(Player.GlobalPosition);
-        Vector2 deplacement = direction * Velocity * (float)delta;
-
-        // Se déplace seulement si a distance du joueur
-        if (distance < Player.gatherRadius)
+        if (gatherEntered)
         {
+            Vector2 direction = GlobalPosition.DirectionTo(Player.GlobalPosition);
+            float distance = GlobalPosition.DistanceTo(Player.GlobalPosition);
+            Vector2 deplacement = direction * Velocity * (float)delta;
             GlobalPosition += deplacement;
+            Velocity += Velocity * 0.01f;
         }
     }
 
@@ -38,6 +39,14 @@ public partial class ExperienceCrystal : Node2D
         {
             joueur.addScore(ScoreValue);
             QueueFree();
+        }
+    }
+
+    public void _on_gather_area_entered(Area2D collision)
+    {
+          if (collision.GetParent() is Joueur joueur)
+        {
+            gatherEntered = true;
         }
     }
 }
