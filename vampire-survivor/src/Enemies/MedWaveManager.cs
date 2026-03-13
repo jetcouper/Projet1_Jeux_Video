@@ -157,6 +157,6 @@ public partial class MedWaveManager : Node
 
     public Node2D GetPlayer()
     {
-        return MedPositions.EnsureValid().choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
     }
 }

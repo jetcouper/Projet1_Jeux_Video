@@ -14,10 +14,13 @@ medWaveManager = NodePath("MED_Game")
 medCrystal = NodePath("MED_SpawnCrystal")
 medWeaponSpawner = NodePath("MED_WeaponSpawner")
 
-[node name="Joueur" parent="." unique_id=249153935 instance=ExtResource("2_edt2k")]
+[node name="Joueur" parent="." unique_id=249153935 node_paths=PackedStringArray("MedPositions") instance=ExtResource("2_edt2k")]
+MedPositions = NodePath("..")
 
-[node name="MED_Game" parent="." unique_id=1808883268 instance=ExtResource("3_awcw3")]
+[node name="MED_Game" parent="." unique_id=1808883268 node_paths=PackedStringArray("MedPositions") instance=ExtResource("3_awcw3")]
+MedPositions = NodePath("..")
 
 [node name="MED_SpawnCrystal" parent="." unique_id=234446096 instance=ExtResource("4_7xwkj")]
 
-[node name="MED_WeaponSpawner" parent="." unique_id=1602847216 instance=ExtResource("5_p2wgv")]
+[node name="MED_WeaponSpawner" parent="." unique_id=1602847216 node_paths=PackedStringArray("MedPositions") instance=ExtResource("5_p2wgv")]
+MedPositions = NodePath("..")

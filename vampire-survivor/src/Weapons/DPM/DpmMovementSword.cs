@@ -3,102 +3,105 @@ using Godot;
 
 public partial class DpmMovementSword : Node2D
 {
-	[ExportGroup("External")]
-	[Export]
-	public Node2D NodeToControl;
+    [ExportGroup("External")]
+    [Export]
+    public Node2D NodeToControl;
 
-	[Export]
-	public Timer TimerSwing;
+    [Export]
+    public Timer TimerSwing;
 
-	[Export]
-	public Timer TimerHold;
+    [Export]
+    public Timer TimerHold;
 
-	public Node2D Player;
+    public Node2D Player;
 
-	[Export]
-	public float DistFromPlayer = 50f;
+    [Export]
+    public float DistFromPlayer = 50f;
 
-	private int maxSteps = 3;
-	private int steps = 0;
-	private int _lastDirection = 1;
-	private Vector2 _playerOffset = new Vector2(0, -10);
+    private int maxSteps = 3;
+    private int steps = 0;
+    private int _lastDirection = 1;
+    private Vector2 _playerOffset = new Vector2(0, -10);
 
-	public override void _Ready()
-	{
-		base._Ready();
-		NodeToControl.Visible = false;
+    public override void _Ready()
+    {
+        base._Ready();
+        NodeToControl.Visible = false;
 
-		TimerSwing.Timeout += Swing;
-		TimerSwing.OneShot = false;
-		TimerSwing.WaitTime = 0.50f;
+        TimerSwing.Timeout += Swing;
+        TimerSwing.OneShot = false;
+        TimerSwing.WaitTime = 0.50f;
 
-		TimerHold.OneShot = true;
-		TimerHold.WaitTime = 0.75f;
-		TimerHold.Timeout += RestartSwing;
-	}
+        TimerHold.OneShot = true;
+        TimerHold.WaitTime = 0.75f;
+        TimerHold.Timeout += RestartSwing;
+    }
 
-	public void StartSwing()
-	{
-		steps = 0;
-		TimerSwing.Start();
-	}
+    public void StartSwing()
+    {
+        steps = 0;
+        TimerSwing.Start();
+    }
 
-	public override void _Process(double delta)
-	{
-		base._Process(delta);
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
 
-		if (!NodeToControl.Visible)
-			return;
+        if (!NodeToControl.Visible)
+            return;
 
-		Positionning();
-	}
+        Positionning();
+    }
 
-	private async void Swing()
-	{
-		if (steps >= maxSteps)
-		{
-			TimerSwing.Stop();
-			NodeToControl.Visible = false;
-			TimerHold.Start();
-			return;
-		}
+    private async void Swing()
+    {
+        if (steps >= maxSteps)
+        {
+            TimerSwing.Stop();
+            NodeToControl.Visible = false;
+            TimerHold.Start();
+            return;
+        }
 
-		NodeToControl.Visible = false;
+        NodeToControl.Visible = false;
 
-		_lastDirection *= -1;
+        _lastDirection *= -1;
 
-		NodeToControl.RotationDegrees = (_lastDirection == 1) ? 180 : 0;
+        NodeToControl.RotationDegrees = (_lastDirection == 1) ? 180 : 0;
 
-		Positionning();
+        Positionning();
 
-		WeaponAppear();
+        WeaponAppear();
 
-		steps++;
-	}
+        steps++;
+    }
 
-	public void RestartSwing()
-	{
-		StartSwing();
-	}
+    public void RestartSwing()
+    {
+        StartSwing();
+    }
 
-	public void Positionning()
-	{
-		NodeToControl.GlobalPosition =
-			Player.GlobalPosition + _playerOffset + new Vector2(DistFromPlayer * _lastDirection, 0f);
-	}
+    public void Positionning()
+    {
+        GD.Print(Player);
+        NodeToControl.GlobalPosition =
+            Player.GlobalPosition
+            + _playerOffset
+            + new Vector2(DistFromPlayer * _lastDirection, 0f);
+    }
 
-	public void WeaponAppear()
-	{
-		NodeToControl.Visible = true;
-		Tween tween = CreateTween();
-		tween
-			.TweenProperty(NodeToControl, "scale", new Vector2(1.5f, 1.5f), 0.25f)
-			.SetTrans(Tween.TransitionType.Back)
-			.SetEase(Tween.EaseType.Out);
+    public void WeaponAppear()
+    {
+        NodeToControl.Visible = true;
+        Tween tween = CreateTween();
+        tween
+            .TweenProperty(NodeToControl, "scale", new Vector2(1.5f, 1.5f), 0.25f)
+            .SetTrans(Tween.TransitionType.Back)
+            .SetEase(Tween.EaseType.Out);
 
-		tween
-		.TweenProperty(NodeToControl, "scale", Vector2.One, 0.15f)
-		.SetTrans(Tween.TransitionType.Quad)
-		.SetEase(Tween.EaseType.In);
-	}
+        tween
+            .TweenProperty(NodeToControl, "scale", Vector2.One, 0.15f)
+            .SetTrans(Tween.TransitionType.Quad)
+            .SetEase(Tween.EaseType.In);
+    }
 }

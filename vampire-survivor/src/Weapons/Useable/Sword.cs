@@ -1,19 +1,26 @@
 using System;
 using Godot;
+using Utils;
 
 public partial class Sword : Node2D, IUseable
 {
-	[ExportGroup("Internal")]
-	[Export]
-	private DpmMovementSword DpmMovementSword;
+    [ExportGroup("Internal")]
+    [Export]
+    private DpmMovementSword DpmMovementSword;
 
-	public void Use()
-	{
-		DpmMovementSword.StartSwing();
-	}
+    public Node2D Player
+    {
+        get { return DpmMovementSword.EnsureValid().Player; }
+        set { DpmMovementSword.EnsureValid().Player = value; }
+    }
 
-	public void setPlayer(Node2D player)
-	{
-		DpmMovementSword.Player = player;
-	}
+    public void Use()
+    {
+        DpmMovementSword.StartSwing();
+    }
+
+    public void setPlayer(Node2D player)
+    {
+        Player = player;
+    }
 }

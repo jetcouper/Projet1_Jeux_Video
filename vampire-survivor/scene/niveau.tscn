@@ -1,10 +1,9 @@
 [gd_scene format=4 uid="uid://drlngo8i03oqf"]
 
+[ext_resource type="Script" uid="uid://kyx2obnnasc7" path="res://src/Niveau.cs" id="1_4btnw"]
 [ext_resource type="Texture2D" uid="uid://ca53phtqi2vsf" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/spring farm tilemap.png" id="1_nba45"]
-[ext_resource type="Script" uid="uid://ct8ktof44r8s6" path="res://src/Weapons/MedWeaponSpawner.cs" id="1_tror8"]
 [ext_resource type="Texture2D" uid="uid://do4nlmqudf237" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm bridges free.png" id="2_i0u5r"]
 [ext_resource type="Texture2D" uid="uid://c3rg8lwhgcehs" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/tilemaps/farm inside free.png" id="3_yvv1t"]
-[ext_resource type="PackedScene" uid="uid://bapcspn3jqo5b" path="res://scene/joueur.tscn" id="4_djeww"]
 [ext_resource type="Texture2D" uid="uid://cejei0t145hhm" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/farm objects free.png" id="5_yvv1t"]
 [ext_resource type="Texture2D" uid="uid://ciicdem6lx6mr" path="res://Pictures/All/Tiny Wonder Farm Free/Tiny Wonder Farm Free/objects&items/plants free.png" id="6_djeww"]
 [ext_resource type="Script" uid="uid://b2716dewiacno" path="res://Library/DCM/DcmWindSystem.cs" id="8_1i35a"]
@@ -756,7 +755,7 @@ animations = [{
 }]
 
 [node name="Niveau" type="Node2D" unique_id=899712626]
-script = ExtResource("1_tror8")
+script = ExtResource("1_4btnw")
 
 [node name="TileMapLayerSol" type="TileMapLayer" parent="." unique_id=433406639]
 z_index = -1
@@ -774,11 +773,6 @@ tile_set = SubResource("TileSet_455rs")
 
 [node name="TileMapLayerSpike" type="TileMapLayer" parent="." unique_id=935155355]
 tile_set = SubResource("TileSet_48mvn")
-
-[node name="Joueur" parent="." unique_id=249153935 node_paths=PackedStringArray("CollisionLayer") instance=ExtResource("4_djeww")]
-y_sort_enabled = true
-CollisionLayer = NodePath("../TileMapLayerCollision")
-gatherRadius = 50.0
 
 [node name="TileMapLayerDecoration" type="TileMapLayer" parent="." unique_id=1604753950]
 z_index = 10
@@ -1069,4 +1063,5 @@ region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
 script = ExtResource("10_4btnw")
 node = NodePath(".")
 
-[node name="MED_Positions" parent="." unique_id=531024973 instance=ExtResource("23_fe3a4")]
+[node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer") instance=ExtResource("23_fe3a4")]
+CollisionLayer = NodePath("../TileMapLayerCollision")

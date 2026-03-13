@@ -14,10 +14,13 @@ SpawnerAxe = NodePath("AxeSpawner")
 BulletSpawner = NodePath("BullerSpawner")
 InAlgoSelectionWeapon = 1
 
-[node name="SwordSpawner" parent="." unique_id=1886240174 instance=ExtResource("1_mjexd")]
+[node name="SwordSpawner" parent="." unique_id=1886240174 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("1_mjexd")]
 Weapon = ExtResource("2_jfcux")
+MedWeaponSpawner = NodePath("..")
 
-[node name="AxeSpawner" parent="." unique_id=1499712894 instance=ExtResource("1_mjexd")]
+[node name="AxeSpawner" parent="." unique_id=1499712894 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("1_mjexd")]
 Weapon = ExtResource("3_geqoc")
+MedWeaponSpawner = NodePath("..")
 
-[node name="BullerSpawner" parent="." unique_id=368652204 instance=ExtResource("5_5gcqr")]
+[node name="BullerSpawner" parent="." unique_id=368652204 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("5_5gcqr")]
+MedWeaponSpawner = NodePath("..")

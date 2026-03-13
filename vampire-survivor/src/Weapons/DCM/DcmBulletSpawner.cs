@@ -6,7 +6,17 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 	[ExportGroup("External")]
 	[Export]
 	public PackedScene Weapon;
-	public async void Spawn(Node2D player, float typeWeapon, int bulletCount = 12)
+
+	[Export]
+	public MedWeaponSpawner MedWeaponSpawner;
+
+	private Node2D player;
+
+	public override void _Ready() {
+		base._Ready();
+		player = MedWeaponSpawner.GetPlayer();
+	}
+	public async void Spawn(float typeWeapon, int bulletCount = 12)
 	{
 		float angleStep = 2 * Mathf.Pi / bulletCount;
 
@@ -15,14 +25,14 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 			for (int i = 0; i < bulletCount; i++)
 			{
 				float angle = i * angleStep;
-				SpawnBullet(player, typeWeapon, angle);
+				SpawnBullet(typeWeapon, angle);
 			}
 
 			await ToSignal(GetTree().CreateTimer(2f), "timeout");
 		}
 	}
 
-	public async void SpawnSequential(Node2D player, float typeWeapon, int bulletCount = 12)
+	public async void SpawnSequential(float typeWeapon, int bulletCount = 12)
 	{
 		
 		float delay = 0.5f;
@@ -35,7 +45,7 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 		{
 			float angle = index * angleStep;
 
-			SpawnBullet(player, typeWeapon, angle);
+			SpawnBullet(typeWeapon, angle);
 
 			index = (index + 1) % bulletCount;
 
@@ -44,7 +54,7 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 	
 	}
 
-	private void SpawnBullet(Node2D player, float typeWeapon, float angle)
+	private void SpawnBullet(float typeWeapon, float angle)
 	{
 		Node2D weapon = Weapon.Instantiate<Node2D>();
 		AddChild(weapon);
@@ -52,7 +62,6 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 		if (weapon is Bullet bullet)
 		{
 			bullet.startingPosition = angle;
-			bullet.setPlayer(player);
 			bullet.AngularSpeed = typeWeapon;
 			bullet.Use();
 		}

@@ -16,37 +16,32 @@ TortueSpawner = NodePath("DCM_Spawner_Tortue")
 GeneSpawner = NodePath("DCM_Spawner_Gene")
 BossSpawner = NodePath("DCM_Spawner_Boss")
 
-[node name="DCM_Spawner_Zombie" type="Node2D" parent="." unique_id=1876382418 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Zombie" type="Node2D" parent="." unique_id=1876382418 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")
+MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("3_0m831")
-Player = NodePath("")
 SpawnDistance = 300.0
-MedCrystalNode = NodePath("")
 
-[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="." unique_id=5669512 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="." unique_id=5669512 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")
+MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("4_3vskx")
-Player = NodePath("")
 SpawnDistance = 300.0
-MedCrystalNode = NodePath("")
 
-[node name="DCM_Spawner_Tortue" type="Node2D" parent="." unique_id=2013123889 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Tortue" type="Node2D" parent="." unique_id=2013123889 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")
+MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("5_052x4")
-Player = NodePath("")
 SpawnDistance = 300.0
-MedCrystalNode = NodePath("")
 
-[node name="DCM_Spawner_Gene" type="Node2D" parent="." unique_id=123897704 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Gene" type="Node2D" parent="." unique_id=123897704 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")
+MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("6_gyor7")
-Player = NodePath("")
 SpawnDistance = 300.0
-MedCrystalNode = NodePath("")
 
-[node name="DCM_Spawner_Boss" type="Node2D" parent="." unique_id=670650656 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Boss" type="Node2D" parent="." unique_id=670650656 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")
+MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("7_31a4n")
-Player = NodePath("")
 SpawnDistance = 300.0
-MedCrystalNode = NodePath("")

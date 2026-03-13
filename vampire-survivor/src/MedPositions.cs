@@ -6,6 +6,10 @@ using Utils;
 
 public partial class MedPositions : Node2D
 {
+    [ExportGroup("External")]
+    [Export]
+    public TileMapLayer CollisionLayer;
+
     [ExportGroup("Internal")]
     [Export]
     private Joueur joueur;
@@ -23,6 +27,7 @@ public partial class MedPositions : Node2D
     {
         ePlayer,
         eEnemiPlusProche,
+        eCollisionLayer,
     }
 
     public override void _Ready()
@@ -41,7 +46,6 @@ public partial class MedPositions : Node2D
                     node = joueur;
                 }
                 break;
-            default:
             case EAlgoSelectionObjet.eEnemiPlusProche:
                 {
                     var enemies = medWaveManager.GatherAllEnemies();
@@ -49,6 +53,12 @@ public partial class MedPositions : Node2D
                     node = enemies
                         .OrderBy(e => e.GlobalPosition.DistanceTo(InPosition))
                         .FirstOrDefault();
+                }
+                break;
+            default:
+            case EAlgoSelectionObjet.eCollisionLayer:
+                {
+                    node = CollisionLayer;
                 }
                 break;
         }

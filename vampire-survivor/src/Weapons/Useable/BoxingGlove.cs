@@ -7,6 +7,8 @@ public partial class BoxingGlove : Node2D, IUseable
 	[Export]
 	private DpmMovementGlove DpmMovementGlove;
 
+	private Node2D Player;
+
 	public void Use()
 	{
 		DpmMovementGlove.StartSwing();
@@ -14,6 +16,6 @@ public partial class BoxingGlove : Node2D, IUseable
 
 	public void setPlayer(Node2D player)
 	{
-		DpmMovementGlove.Player = player;
+		Player = player;
 	}
 }
