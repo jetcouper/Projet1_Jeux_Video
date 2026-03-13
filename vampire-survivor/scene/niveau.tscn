@@ -1104,38 +1104,43 @@ TortueSpawner = NodePath("DCM_Spawner_Tortue")
 GeneSpawner = NodePath("DCM_Spawner_Gene")
 BossSpawner = NodePath("DCM_Spawner_Boss")
 
-[node name="DCM_Spawner_Zombie" type="Node2D" parent="MED_Game" unique_id=722274160 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Zombie" type="Node2D" parent="MED_Game" unique_id=722274160 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("15_34wgf")
 Player = NodePath("../../Joueur")
+FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
-[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="MED_Game" unique_id=1003608116 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="MED_Game" unique_id=1003608116 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("16_pwjk0")
 Player = NodePath("../../Joueur")
+FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
-[node name="DCM_Spawner_Tortue" type="Node2D" parent="MED_Game" unique_id=1306268895 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Tortue" type="Node2D" parent="MED_Game" unique_id=1306268895 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("13_pjrin")
 Player = NodePath("../../Joueur")
+FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
-[node name="DCM_Spawner_Gene" type="Node2D" parent="MED_Game" unique_id=942263563 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Gene" type="Node2D" parent="MED_Game" unique_id=942263563 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("18_y0lgb")
 Player = NodePath("../../Joueur")
+FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
-[node name="DCM_Spawner_Boss" type="Node2D" parent="MED_Game" unique_id=970987243 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+[node name="DCM_Spawner_Boss" type="Node2D" parent="MED_Game" unique_id=970987243 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("19_y0lgb")
 Player = NodePath("../../Joueur")
+FloorLayer = NodePath("../../TileMapLayerSol")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 

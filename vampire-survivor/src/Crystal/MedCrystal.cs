@@ -14,11 +14,11 @@ public partial class MedCrystal : Node2D, IDeathHandler
     [Export]
     private Node IEnemy; // Pour Ennemi
 
-    private ISpawner CristalSpawner;
+    private ISpawnable CristalSpawner;
 
     public override void _Ready()
     {
-        CristalSpawner = ICristalSpawner as ISpawner;
+        CristalSpawner = ICristalSpawner as ISpawnable;
     }
 
     public enum EAlgoDeath

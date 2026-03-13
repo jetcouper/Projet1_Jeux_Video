@@ -30,7 +30,8 @@ project/assembly_name="Vampire_Survivor"
 2d_render/layer_2="Zombie"
 2d_render/layer_5=" "
 2d_physics/layer_1="Player"
-2d_physics/layer_2="Zombie"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Armes"
 
 [physics]
 
