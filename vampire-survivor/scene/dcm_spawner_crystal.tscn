@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://c3dgjvchsdiwa"]
-
-[ext_resource type="Script" uid="uid://baemd2uql8mq6" path="res://src/DcmSpawner.cs" id="1_56l6u"]
-[ext_resource type="PackedScene" uid="uid://vlwrsssjubjy" path="res://scene/experience_crystal.tscn" id="2_1lub6"]
-
-[node name="DCM_SpawnerCrystal" type="Node2D" unique_id=1012352925]
-script = ExtResource("1_56l6u")
-SpawneeScene = ExtResource("2_1lub6")
