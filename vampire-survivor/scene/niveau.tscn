@@ -23,6 +23,8 @@
 [ext_resource type="Script" uid="uid://blcjeii61gxav" path="res://src/Crystal/MedCrystal.cs" id="20_buiwa"]
 [ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Crystal/dcm_spawner_crystal.tscn" id="21_v72vu"]
 [ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/Weapons/med_weapon_spawner.tscn" id="22_u60jg"]
+[ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
+[ext_resource type="Script" uid="uid://c7xq5o6w32ijb" path="res://src/Items/Item.cs" id="24_fe3a4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -1105,35 +1107,60 @@ TortueSpawner = NodePath("DCM_Spawner_Tortue")
 GeneSpawner = NodePath("DCM_Spawner_Gene")
 BossSpawner = NodePath("DCM_Spawner_Boss")
 
+<<<<<<< HEAD
 [node name="DCM_Spawner_Zombie" type="Node2D" parent="MED_Game" unique_id=722274160 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+=======
+[node name="DCM_Spawner_Zombie" type="Node2D" parent="MED_Game" unique_id=722274160 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
+position = Vector2(-1, -1)
+>>>>>>> f6449a8f09e269674744fc7a40477e43ec017702
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("15_34wgf")
 Player = NodePath("../../Joueur")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
+<<<<<<< HEAD
 [node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="MED_Game" unique_id=1003608116 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+=======
+[node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="MED_Game" unique_id=1003608116 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
+position = Vector2(-1, -1)
+>>>>>>> f6449a8f09e269674744fc7a40477e43ec017702
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("16_pwjk0")
 Player = NodePath("../../Joueur")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
+<<<<<<< HEAD
 [node name="DCM_Spawner_Tortue" type="Node2D" parent="MED_Game" unique_id=1306268895 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+=======
+[node name="DCM_Spawner_Tortue" type="Node2D" parent="MED_Game" unique_id=1306268895 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
+position = Vector2(-1, -1)
+>>>>>>> f6449a8f09e269674744fc7a40477e43ec017702
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("13_pjrin")
 Player = NodePath("../../Joueur")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
+<<<<<<< HEAD
 [node name="DCM_Spawner_Gene" type="Node2D" parent="MED_Game" unique_id=942263563 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+=======
+[node name="DCM_Spawner_Gene" type="Node2D" parent="MED_Game" unique_id=942263563 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
+position = Vector2(-1, -1)
+>>>>>>> f6449a8f09e269674744fc7a40477e43ec017702
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("18_y0lgb")
 Player = NodePath("../../Joueur")
 SpawnDistance = 300.0
 MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 
+<<<<<<< HEAD
 [node name="DCM_Spawner_Boss" type="Node2D" parent="MED_Game" unique_id=970987243 node_paths=PackedStringArray("Player", "MedCrystalNode")]
+=======
+[node name="DCM_Spawner_Boss" type="Node2D" parent="MED_Game" unique_id=970987243 node_paths=PackedStringArray("Player", "FloorLayer", "MedCrystalNode")]
+position = Vector2(-1, -1)
+>>>>>>> f6449a8f09e269674744fc7a40477e43ec017702
 script = ExtResource("14_34wgf")
 EnemyScene = ExtResource("19_y0lgb")
 Player = NodePath("../../Joueur")
@@ -1143,3 +1170,11 @@ MedCrystalNode = NodePath("../../MED_Spawner_Crystal")
 [node name="MED_WeaponSpawner" parent="." unique_id=1602847216 node_paths=PackedStringArray("player") instance=ExtResource("22_u60jg")]
 player = NodePath("../Joueur")
 InAlgoSelectionWeapon = 0
+
+[node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
+rotation = -0.00070787914
+script = ExtResource("23_u60jg")
+FloorLayer = NodePath("../TileMapLayerSol")
+
+[node name="Item" type="Node2D" parent="DCM_Item_Spawner" unique_id=1609368671]
+script = ExtResource("24_fe3a4")
