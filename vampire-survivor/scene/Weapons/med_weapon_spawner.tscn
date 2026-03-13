@@ -1,20 +1,18 @@
 [gd_scene format=3 uid="uid://kjackasijbmq"]
 
-[ext_resource type="Script" path="res://src/Weapons/MedWeaponSpawner.cs" id="1_80fxc"]
+[ext_resource type="Script" uid="uid://ct8ktof44r8s6" path="res://src/Weapons/MedWeaponSpawner.cs" id="1_80fxc"]
 [ext_resource type="PackedScene" uid="uid://bw85oosby2qek" path="res://scene/Weapons/dcm_simple_weapons_spawner.tscn" id="1_mjexd"]
 [ext_resource type="PackedScene" uid="uid://duce0ycqjhn00" path="res://scene/Weapons/Useables/sword.tscn" id="2_jfcux"]
 [ext_resource type="PackedScene" uid="uid://bebif4hcw0rwu" path="res://scene/Weapons/Useables/axe.tscn" id="3_geqoc"]
-[ext_resource type="PackedScene" uid="uid://dx6w4lygl8kk5" path="res://scene/Weapons/dcm_spray_bullet_spawner.tscn" id="4_8xbjt"]
-[ext_resource type="PackedScene" uid="uid://db23jfbu2nt52" path="res://scene/Weapons/Useables/spray_bullet.tscn" id="5_nm3ty"]
+[ext_resource type="PackedScene" uid="uid://dx6w4lygl8kk5" path="res://scene/Weapons/dcm_bullet_spawner.tscn" id="5_5gcqr"]
 
-[node name="MED_WeaponSpawner" type="Node2D" unique_id=1602847216 node_paths=PackedStringArray("SpawnerSword", "SpawnerAxe", "LinearSprayBullets", "CircularSprayBullets", "LinearSpiralBullets")]
-scale = Vector2(0.74999994, 0.74999994)
+[node name="MED_WeaponSpawner" type="Node2D" unique_id=1602847216 node_paths=PackedStringArray("SpawnerSword", "SpawnerAxe", "BulletSpawner")]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_80fxc")
 SpawnerSword = NodePath("SwordSpawner")
 SpawnerAxe = NodePath("AxeSpawner")
-LinearSprayBullets = NodePath("LinearSprayBulletSpawner")
-CircularSprayBullets = NodePath("CircularSprayBulletSpawner")
-LinearSpiralBullets = NodePath("SprayBullet")
+BulletSpawner = NodePath("BullerSpawner")
+InAlgoSelectionWeapon = 1
 
 [node name="SwordSpawner" parent="." unique_id=1886240174 instance=ExtResource("1_mjexd")]
 Weapon = ExtResource("2_jfcux")
@@ -22,11 +20,4 @@ Weapon = ExtResource("2_jfcux")
 [node name="AxeSpawner" parent="." unique_id=1499712894 instance=ExtResource("1_mjexd")]
 Weapon = ExtResource("3_geqoc")
 
-[node name="LinearSprayBulletSpawner" parent="." unique_id=368652204 instance=ExtResource("4_8xbjt")]
-Weapon = ExtResource("5_nm3ty")
-
-[node name="CircularSprayBulletSpawner" parent="." unique_id=1337722029 instance=ExtResource("4_8xbjt")]
-Weapon = ExtResource("5_nm3ty")
-
-[node name="SprayBullet" parent="." unique_id=1301150101 instance=ExtResource("4_8xbjt")]
-Weapon = ExtResource("5_nm3ty")
+[node name="BullerSpawner" parent="." unique_id=368652204 instance=ExtResource("5_5gcqr")]

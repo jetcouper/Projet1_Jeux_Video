@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://dx6w4lygl8kk5"]
 
-[ext_resource type="Script" uid="uid://dn8d6hfsllhu1" path="res://src/Weapons/DCM/DcmSprayBulletSpawner.cs" id="1_g8hbr"]
+[ext_resource type="Script" uid="uid://dn8d6hfsllhu1" path="res://src/Weapons/DCM/DcmBulletSpawner.cs" id="1_g8hbr"]
 [ext_resource type="Script" uid="uid://doljwao0ku2ys" path="res://Library/Util/EditorDebugOnly.cs" id="2_0q6uy"]
+[ext_resource type="PackedScene" uid="uid://rwo4xux3hx65" path="res://scene/Weapons/Useables/bullet.tscn" id="2_8n35j"]
 
-[node name="SprayBullet" type="Node2D" unique_id=368652204 node_paths=PackedStringArray("timer")]
+[node name="SprayBullet" type="Node2D" unique_id=368652204]
 script = ExtResource("1_g8hbr")
-timer = NodePath("Timer")
+Weapon = ExtResource("2_8n35j")
 
 [node name="Timer" type="Timer" parent="." unique_id=1759716535]
 

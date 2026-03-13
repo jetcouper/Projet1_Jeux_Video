@@ -43,6 +43,7 @@ public partial class DpmMovementAx : Node2D
 
 	public void StartSwing()
 	{
+		NodeToControl.Visible = false;
 		_angle = 0f;
 		Positionning();
 		WeaponAppear();

@@ -15,6 +15,7 @@ DpmMovementAx = NodePath("DPMMovementAx")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1494871034]
 rotation = 3.1415927
 texture = ExtResource("2_pfxjg")
+offset = Vector2(0, -10)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1591338629]
 

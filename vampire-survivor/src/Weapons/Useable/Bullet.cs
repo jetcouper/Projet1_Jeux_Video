@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class SprayBullet : Node2D, IUseable
+public partial class Bullet : Node2D, IUseable
 {
 	[ExportGroup("Internal")]
 	[Export]

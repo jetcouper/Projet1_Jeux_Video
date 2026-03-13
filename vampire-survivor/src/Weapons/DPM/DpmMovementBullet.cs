@@ -17,6 +17,8 @@ public partial class DpmMovementBullet : Node2D
 
 	public float startingPosition; 
 
+	private Vector2 _originPosition;
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -25,9 +27,11 @@ public partial class DpmMovementBullet : Node2D
 
 	public void StartSwing()
 	{
-		Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition));
-		NodeToControl.GlobalPosition = Player.GlobalPosition + offset * DistFromPlayer;
-		NodeToControl.Rotation = startingPosition + 55; 
+		_originPosition = Player.GlobalPosition;
+        Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition));
+        NodeToControl.GlobalPosition = _originPosition + offset * DistFromPlayer;
+
+        NodeToControl.Rotation = startingPosition + 55;
 	}
 
 	private void MoveBullet(double delta)
@@ -38,7 +42,7 @@ public partial class DpmMovementBullet : Node2D
 		
 		// Move bullet straight along its angle
 		Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition)) * DistFromPlayer;
-		NodeToControl.GlobalPosition = Player.GlobalPosition + offset;
+		NodeToControl.GlobalPosition = _originPosition + offset;
 
 		NodeToControl.Rotation = startingPosition + 55;
 	}

@@ -21,6 +21,7 @@ public partial class DpmMovementSword : Node2D
 	private int maxSteps = 3;
 	private int steps = 0;
 	private int _lastDirection = 1;
+	private Vector2 _playerOffset = new Vector2(0, -10);
 
 	public override void _Ready()
 	{
@@ -83,7 +84,7 @@ public partial class DpmMovementSword : Node2D
 	public void Positionning()
 	{
 		NodeToControl.GlobalPosition =
-			Player.GlobalPosition + new Vector2(DistFromPlayer * _lastDirection, 0f);
+			Player.GlobalPosition + _playerOffset + new Vector2(DistFromPlayer * _lastDirection, 0f);
 	}
 
 	public void WeaponAppear()
