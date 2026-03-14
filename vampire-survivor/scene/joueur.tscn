@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bapcspn3jqo5b"]
 
-[ext_resource type="Script" uid="uid://bbnvbxmsk663x" path="res://Joueur.cs" id="1_nhxrk"]
+[ext_resource type="Script" uid="uid://bbnvbxmsk663x" path="res://src/Joueur.cs" id="1_nhxrk"]
 [ext_resource type="Texture2D" uid="uid://chq1o0fsffqpd" path="res://Pictures/Farm RPG FREE 16x16 - Tiny Asset Pack/Character/Idle.png" id="2_7j7mc"]
 [ext_resource type="Script" uid="uid://283t4avf0ebq" path="res://Library/Util/SimplePlayer.cs" id="2_mc3kx"]
 [ext_resource type="Texture2D" uid="uid://n0hjwl5kbivq" path="res://Pictures/Farm RPG FREE 16x16 - Tiny Asset Pack/Character/Walk.png" id="3_wr1qv"]
@@ -245,6 +245,7 @@ frame_progress = 0.5274788
 offset = Vector2(0, -10)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=96940721]
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1627499915]
 position = Vector2(0, -9)

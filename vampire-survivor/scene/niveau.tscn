@@ -24,9 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Collectables/dcm_spawner_crystal.tscn" id="21_v72vu"]
 [ext_resource type="Script" uid="uid://xtr1chikx1ai" path="res://src/Enemies/DCM/DcmTreasureSpawner.cs" id="22_fe3a4"]
 [ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/Weapons/med_weapon_spawner.tscn" id="22_u60jg"]
-[ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
-[ext_resource type="Script" uid="uid://c7xq5o6w32ijb" path="res://src/Items/Item.cs" id="24_fe3a4"]
 [ext_resource type="PackedScene" uid="uid://cix5400m56pu8" path="res://scene/Collectables/tresor.tscn" id="23_fe3a4"]
+[ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
+[ext_resource type="PackedScene" uid="uid://cp1t5tpan82b7" path="res://scene/Items/item.tscn" id="27_nh7cd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -1166,7 +1166,7 @@ InAlgoSelectionWeapon = 0
 [node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
 rotation = -0.00070787914
 script = ExtResource("23_u60jg")
+SpawneeScene = ExtResource("27_nh7cd")
 FloorLayer = NodePath("../TileMapLayerSol")
-
-[node name="Item" type="Node2D" parent="DCM_Item_Spawner" unique_id=1609368671]
-script = ExtResource("24_fe3a4")
+SpawnIntervalMin = 8.0
+SpawnIntervalMax = 12.0

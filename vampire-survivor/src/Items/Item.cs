@@ -1,10 +1,22 @@
-using System;
 using Godot;
 
-public partial class Item : Node2D
+public partial class Item : Area2D
 {
     [Export]
-    private Node2D Items;
+    private int HealPoint = 1;
 
-    public override void _Ready() { }
+    public override void _Ready()
+    {
+        AreaEntered += OnTouch;
+    }
+
+    private void OnTouch(Area2D InArea)
+    {
+        Node2D parent = InArea.GetParent<Node2D>();
+        if (parent is IHealable healable)
+        {
+            healable.Heal(HealPoint);
+            QueueFree();
+        }
+    }
 }

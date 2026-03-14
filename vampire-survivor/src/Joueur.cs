@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Utils;
 
-public partial class Joueur : Node2D
+public partial class Joueur : Node2D, IHealable
 {
     [ExportGroup("External")]
     [Export]
@@ -30,11 +30,16 @@ public partial class Joueur : Node2D
     [Export]
     public float gatherRadius = 10f;
 
+    [Export]
+    public int MaxHealth = 5;
+    public int Health;
+
     public int score = 0;
 
     public override void _Ready()
     {
         base._Ready();
+        Health = MaxHealth;
         _camera = GetNode<Camera2D>("Camera2D");
         _camera.MakeCurrent();
         _camera.Zoom = new Vector2(CameraZoom, CameraZoom);
@@ -49,5 +54,25 @@ public partial class Joueur : Node2D
     public void addScore(int scoreToAdd)
     {
         score += scoreToAdd;
+    }
+
+    public void Heal(int quantity)
+    {
+        Health = Mathf.Min(Health + quantity, MaxHealth);
+        GD.Print("Vie: " + Health + "/" + MaxHealth);
+    }
+
+    public void TakeDamage(int quantity)
+    {
+        Health -= quantity;
+        GD.Print("Vie: " + Health + "/" + MaxHealth);
+        if (Health <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        GD.Print("GAME OVER !");
+        IsActive = false;
     }
 }

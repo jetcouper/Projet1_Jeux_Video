@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cp1t5tpan82b7"]
+
+[ext_resource type="Script" uid="uid://c7xq5o6w32ijb" path="res://src/Items/Item.cs" id="1_styy2"]
+[ext_resource type="Texture2D" uid="uid://ddw2gt6erk3f7" path="res://Pictures/duck.png" id="2_snkcs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snkcs"]
+radius = 13.0
+height = 34.0
+
+[node name="Item" type="Area2D" unique_id=293632267]
+script = ExtResource("1_styy2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=492685089]
+texture = ExtResource("2_snkcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50851943]
+shape = SubResource("CapsuleShape2D_snkcs")
