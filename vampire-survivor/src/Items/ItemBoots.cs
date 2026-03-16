@@ -1,9 +1,12 @@
 using Godot;
 
-public partial class Item : Area2D
+public partial class ItemBoots : Area2D
 {
     [Export]
-    private int HealPoint = 1;
+    public float SpeedMultiplier = 1.5f;
+
+    [Export]
+    public float BoostDuration = 20f;
 
     public override void _Ready()
     {
@@ -13,9 +16,9 @@ public partial class Item : Area2D
     private void OnTouch(Area2D InArea)
     {
         Node2D parent = InArea.GetParent<Node2D>();
-        if (parent is IHealable healable)
+        if (parent is IBoostable boostable)
         {
-            healable.Heal(HealPoint);
+            boostable.ApplySpeedBoost(SpeedMultiplier, BoostDuration);
             QueueFree();
         }
     }

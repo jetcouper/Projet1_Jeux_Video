@@ -3,7 +3,7 @@ using Godot;
 public partial class DcmItemSpawner : Node2D, ISpawnable
 {
     [Export]
-    private PackedScene SpawneeScene;
+    private PackedScene[] SpawneeScenes;
 
     [Export]
     public TileMapLayer FloorLayer;
@@ -36,10 +36,14 @@ public partial class DcmItemSpawner : Node2D, ISpawnable
 
     public void SpawnAt(Vector2 position)
     {
-        if (SpawneeScene == null)
+        if (SpawneeScenes == null || SpawneeScenes.Length == 0)
             return;
 
-        Node2D newInstance = SpawneeScene.Instantiate<Node2D>();
+        PackedScene chosenScene = SpawneeScenes[GD.RandRange(0, SpawneeScenes.Length - 1)];
+        if (chosenScene == null)
+            return;
+
+        Node2D newInstance = chosenScene.Instantiate<Node2D>();
         newInstance.GlobalPosition = position;
         GetTree().CurrentScene.AddChild(newInstance);
     }

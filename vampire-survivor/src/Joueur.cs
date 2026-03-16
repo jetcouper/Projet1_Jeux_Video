@@ -2,7 +2,7 @@ using System;
 using Godot;
 using Utils;
 
-public partial class Joueur : Node2D, IHealable
+public partial class Joueur : Node2D, IHealable, IBoostable
 {
     [ExportGroup("External")]
     [Export]
@@ -60,6 +60,12 @@ public partial class Joueur : Node2D, IHealable
     {
         Health = Mathf.Min(Health + quantity, MaxHealth);
         GD.Print("Vie: " + Health + "/" + MaxHealth);
+    }
+
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        SimplePlayer.EnsureValid().ApplySpeedBoost(multiplier, duration);
+        GD.Print("Speed boost!");
     }
 
     public void TakeDamage(int quantity)

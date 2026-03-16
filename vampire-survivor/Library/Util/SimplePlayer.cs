@@ -32,12 +32,28 @@ public partial class SimplePlayer : Node
 
     Vector2 _inputVector = new(0.0f, 0.0f);
 
+    // Speed boost with item
+    private float _speedMultiplier = 1f;
+    private float _boostTimer = 0f;
+
     public override void _Ready() { }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double InDelta)
     {
         base._Process(InDelta);
+
+        // Time for speed boost
+        if (_boostTimer > 0f)
+        {
+            _boostTimer -= (float)InDelta;
+            if (_boostTimer <= 0f)
+            {
+                _speedMultiplier = 1f;
+                _boostTimer = 0f;
+            }
+        }
+
         _inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
         // if (_inputVector.Length() < 1.0f)
         // {
@@ -83,7 +99,8 @@ public partial class SimplePlayer : Node
             return;
         }
         Vector2 prochainePosition =
-            NodeToControl.GlobalPosition + VelocityPixelPerSecond * (float)InDelta * _inputVector;
+            NodeToControl.GlobalPosition
+            + VelocityPixelPerSecond * _speedMultiplier * (float)InDelta * _inputVector;
         Vector2I tileCoord = collisionLayer.LocalToMap(collisionLayer.ToLocal(prochainePosition));
         if (collisionLayer.GetCellSourceId(tileCoord) == -1)
         {
@@ -94,5 +111,11 @@ public partial class SimplePlayer : Node
             Mathf.Clamp(NodeToControl.GlobalPosition.X, -600, 600),
             Mathf.Clamp(NodeToControl.GlobalPosition.Y, -400, 400)
         );
+    }
+
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        _speedMultiplier = multiplier;
+        _boostTimer = duration;
     }
 }

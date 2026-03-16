@@ -26,7 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://kjackasijbmq" path="res://scene/Weapons/med_weapon_spawner.tscn" id="22_u60jg"]
 [ext_resource type="PackedScene" uid="uid://cix5400m56pu8" path="res://scene/Collectables/tresor.tscn" id="23_fe3a4"]
 [ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
-[ext_resource type="PackedScene" uid="uid://cp1t5tpan82b7" path="res://scene/Items/item.tscn" id="27_nh7cd"]
+[ext_resource type="PackedScene" uid="uid://b4gmspqnvx2g3" path="res://scene/Items/itemDuck.tscn" id="28_csqtu"]
+[ext_resource type="PackedScene" uid="uid://dp5iblf8vg1ut" path="res://scene/Items/itemBoots.tscn" id="28_f0m11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
 texture = ExtResource("1_nba45")
@@ -1166,7 +1167,7 @@ InAlgoSelectionWeapon = 0
 [node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
 rotation = -0.00070787914
 script = ExtResource("23_u60jg")
-SpawneeScene = ExtResource("27_nh7cd")
+SpawneeScenes = Array[PackedScene]([ExtResource("28_f0m11"), ExtResource("28_csqtu")])
 FloorLayer = NodePath("../TileMapLayerSol")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
