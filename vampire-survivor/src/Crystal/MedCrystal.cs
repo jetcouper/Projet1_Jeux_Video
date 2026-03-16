@@ -1,43 +1,50 @@
 using System;
 using Godot;
+using static MedPositions;
 
 public partial class MedCrystal : Node2D, IDeathHandler
 {
-    [ExportGroup("Drop")]
-    [Export]
-    private EAlgoDeath Algo = EAlgoDeath.eSpawnCristal;
+	[ExportGroup("External")]
+	[Export]
+	public MedPositions MedPosition;
 
-    [ExportGroup("External")]
-    [Export]
-    private Node ICristalSpawner; //  Pour DCM_Spawner Crystal
+	[ExportGroup("Internal")]
+	[Export]
+	public DcmCrystalSpawner ICristalSpawner; //  Pour DCM_Spawner Crystal
 
-    [Export]
-    private Node IEnemy; // Pour Ennemi
+	[ExportGroup("Drop")]
+	[Export]
+	private EAlgoDeath Algo = EAlgoDeath.eSpawnCristal;
 
-    private ISpawnable CristalSpawner;
+	[Export]
+	private Node IEnemy; // Pour Ennemi
 
-    public override void _Ready()
-    {
-        CristalSpawner = ICristalSpawner as ISpawnable;
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		ICristalSpawner.Player = MedPosition.choisirObjet(
+			EAlgoSelectionObjet.ePlayer,
+			new Vector2(0, 0)
+		) as Joueur;
+	}
 
-    public enum EAlgoDeath
-    {
-        eSpawnCristal,
-        eNothing,
-    }
+	public enum EAlgoDeath
+	{
+		eSpawnCristal,
+		eNothing,
+	}
 
-    public void HandleDeath(Vector2 InPosition)
-    {
-        switch (Algo)
-        {
-            case EAlgoDeath.eSpawnCristal:
-            {
-                GD.Print($"MedCrystal HandleDeath at {InPosition}");
-                // On demande au spawner de creer un cristal à cette position
-                CristalSpawner?.SpawnAt(InPosition);
-                break;
-            }
-        }
-    }
+	public void HandleDeath(Vector2 InPosition)
+	{
+		switch (Algo)
+		{
+			case EAlgoDeath.eSpawnCristal:
+			{
+				// On demande au spawner de creer un cristal à cette position
+				if (ICristalSpawner is ISpawnable ispawnable)
+					ispawnable.SpawnAt(InPosition);
+				break;
+			}
+		}
+	}
 }

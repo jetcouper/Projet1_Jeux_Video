@@ -1,7 +1,11 @@
 [gd_scene format=3 uid="uid://cojq0mshuedxi"]
 
 [ext_resource type="Script" uid="uid://blcjeii61gxav" path="res://src/Crystal/MedCrystal.cs" id="1_4tdw2"]
+[ext_resource type="PackedScene" uid="uid://c3dgjvchsdiwa" path="res://scene/Collectables/dcm_spawner_crystal.tscn" id="2_flfj7"]
 
-[node name="MED_SpawnCrystal" type="Node2D" unique_id=234446096 node_paths=PackedStringArray("INodeCristalSpawner")]
+[node name="MED_SpawnCrystal" type="Node2D" unique_id=234446096 node_paths=PackedStringArray("ICristalSpawner")]
 script = ExtResource("1_4tdw2")
-INodeCristalSpawner = NodePath("")
+ICristalSpawner = NodePath("DCM_SpawnerCrystal")
+
+[node name="DCM_SpawnerCrystal" parent="." unique_id=1012352925 node_paths=PackedStringArray("MedSpawnerCrystal") instance=ExtResource("2_flfj7")]
+MedSpawnerCrystal = NodePath("..")

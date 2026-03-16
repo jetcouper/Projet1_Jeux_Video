@@ -162,7 +162,16 @@ public partial class MedWaveManager : Node
 
     public void HandleDeath(Vector2 InPosition)
     {
-        GD.Print($"MedWaveManager HandleDeath at {InPosition}");
         MedPositions.choisirObjet(EAlgoSelectionObjet.eHandleDeath, InPosition);
+    }
+
+    public TileMapLayer getFloorLayer()
+    {
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eFloorLayer, new(0, 0)) as TileMapLayer;
+    }
+
+    public Node GetMedCrystalNode()
+    {
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eMedCrystal, new(0, 0));
     }
 }

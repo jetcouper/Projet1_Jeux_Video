@@ -9,16 +9,20 @@ public partial class DcmEnemySpawner : Node2D
     [Export]
     private PackedScene EnemyScene;
 
-    [Export]
     public TileMapLayer FloorLayer;
 
     [Export]
     private float SpawnDistance = 100f;
 
-    [Export]
-    private Node MedCrystalNode;
+    public Node MedCrystalNode;
 
     private Node2D Player;
+
+    public override void _Ready() {
+        base._Ready();
+        FloorLayer = MedWaveManager.getFloorLayer();
+        MedCrystalNode = MedWaveManager.GetMedCrystalNode();
+    }
 
     public void SpawnEnemy()
     {
@@ -31,6 +35,7 @@ public partial class DcmEnemySpawner : Node2D
         if (enemyInstance is Ennemy enemy)
         {
             enemy.Spawner = this;
+            enemy.gestionnaireMort = MedCrystalNode as IDeathHandler;
         }
 
         Vector2 spawnPosition = FindValidPosition();
@@ -78,7 +83,6 @@ public partial class DcmEnemySpawner : Node2D
 
     public void HandleDeath(Vector2 InPosition)
     {
-        GD.Print($"DcmEnemySpawner HandleDeath at {InPosition}");
         MedWaveManager?.HandleDeath(InPosition);
     }
     

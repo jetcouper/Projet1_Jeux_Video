@@ -10,6 +10,9 @@ public partial class MedPositions : Node2D
 	[Export]
 	public TileMapLayer CollisionLayer;
 
+	[Export]
+	public TileMapLayer FloorLayer;
+
 	[ExportGroup("Internal")]
 	[Export]
 	private Joueur joueur;
@@ -27,7 +30,9 @@ public partial class MedPositions : Node2D
 	{
 		ePlayer,
 		eEnemiPlusProche,
+		eMedCrystal,
 		eCollisionLayer,
+		eFloorLayer,
 		eHandleDeath
 	}
 
@@ -61,10 +66,14 @@ public partial class MedPositions : Node2D
 					node = CollisionLayer;
 				}
 				break;
+			case EAlgoSelectionObjet.eFloorLayer:
+				{
+					node = FloorLayer;
+				}
+				break;
 			default:
 			case EAlgoSelectionObjet.eHandleDeath:
 				{
-					GD.Print($"MedPositions HandleDeath at {InPosition}");
 					medCrystal.HandleDeath(InPosition);
 					
 					node = null;

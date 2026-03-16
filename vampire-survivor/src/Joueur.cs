@@ -43,6 +43,7 @@ public partial class Joueur : Node2D, IHealable, IBoostable
     public override void _Ready()
     {
         base._Ready();
+        CollisionLayer = MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition) as TileMapLayer;
         Health = MaxHealth;
         _camera = GetNode<Camera2D>("Camera2D");
         _camera.MakeCurrent();

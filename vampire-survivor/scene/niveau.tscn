@@ -1085,5 +1085,6 @@ FloorLayer = NodePath("../TileMapLayerSol")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
 
-[node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer") instance=ExtResource("23_fe3a4")]
+[node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer", "FloorLayer") instance=ExtResource("23_fe3a4")]
 CollisionLayer = NodePath("../TileMapLayerCollision")
+FloorLayer = NodePath("../TileMapLayerSol")

@@ -11,7 +11,6 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
 		set { _Poursuite.EnsureValid().Cible = value; }
 	}
 
-	//[Export]
 	//public Node INodeMedCrystal;
 
 	[ExportGroup("Internal")]
@@ -23,7 +22,7 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
 
 	public DcmEnemySpawner Spawner;
 
-	//private IDeathHandler _gestionnaireMort;
+	public IDeathHandler gestionnaireMort;
 
 	public bool IsDead
 	{
@@ -43,13 +42,10 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
 			.SetEase(Tween.EaseType.Out);
 
 		tween.TweenProperty(this, "modulate:a", 1.0f, 0.6f);
-
-		//_gestionnaireMort = INodeMedCrystal as IDeathHandler;
 	}
 
 	public void NotifyDeath()
 	{
-		GD.Print("Ennemy NotifyDeath");
 		Spawner?.HandleDeath(GlobalPosition);
 	}
 

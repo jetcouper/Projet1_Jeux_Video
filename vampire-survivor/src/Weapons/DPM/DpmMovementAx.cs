@@ -16,6 +16,8 @@ public partial class DpmMovementAx : Node2D
 
 	private float _angle = 0f;
 	private bool _isSwinging = false;
+	
+	private Vector2 _playerOffset = new Vector2(0, -10);
 
 	public override void _Ready()
 	{
@@ -72,7 +74,7 @@ public partial class DpmMovementAx : Node2D
 		Vector2 offset = new Vector2(DistanceFromPlayer, 0)
 			.Rotated(Mathf.DegToRad(_angle));
 
-		NodeToControl.GlobalPosition = Player.GlobalPosition + offset;
+		NodeToControl.GlobalPosition = Player.GlobalPosition + _playerOffset + offset;
 		NodeToControl.RotationDegrees = _angle;
 	}
 
