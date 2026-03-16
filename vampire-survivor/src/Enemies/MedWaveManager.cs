@@ -159,4 +159,10 @@ public partial class MedWaveManager : Node
     {
         return MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
     }
+
+    public void HandleDeath(Vector2 InPosition)
+    {
+        GD.Print($"MedWaveManager HandleDeath at {InPosition}");
+        MedPositions.choisirObjet(EAlgoSelectionObjet.eHandleDeath, InPosition);
+    }
 }

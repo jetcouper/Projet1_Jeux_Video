@@ -33,6 +33,7 @@ public partial class MedCrystal : Node2D, IDeathHandler
         {
             case EAlgoDeath.eSpawnCristal:
             {
+                GD.Print($"MedCrystal HandleDeath at {InPosition}");
                 // On demande au spawner de creer un cristal à cette position
                 CristalSpawner?.SpawnAt(InPosition);
                 break;

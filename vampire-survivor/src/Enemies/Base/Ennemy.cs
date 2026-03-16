@@ -3,55 +3,58 @@ using Utils;
 
 public partial class Ennemy : Node2D, IKillable, ITargetable
 {
-    [ExportGroup("External")]
-    [Export]
-    public Node2D Cible
-    {
-        get { return _Poursuite.EnsureValid().Cible; }
-        set { _Poursuite.EnsureValid().Cible = value; }
-    }
+	[ExportGroup("External")]
+	[Export]
+	public Node2D Cible
+	{
+		get { return _Poursuite.EnsureValid().Cible; }
+		set { _Poursuite.EnsureValid().Cible = value; }
+	}
 
-    [Export]
-    public Node INodeMedCrystal;
+	//[Export]
+	//public Node INodeMedCrystal;
 
-    [ExportGroup("Internal")]
-    [Export]
-    Poursuite _Poursuite;
+	[ExportGroup("Internal")]
+	[Export]
+	Poursuite _Poursuite;
 
-    [Export]
-    DpmLifeAndVisual _Life;
+	[Export]
+	DpmLifeAndVisual _Life;
 
-    private IDeathHandler _gestionnaireMort;
+	public DcmEnemySpawner Spawner;
 
-    public bool IsDead
-    {
-        get { return _Life.EnsureValid().IsDead; }
-    }
+	//private IDeathHandler _gestionnaireMort;
 
-    public override void _Ready()
-    {
-        Position += new Vector2(0, 20);
-        Modulate = new Color(1, 1, 1, 0);
+	public bool IsDead
+	{
+		get { return _Life.EnsureValid().IsDead; }
+	}
 
-        Tween tween = CreateTween().SetParallel(true);
+	public override void _Ready()
+	{
+		Position += new Vector2(0, 20);
+		Modulate = new Color(1, 1, 1, 0);
 
-        tween
-            .TweenProperty(this, "position", Position + new Vector2(0, -20), 0.6f)
-            .SetTrans(Tween.TransitionType.Quart)
-            .SetEase(Tween.EaseType.Out);
+		Tween tween = CreateTween().SetParallel(true);
 
-        tween.TweenProperty(this, "modulate:a", 1.0f, 0.6f);
+		tween
+			.TweenProperty(this, "position", Position + new Vector2(0, -20), 0.6f)
+			.SetTrans(Tween.TransitionType.Quart)
+			.SetEase(Tween.EaseType.Out);
 
-        _gestionnaireMort = INodeMedCrystal as IDeathHandler;
-    }
+		tween.TweenProperty(this, "modulate:a", 1.0f, 0.6f);
 
-    public void NotifyDeath()
-    {
-        _gestionnaireMort?.HandleDeath(GlobalPosition);
-    }
+		//_gestionnaireMort = INodeMedCrystal as IDeathHandler;
+	}
 
-    public void SetTarget(Node2D target)
-    {
-        Cible = target;
-    }
+	public void NotifyDeath()
+	{
+		GD.Print("Ennemy NotifyDeath");
+		Spawner?.HandleDeath(GlobalPosition);
+	}
+
+	public void SetTarget(Node2D target)
+	{
+		Cible = target;
+	}
 }

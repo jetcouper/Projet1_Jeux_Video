@@ -27,7 +27,7 @@ public partial class DcmEnemySpawner : Node2D
 
         if (enemyInstance is Ennemy enemy)
         {
-            enemy.INodeMedCrystal = MedCrystalNode;
+            enemy.Spawner = this;
         }
 
         // Taille  écran visible /zoom /2
@@ -53,5 +53,11 @@ public partial class DcmEnemySpawner : Node2D
     public IEnumerable<Node2D> GatherChildren()
     {
         return ChildManipulator.GatherChildren(EnemyScene, this);
+    }
+
+    public void HandleDeath(Vector2 InPosition)
+    {
+        GD.Print($"DcmEnemySpawner HandleDeath at {InPosition}");
+        MedWaveManager?.HandleDeath(InPosition);
     }
 }
