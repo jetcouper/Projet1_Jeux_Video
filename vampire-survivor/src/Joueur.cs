@@ -3,7 +3,7 @@ using Godot;
 using Utils;
 using static MedPositions;
 
-public partial class Joueur : Node2D
+public partial class Joueur : Node2D, IHealable, IBoostable
 {
     [ExportGroup("External")]
     [Export]
@@ -15,6 +15,8 @@ public partial class Joueur : Node2D
         get => SimplePlayer.EnsureValid().IsActive;
         set { SimplePlayer.EnsureValid().IsActive = value; }
     }
+
+    [Export]
     public TileMapLayer CollisionLayer
     {
         get => SimplePlayer.EnsureValid().collisionLayer;
@@ -32,14 +34,16 @@ public partial class Joueur : Node2D
     [Export]
     public float gatherRadius = 10f;
 
+    [Export]
+    public int MaxHealth = 5;
+    public int Health;
+
     public int score = 0;
 
     public override void _Ready()
     {
         base._Ready();
-        CollisionLayer =
-            MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, new(0, 0))
-            as TileMapLayer;
+        Health = MaxHealth;
         _camera = GetNode<Camera2D>("Camera2D");
         _camera.MakeCurrent();
         _camera.Zoom = new Vector2(CameraZoom, CameraZoom);
@@ -54,5 +58,31 @@ public partial class Joueur : Node2D
     public void addScore(int scoreToAdd)
     {
         score += scoreToAdd;
+    }
+
+    public void Heal(int quantity)
+    {
+        Health = Mathf.Min(Health + quantity, MaxHealth);
+        GD.Print("Vie: " + Health + "/" + MaxHealth);
+    }
+
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        SimplePlayer.EnsureValid().ApplySpeedBoost(multiplier, duration);
+        GD.Print("Speed boost!");
+    }
+
+    public void TakeDamage(int quantity)
+    {
+        Health -= quantity;
+        GD.Print("Vie: " + Health + "/" + MaxHealth);
+        if (Health <= 0)
+            Die();
+    }
+
+    private void Die()
+    {
+        GD.Print("GAME OVER !");
+        IsActive = false;
     }
 }

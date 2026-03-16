@@ -41,6 +41,8 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2jwh"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1y1y"]
+
 [node name="ExperienceCrystal" type="Node2D" unique_id=1107133244]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_n2jwh")
@@ -56,4 +58,11 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=635366551]
 shape = SubResource("CircleShape2D_n2jwh")
 
+[node name="GatherArea" type="Area2D" parent="." unique_id=1025320084]
+
+[node name="GatherRadius" type="CollisionShape2D" parent="GatherArea" unique_id=966274383]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_k1y1y")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="GatherArea" to="." method="_on_gather_area_entered"]

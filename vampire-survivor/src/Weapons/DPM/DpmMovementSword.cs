@@ -83,7 +83,6 @@ public partial class DpmMovementSword : Node2D
 
     public void Positionning()
     {
-        GD.Print(Player);
         NodeToControl.GlobalPosition =
             Player.GlobalPosition
             + _playerOffset

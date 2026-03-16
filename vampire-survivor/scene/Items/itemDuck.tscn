@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b4gmspqnvx2g3"]
+
+[ext_resource type="Script" uid="uid://conjacp3n4vih" path="res://src/Items/ItemDuck.cs" id="1_yy8vo"]
+[ext_resource type="Texture2D" uid="uid://ddw2gt6erk3f7" path="res://Pictures/duck.png" id="2_snkcs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snkcs"]
+radius = 13.0
+height = 34.0
+
+[node name="ItemDuck" type="Area2D" unique_id=293632267]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+script = ExtResource("1_yy8vo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=492685089]
+texture = ExtResource("2_snkcs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50851943]
+shape = SubResource("CapsuleShape2D_snkcs")

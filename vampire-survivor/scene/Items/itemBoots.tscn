@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dp5iblf8vg1ut"]
+
+[ext_resource type="Script" uid="uid://cn2i1mlo431j" path="res://src/Items/ItemBoots.cs" id="1_cbvic"]
+[ext_resource type="Texture2D" uid="uid://b13ldax67tlu3" path="res://Pictures/Boots.png" id="1_vj7ru"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cbvic"]
+radius = 7.9999995
+height = 34.0
+
+[node name="ItemBoots" type="Area2D" unique_id=1321409825]
+collision_layer = 8
+script = ExtResource("1_cbvic")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=51926058]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_vj7ru")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1587733256]
+scale = Vector2(1, 0.49244928)
+shape = SubResource("CapsuleShape2D_cbvic")

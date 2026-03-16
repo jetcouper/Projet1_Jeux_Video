@@ -44,7 +44,7 @@ public partial class ExperienceCrystal : Node2D
 
     public void _on_gather_area_entered(Area2D collision)
     {
-        if (collision.GetParent() is Joueur joueur)
+        if (collision.GetParent() is Joueur)
         {
             gatherEntered = true;
         }

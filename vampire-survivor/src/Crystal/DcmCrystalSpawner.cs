@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 using Utils;
 
-public partial class DcmCrystalSpawner : Node2D, ISpawner
+public partial class DcmCrystalSpawner : Node2D, ISpawnable
 {
     [Export]
     private PackedScene SpawneeScene;
