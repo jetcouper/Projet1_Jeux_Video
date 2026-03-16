@@ -45,6 +45,9 @@ public partial class DpmMovementAx : Node2D
 
 	public void StartSwing()
 	{
+		if (!Niveau.IsGameStarted)
+			return;
+
 		NodeToControl.Visible = false;
 		_angle = 0f;
 		Positionning();
@@ -80,6 +83,7 @@ public partial class DpmMovementAx : Node2D
 
 	public async void WeaponAppear()
 	{
+		GD.Print("WeaponAppear");
 		NodeToControl.Visible = true;
 		Tween tween = CreateTween();
 
@@ -94,7 +98,7 @@ public partial class DpmMovementAx : Node2D
 		_isSwinging = true;
 	}
 
-	public async System.Threading.Tasks.Task WeaponDisappear()
+	public async Task WeaponDisappear()
 	{
 		NodeToControl.RotationDegrees = 0f;
 		

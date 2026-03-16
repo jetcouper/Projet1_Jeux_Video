@@ -39,6 +39,9 @@ public partial class DpmMovementSword : Node2D
 
 	public void StartSwing()
 	{
+		if (!Niveau.IsGameStarted)
+			return;
+
 		steps = 0;
 		TimerSwing.Start();
 	}

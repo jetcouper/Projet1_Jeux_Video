@@ -15,16 +15,16 @@ public partial class MedPositions : Node2D
 
 	[ExportGroup("Internal")]
 	[Export]
-	private Joueur joueur;
+	private Joueur Joueur;
 
 	[Export]
-	private MedWaveManager medWaveManager;
+	private MedWaveManager MedWaveManager;
 
 	[Export]
 	private MedCrystal medCrystal;
 
 	[Export]
-	private MedWeaponSpawner medWeaponSpawner;
+	private MedWeaponSpawner MedWeaponSpawner;
 
 	public enum EAlgoSelectionObjet
 	{
@@ -39,7 +39,15 @@ public partial class MedPositions : Node2D
 	public override void _Ready()
 	{
 		base._Ready();
+		Niveau.OnGameStarted += OnGameStartedHandler;
 	}
+
+	private void OnGameStartedHandler() //Listener pour le démarrage du jeu (dans le niveau)
+	{
+		MedWeaponSpawner.Activate();
+		Niveau.OnGameStarted -= OnGameStartedHandler;
+	}
+
 
 	public Node2D choisirObjet(EAlgoSelectionObjet InAlgoSelectionObjet, Vector2 InPosition)
 	{
@@ -49,16 +57,21 @@ public partial class MedPositions : Node2D
 		{
 			case EAlgoSelectionObjet.ePlayer:
 				{
-					node = joueur;
+					node = Joueur;
 				}
 				break;
 			case EAlgoSelectionObjet.eEnemiPlusProche:
 				{
-					var enemies = medWaveManager.GatherAllEnemies();
+					var enemies = MedWaveManager.GatherAllEnemies();
 
 					node = enemies
 						.OrderBy(e => e.GlobalPosition.DistanceTo(InPosition))
 						.FirstOrDefault();
+				}
+				break;
+			case EAlgoSelectionObjet.eMedCrystal:
+				{
+					node = medCrystal;
 				}
 				break;
 			case EAlgoSelectionObjet.eCollisionLayer:

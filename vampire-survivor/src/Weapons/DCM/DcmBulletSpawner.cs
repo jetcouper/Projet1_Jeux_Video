@@ -5,12 +5,14 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 {
 	[ExportGroup("External")]
 	[Export]
-	public PackedScene Weapon;
+	public PackedScene WeaponScene;
 
 	[Export]
 	public MedWeaponSpawner MedWeaponSpawner;
 
 	private Node2D player;
+
+	private IUseable activeWeapon;
 
 	public override void _Ready() {
 		base._Ready();
@@ -56,7 +58,7 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
 	private void SpawnBullet(float typeWeapon, float angle)
 	{
-		Node2D weapon = Weapon.Instantiate<Node2D>();
+		Node2D weapon = WeaponScene.Instantiate<Node2D>();
 		AddChild(weapon);
 
 		if (weapon is Bullet bullet)
@@ -66,4 +68,9 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 			bullet.Use();
 		}
 	}
+
+	public void Activate()
+    {
+        activeWeapon?.Use();
+    }
 }

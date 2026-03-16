@@ -13,7 +13,7 @@ public partial class DcmCrystalSpawner : Node2D, ISpawnable
 	public Node2D MedSpawnerCrystal;
 
 	public void SpawnAt(Vector2 position)
-	{
+	{		
 		if (SpawneeScene == null)
 			return;
 
