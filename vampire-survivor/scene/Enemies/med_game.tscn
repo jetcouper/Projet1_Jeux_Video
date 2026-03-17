@@ -21,6 +21,7 @@ script = ExtResource("2_8o6i3")
 MedWaveManager = NodePath("..")
 EnemyScene = ExtResource("3_0m831")
 SpawnDistance = 300.0
+MinX = -100.0
 
 [node name="DCM_Spawner_ZombiePresse" type="Node2D" parent="." unique_id=5669512 node_paths=PackedStringArray("MedWaveManager")]
 script = ExtResource("2_8o6i3")

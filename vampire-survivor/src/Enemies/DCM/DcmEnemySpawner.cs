@@ -10,17 +10,19 @@ public partial class DcmEnemySpawner : Node2D
     private PackedScene EnemyScene;
 
     public TileMapLayer FloorLayer;
+    public TileMapLayer CollisionLayer;
 
     [Export]
     private float SpawnDistance = 100f;
 
     public Node MedCrystalNode;
-
     private Node2D Player;
 
-    public override void _Ready() {
+    public override void _Ready()
+    {
         base._Ready();
         FloorLayer = MedWaveManager.getFloorLayer();
+        CollisionLayer = MedWaveManager.getCollisionLayer();
         MedCrystalNode = MedWaveManager.GetMedCrystalNode();
     }
 
@@ -28,6 +30,10 @@ public partial class DcmEnemySpawner : Node2D
     {
         Player = MedWaveManager.GetPlayer();
         if (EnemyScene == null || Player == null)
+            return;
+
+        Vector2 spawnPosition = FindValidPosition();
+        if (spawnPosition == Vector2.Inf)
             return;
 
         Node2D enemyInstance = EnemyScene.Instantiate<Node2D>();
@@ -38,8 +44,6 @@ public partial class DcmEnemySpawner : Node2D
             enemy.gestionnaireMort = MedCrystalNode as IDeathHandler;
         }
 
-        Vector2 spawnPosition = FindValidPosition();
-
         if (enemyInstance is ITargetable targetable)
         {
             targetable.SetTarget(Player);
@@ -48,24 +52,33 @@ public partial class DcmEnemySpawner : Node2D
         enemyInstance.GlobalPosition = spawnPosition;
         CallDeferred(Node.MethodName.AddChild, enemyInstance);
     }
+
     private Vector2 FindValidPosition()
     {
-        // Taille  écran visible /zoom /2
-        float zoom = 2.5f;
+        float zoom = 4.0f;
         Vector2 vp = GetViewport().GetVisibleRect().Size / zoom / 2f;
 
-        // Diagonale demi ecran + marge
-        float minDistance = vp.Length() + 50f;
+        float minDistance = vp.Length() + 200f;
+        float maxDistance = minDistance + 250f;
 
         int tentatives = 0;
-        while (tentatives < 30)
+        while (tentatives < 80)
         {
             float randomAngle = (float)GD.RandRange(0, Mathf.Tau);
-            Vector2 direction = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
-            Vector2 testPos = Player.GlobalPosition + (direction * minDistance);
-            Vector2I tileCoord = FloorLayer.LocalToMap(FloorLayer.ToLocal(testPos));
+            float distance = (float)GD.RandRange(minDistance, maxDistance);
 
-            if (FloorLayer.GetCellSourceId(tileCoord) != -1)
+            Vector2 direction = new Vector2(Mathf.Cos(randomAngle), Mathf.Sin(randomAngle));
+            Vector2 testPos = Player.GlobalPosition + direction * distance;
+
+            Vector2I tileCoord = FloorLayer.LocalToMap(FloorLayer.ToLocal(testPos));
+            Vector2I colCoord = CollisionLayer.LocalToMap(CollisionLayer.ToLocal(testPos));
+
+            int floorSource = FloorLayer.GetCellSourceId(tileCoord);
+            Vector2I atlasCoords = FloorLayer.GetCellAtlasCoords(tileCoord);
+
+            bool hasFloorTile = floorSource != -1;
+
+            if (hasFloorTile)
             {
                 return testPos;
             }
@@ -85,5 +98,4 @@ public partial class DcmEnemySpawner : Node2D
     {
         MedWaveManager?.HandleDeath(InPosition);
     }
-    
 }

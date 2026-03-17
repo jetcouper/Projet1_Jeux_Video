@@ -90,13 +90,13 @@ public partial class MedWaveManager : Node
             switch (CurrentPhase)
             {
                 case EGamePhase.eWave2_ZombiePresse:
-                    SpawnInterval = new Vector2(1.0f, 1.5f);
+                    SpawnInterval = new Vector2(4.0f, 6.5f);
                     break;
                 case EGamePhase.eWave3_Tortue:
-                    SpawnInterval = new Vector2(0.7f, 1.2f);
+                    SpawnInterval = new Vector2(2.0f, 4.0f);
                     break;
                 case EGamePhase.eWave4_Gene:
-                    SpawnInterval = new Vector2(0.4f, 0.8f);
+                    SpawnInterval = new Vector2(1.0f, 2.0f);
                     break;
                 case EGamePhase.eFinalBoss:
                     _spawnTimer.Stop();
@@ -167,7 +167,14 @@ public partial class MedWaveManager : Node
 
     public TileMapLayer getFloorLayer()
     {
-        return MedPositions.choisirObjet(EAlgoSelectionObjet.eFloorLayer, new(0, 0)) as TileMapLayer;
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eFloorLayer, new(0, 0))
+            as TileMapLayer;
+    }
+
+    public TileMapLayer getCollisionLayer()
+    {
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, new(0, 0))
+            as TileMapLayer;
     }
 
     public Node GetMedCrystalNode()
