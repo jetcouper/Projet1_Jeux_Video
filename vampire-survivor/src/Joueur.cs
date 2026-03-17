@@ -23,6 +23,13 @@ public partial class Joueur : Node2D, IHealable, IBoostable
         set { SimplePlayer.EnsureValid().collisionLayer = value; }
     }
 
+    [Export]
+    public TileMapLayer SpikeLayer
+    {
+        get => SimplePlayer.EnsureValid().spikeLayer;
+        set { SimplePlayer.EnsureValid().spikeLayer = value; }
+    }
+
     [ExportGroup("Internal")]
     [Export]
     SimplePlayer SimplePlayer;
@@ -43,7 +50,14 @@ public partial class Joueur : Node2D, IHealable, IBoostable
     public override void _Ready()
     {
         base._Ready();
-        CollisionLayer = MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition) as TileMapLayer;
+        SimplePlayer.EnsureValid().SpikeHit += () => TakeDamage(1);
+        CollisionLayer =
+            MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition)
+            as TileMapLayer;
+
+        SpikeLayer =
+            MedPositions.choisirObjet(EAlgoSelectionObjet.eSpikeLayer, GlobalPosition)
+            as TileMapLayer;
         Health = MaxHealth;
         _camera = GetNode<Camera2D>("Camera2D");
         _camera.MakeCurrent();

@@ -3,11 +3,17 @@ using Godot;
 
 public partial class SimplePlayer : Node
 {
+    [Signal]
+    public delegate void SpikeHitEventHandler();
+
     [Export]
     private Node2D NodeToControl;
 
     [Export]
     public TileMapLayer collisionLayer;
+
+    [Export]
+    public TileMapLayer spikeLayer;
 
     [Export]
     private float VelocityPixelPerSecond = 100.0f;
@@ -104,6 +110,12 @@ public partial class SimplePlayer : Node
         Vector2I tileCoord = collisionLayer.LocalToMap(collisionLayer.ToLocal(prochainePosition));
         if (collisionLayer.GetCellSourceId(tileCoord) == -1)
         {
+            NodeToControl.GlobalPosition = prochainePosition;
+        }
+        Vector2I tileCoordSpike = spikeLayer.LocalToMap(spikeLayer.ToLocal(prochainePosition));
+        if (spikeLayer.GetCellSourceId(tileCoordSpike) != -1)
+        {
+            EmitSignal(SignalName.SpikeHit);
             NodeToControl.GlobalPosition = prochainePosition;
         }
 
