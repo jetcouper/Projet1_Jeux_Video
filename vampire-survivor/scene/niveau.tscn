@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dncdor46pla6m" path="res://Pictures/Clouds V2/Clouds V2.png" id="9_pjqhk"]
 [ext_resource type="Script" uid="uid://brc86xuy7k5py" path="res://Library/Util/Oscillation.cs" id="10_4btnw"]
 [ext_resource type="Script" uid="uid://dgom1hisn48t7" path="res://Library/Util/OscillationOiseau.cs" id="10_pjrin"]
+[ext_resource type="Script" uid="uid://xtr1chikx1ai" path="res://src/Crystal/DcmTreasureSpawner.cs" id="17_dw4fi"]
+[ext_resource type="PackedScene" uid="uid://cix5400m56pu8" path="res://scene/Collectables/tresor.tscn" id="18_pwjk0"]
 [ext_resource type="PackedScene" uid="uid://cprcraam0v6yu" path="res://scene/med_positions.tscn" id="23_fe3a4"]
 [ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
 [ext_resource type="PackedScene" uid="uid://b4gmspqnvx2g3" path="res://scene/Items/itemDuck.tscn" id="28_csqtu"]
@@ -1086,5 +1088,11 @@ SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
 
 [node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer", "FloorLayer") instance=ExtResource("23_fe3a4")]
+scale = Vector2(1.0200002, 1.0200002)
 CollisionLayer = NodePath("../TileMapLayerCollision")
 FloorLayer = NodePath("../TileMapLayerSol")
+
+[node name="DCM_Treasure_Spawner" type="Node2D" parent="." unique_id=1792218354 node_paths=PackedStringArray("validTiles")]
+script = ExtResource("17_dw4fi")
+TresorScene = ExtResource("18_pwjk0")
+validTiles = NodePath("../TileMapLayerSol")

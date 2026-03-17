@@ -78,7 +78,6 @@ public partial class MedPositions : Node2D
                     node = CollisionLayer;
                 }
                 break;
-
             case EAlgoSelectionObjet.eFloorLayer:
                 {
                     node = FloorLayer;
