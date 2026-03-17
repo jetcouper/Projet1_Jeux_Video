@@ -58,11 +58,11 @@ public partial class DcmEnemySpawner : Node2D
         float zoom = 4.0f;
         Vector2 vp = GetViewport().GetVisibleRect().Size / zoom / 2f;
 
-        float minDistance = vp.Length() + 200f;
-        float maxDistance = minDistance + 250f;
+        float minDistance = vp.Length() + 250f;
+        float maxDistance = minDistance + 300f;
 
         int tentatives = 0;
-        while (tentatives < 80)
+        while (tentatives < 30)
         {
             float randomAngle = (float)GD.RandRange(0, Mathf.Tau);
             float distance = (float)GD.RandRange(minDistance, maxDistance);
@@ -74,7 +74,6 @@ public partial class DcmEnemySpawner : Node2D
             Vector2I colCoord = CollisionLayer.LocalToMap(CollisionLayer.ToLocal(testPos));
 
             int floorSource = FloorLayer.GetCellSourceId(tileCoord);
-            Vector2I atlasCoords = FloorLayer.GetCellAtlasCoords(tileCoord);
 
             bool hasFloorTile = floorSource != -1;
 

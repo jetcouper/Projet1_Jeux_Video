@@ -50,8 +50,10 @@ public partial class MedWaveManager : Node
     {
         CurrentPhase = EGamePhase.eWave1_Zombie;
 
-        _spawnTimer = new Timer();
-        _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
+        _spawnTimer = new Timer
+        {
+            WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y),
+        };
         _spawnTimer.Timeout += ExecuteSpawnAlgo;
         AddChild(_spawnTimer);
 
@@ -74,13 +76,13 @@ public partial class MedWaveManager : Node
     {
         EGamePhase newPhase = CurrentPhase;
 
-        if (_gameTime > 150 || _playerLevel >= 10)
+        if (_gameTime > 170 || _playerLevel >= 10)
             newPhase = EGamePhase.eFinalBoss;
-        else if (_gameTime > 100 || _playerLevel >= 8)
+        else if (_gameTime > 150 || _playerLevel >= 7)
             newPhase = EGamePhase.eWave4_Gene;
-        else if (_gameTime > 90 || _playerLevel >= 5)
+        else if (_gameTime > 120 || _playerLevel >= 5)
             newPhase = EGamePhase.eWave3_Tortue;
-        else if (_gameTime > 45 || _playerLevel >= 3)
+        else if (_gameTime > 90 || _playerLevel >= 3)
             newPhase = EGamePhase.eWave2_ZombiePresse;
 
         if (newPhase != CurrentPhase)

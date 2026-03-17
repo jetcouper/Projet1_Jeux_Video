@@ -15,10 +15,10 @@ public partial class DcmBossSpawner : Node2D
 
     [ExportGroup("Internal")]
     [Export]
-    private Vector2 IntervalRange = new(4.0f, 6.0f); // temps entre chaque vague
+    private Vector2 IntervalRange = new(5.0f, 9.0f); // temps entre chaque vague
 
     [Export]
-    private Vector2 SpawnEnnemyRange = new Vector2(2.0f, 5.0f); // nombre d'ennemis par vague
+    private Vector2 SpawnEnnemyRange = new Vector2(1.0f, 5.0f); // nombre d'ennemis par vague
 
     [Export]
     private float SpawnRadiusMin = 40.0f;
