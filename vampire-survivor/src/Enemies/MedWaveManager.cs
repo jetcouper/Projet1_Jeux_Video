@@ -167,7 +167,8 @@ public partial class MedWaveManager : Node
 
     public TileMapLayer getFloorLayer()
     {
-        return MedPositions.choisirObjet(EAlgoSelectionObjet.eFloorLayer, new(0, 0)) as TileMapLayer;
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eFloorLayer, new(0, 0))
+            as TileMapLayer;
     }
 
     public Node GetMedCrystalNode()

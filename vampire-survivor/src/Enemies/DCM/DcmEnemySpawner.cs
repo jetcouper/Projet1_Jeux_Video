@@ -18,7 +18,8 @@ public partial class DcmEnemySpawner : Node2D
 
     private Node2D Player;
 
-    public override void _Ready() {
+    public override void _Ready()
+    {
         base._Ready();
         FloorLayer = MedWaveManager.getFloorLayer();
         MedCrystalNode = MedWaveManager.GetMedCrystalNode();
@@ -48,6 +49,7 @@ public partial class DcmEnemySpawner : Node2D
         enemyInstance.GlobalPosition = spawnPosition;
         CallDeferred(Node.MethodName.AddChild, enemyInstance);
     }
+
     private Vector2 FindValidPosition()
     {
         // Taille  écran visible /zoom /2
@@ -85,5 +87,4 @@ public partial class DcmEnemySpawner : Node2D
     {
         MedWaveManager?.HandleDeath(InPosition);
     }
-    
 }
