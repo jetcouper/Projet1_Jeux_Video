@@ -9,10 +9,10 @@ public partial class DcmItemSpawner : Node2D, ISpawnable
     public TileMapLayer FloorLayer;
 
     [Export]
-    public float SpawnIntervalMin = 3f;
+    public float SpawnIntervalMin = 5f;
 
     [Export]
-    public float SpawnIntervalMax = 8f;
+    public float SpawnIntervalMax = 10f;
 
     private float _timer;
     private float _nextSpawn;
@@ -45,6 +45,11 @@ public partial class DcmItemSpawner : Node2D, ISpawnable
 
         Node2D newInstance = chosenScene.Instantiate<Node2D>();
         newInstance.GlobalPosition = position;
+
+        if (newInstance is ItemTeleporter teleporter)
+        {
+            teleporter.FloorLayer = FloorLayer;
+        }
         GetTree().CurrentScene.AddChild(newInstance);
     }
 

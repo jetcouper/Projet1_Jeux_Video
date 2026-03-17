@@ -12,11 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://dncdor46pla6m" path="res://Pictures/Clouds V2/Clouds V2.png" id="9_pjqhk"]
 [ext_resource type="Script" uid="uid://brc86xuy7k5py" path="res://Library/Util/Oscillation.cs" id="10_4btnw"]
 [ext_resource type="Script" uid="uid://dgom1hisn48t7" path="res://Library/Util/OscillationOiseau.cs" id="10_pjrin"]
+[ext_resource type="PackedScene" uid="uid://coa00jq6ldvr0" path="res://scene/Items/itemTeleporter.tscn" id="16_y0lgb"]
 [ext_resource type="Script" uid="uid://xtr1chikx1ai" path="res://src/Crystal/DcmTreasureSpawner.cs" id="17_dw4fi"]
 [ext_resource type="PackedScene" uid="uid://cix5400m56pu8" path="res://scene/Collectables/tresor.tscn" id="18_pwjk0"]
 [ext_resource type="PackedScene" uid="uid://cprcraam0v6yu" path="res://scene/med_positions.tscn" id="23_fe3a4"]
 [ext_resource type="Script" uid="uid://dntsj7xyt2aww" path="res://src/Items/DcmItemSpawner.cs" id="23_u60jg"]
-[ext_resource type="PackedScene" uid="uid://b4gmspqnvx2g3" path="res://scene/Items/itemDuck.tscn" id="28_csqtu"]
+[ext_resource type="PackedScene" path="res://scene/Items/itemDuck.tscn" id="28_csqtu"]
 [ext_resource type="PackedScene" uid="uid://dp5iblf8vg1ut" path="res://scene/Items/itemBoots.tscn" id="28_f0m11"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_48mvn"]
@@ -1082,7 +1083,7 @@ node = NodePath(".")
 [node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
 rotation = -0.00070787914
 script = ExtResource("23_u60jg")
-SpawneeScenes = Array[PackedScene]([ExtResource("28_f0m11"), ExtResource("28_csqtu")])
+SpawneeScenes = Array[PackedScene]([ExtResource("28_f0m11"), ExtResource("28_csqtu"), ExtResource("16_y0lgb")])
 FloorLayer = NodePath("../TileMapLayerSol")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0

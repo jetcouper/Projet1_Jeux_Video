@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://coa00jq6ldvr0"]
+
+[ext_resource type="Script" uid="uid://6vxdm81uxmns" path="res://src/Items/ItemTeleporter.cs" id="1_gumyl"]
+[ext_resource type="Texture2D" uid="uid://2uxq4325popj" path="res://Pictures/Teleporter.png" id="2_gumyl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gumyl"]
+size = Vector2(48.75, 64.25)
+
+[node name="ItemTeleporter" type="Area2D" unique_id=293632267]
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+script = ExtResource("1_gumyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=492685089]
+texture = ExtResource("2_gumyl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=50851943]
+position = Vector2(-1.625, -0.125)
+shape = SubResource("RectangleShape2D_gumyl")

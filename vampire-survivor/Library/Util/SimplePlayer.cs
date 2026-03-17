@@ -118,4 +118,10 @@ public partial class SimplePlayer : Node
         _speedMultiplier = multiplier;
         _boostTimer = duration;
     }
+
+    public void Teleport(Vector2 destination)
+    {
+        if (NodeToControl != null)
+            NodeToControl.GlobalPosition = destination;
+    }
 }

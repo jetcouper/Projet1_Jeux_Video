@@ -3,7 +3,7 @@ using Godot;
 using Utils;
 using static MedPositions;
 
-public partial class Joueur : Node2D, IHealable, IBoostable
+public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
 {
     [ExportGroup("External")]
     [Export]
@@ -43,7 +43,9 @@ public partial class Joueur : Node2D, IHealable, IBoostable
     public override void _Ready()
     {
         base._Ready();
-        CollisionLayer = MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition) as TileMapLayer;
+        CollisionLayer =
+            MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition)
+            as TileMapLayer;
         Health = MaxHealth;
         _camera = GetNode<Camera2D>("Camera2D");
         _camera.MakeCurrent();
@@ -79,6 +81,12 @@ public partial class Joueur : Node2D, IHealable, IBoostable
         GD.Print("Vie: " + Health + "/" + MaxHealth);
         if (Health <= 0)
             Die();
+    }
+
+    public void Teleport(Vector2 position)
+    {
+        GlobalPosition = position;
+        GD.Print("Téléporté à: " + position);
     }
 
     private void Die()
