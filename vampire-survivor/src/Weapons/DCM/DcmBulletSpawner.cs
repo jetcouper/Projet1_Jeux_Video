@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Runtime;
+using static IWeaponSpawner;
 
 public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 {
@@ -14,17 +16,17 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
 	private IUseable activeWeapon;
 
-	public override void _Ready() {
-		base._Ready();
-		player = MedWeaponSpawner.GetPlayer();
-	}
-	public async void Spawn(float typeWeapon, int bulletCount = 12)
+	private bool isActivated = false;
+
+	public async void Spawn(Pattern typeWeapon, Node2D target = null)
 	{
-		float angleStep = 2 * Mathf.Pi / bulletCount;
+		
+	
+		float angleStep = 2 * Mathf.Pi / 12;
 
 		while (true)
 		{
-			for (int i = 0; i < bulletCount; i++)
+			for (int i = 0; i < 12; i++)
 			{
 				float angle = i * angleStep;
 				SpawnBullet(typeWeapon, angle);
@@ -34,12 +36,12 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 		}
 	}
 
-	public async void SpawnSequential(float typeWeapon, int bulletCount = 12)
+	public async void SpawnSequential(Pattern typeWeapon, Node2D target = null)
 	{
 		
 		float delay = 0.5f;
 		
-		float angleStep = 2 * Mathf.Pi / bulletCount;
+		float angleStep = 2 * Mathf.Pi / 12;
 
 		int index = 0;
 
@@ -49,28 +51,64 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
 			SpawnBullet(typeWeapon, angle);
 
-			index = (index + 1) % bulletCount;
+			index = (index + 1) % 12;
 
 			await ToSignal(GetTree().CreateTimer(delay), "timeout");
 		}
 	
 	}
 
-	private void SpawnBullet(float typeWeapon, float angle)
+	public async void SpawnTargeted(Pattern typeWeapon)
 	{
-		Node2D weapon = WeaponScene.Instantiate<Node2D>();
-		AddChild(weapon);
-
-		if (weapon is Bullet bullet)
+		float delay = 0.5f;
+		if (player == null)
 		{
-			bullet.startingPosition = angle;
-			bullet.AngularSpeed = typeWeapon;
-			bullet.Use();
+			player = MedWeaponSpawner.GetPlayer();
+		}
+
+		while (true)
+		{
+			Node2D TargetNode = MedWeaponSpawner.GetTarget();
+			
+			if (TargetNode != null)
+			{
+				Vector2 direction = (TargetNode.GlobalPosition - player.GlobalPosition).Normalized();
+				float angle = Mathf.Atan2(direction.Y, direction.X);
+				SpawnBullet(typeWeapon, angle, TargetNode);
+			}
+
+			await ToSignal(GetTree().CreateTimer(delay), "timeout");
+		}
+	}
+
+	private void SpawnBullet(Pattern typeWeapon, float angle, Node2D TargetNode = null)
+	{
+		if (isActivated)
+		{
+			if (player == null)
+			{
+				player = MedWeaponSpawner.GetPlayer();
+			}
+			Node2D weapon = WeaponScene.Instantiate<Node2D>();
+			AddChild(weapon);
+
+			if (weapon is Bullet bullet)
+			{
+				bullet.startingPosition = angle;
+				bullet.BulletPattern = typeWeapon;
+
+				bullet.setPlayer(player);
+				bullet.TargetNode = TargetNode;
+				activeWeapon = bullet;
+				activeWeapon.Use();
+			}
 		}
 	}
 
 	public void Activate()
-    {
-        activeWeapon?.Use();
-    }
+	{
+		isActivated = true;
+		activeWeapon?.Use();
+	}
+
 }

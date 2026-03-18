@@ -12,8 +12,10 @@ script = ExtResource("1_80fxc")
 SpawnerSword = NodePath("SwordSpawner")
 SpawnerAxe = NodePath("AxeSpawner")
 BulletSpawner = NodePath("BullerSpawner")
+InAlgoSelectionWeapon = 1
 
 [node name="SwordSpawner" parent="." unique_id=1886240174 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("1_mjexd")]
+position = Vector2(1.3333335, 0)
 WeaponScene = ExtResource("2_jfcux")
 MedWeaponSpawner = NodePath("..")
 

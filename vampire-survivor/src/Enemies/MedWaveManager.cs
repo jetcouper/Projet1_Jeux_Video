@@ -149,12 +149,36 @@ public partial class MedWaveManager : Node
         _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
     }
 
-    public IEnumerable<Ennemy> GatherAllEnemies()
+    public List<Node2D> GatherAllEnemies()
     {
-        return new[] { ZombieSpawner, ZombiePresseSpawner, TortueSpawner, GeneSpawner, BossSpawner }
-            .Where(spawner => spawner != null)
-            .SelectMany(spawner => spawner.GatherChildren())
-            .OfType<Ennemy>();
+        var allEnemies = new List<Node2D>();
+
+        // List of all spawners
+        var spawners = new DcmEnemySpawner[]
+        {
+            ZombieSpawner,
+            ZombiePresseSpawner,
+            TortueSpawner,
+            GeneSpawner,
+            BossSpawner
+        };
+
+        foreach (var spawner in spawners)
+        {
+            if (spawner == null) continue;
+
+            // Iterate over all children of the spawner
+            foreach (Node2D child in spawner.GetChildren())
+            {
+                // Check type — assuming your Enemy class is called Enemy
+                if (child is Ennemy)
+                {
+                    allEnemies.Add(child);
+                }
+            }
+        }
+
+        return allEnemies;
     }
 
     public Node2D GetPlayer()

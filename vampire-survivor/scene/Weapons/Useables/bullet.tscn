@@ -1,55 +1,124 @@
 [gd_scene format=3 uid="uid://rwo4xux3hx65"]
 
-[ext_resource type="Texture2D" uid="uid://dkdb0p7x0uxkd" path="res://Pictures/Weapons/Green Effect and Bullet 16x16.png" id="1_r4o4n"]
 [ext_resource type="Script" uid="uid://g0ryu6bq823a" path="res://src/Weapons/Useable/Bullet.cs" id="1_wocwt"]
 [ext_resource type="Script" uid="uid://cdurxb8fglpg8" path="res://src/Weapons/DPM/DpmMovementBullet.cs" id="2_h3wt2"]
+[ext_resource type="Texture2D" uid="uid://shwir0gtcwpa" path="res://Pictures/Weapons/Purple Effect and Bullet 16x16.png" id="2_sgiru"]
 [ext_resource type="Script" uid="uid://cbuuyr1e3q5cn" path="res://src/EntityAnimation.cs" id="3_biy0t"]
+[ext_resource type="Texture2D" uid="uid://7sul3g8jakbt" path="res://Pictures/Weapons/Fire Effect and Bullet 16x16.png" id="3_sgiru"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_biy0t"]
-atlas = ExtResource("1_r4o4n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv7gp"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(480, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgx1y"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(496, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5gc8"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(512, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4k2dl"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(528, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6tgo"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(544, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brcut"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(560, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1lql"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(512, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21buq"]
+atlas = ExtResource("2_sgiru")
+region = Rect2(496, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6d1nd"]
+atlas = ExtResource("3_sgiru")
 region = Rect2(160, 160, 16, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3kmyy"]
-atlas = ExtResource("1_r4o4n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkc2a"]
+atlas = ExtResource("3_sgiru")
 region = Rect2(176, 160, 16, 40)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gklnu"]
-atlas = ExtResource("1_r4o4n")
+[sub_resource type="AtlasTexture" id="AtlasTexture_r567b"]
+atlas = ExtResource("3_sgiru")
 region = Rect2(192, 160, 16, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7di8l"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_biy0t")
+"texture": SubResource("AtlasTexture_rv7gp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3kmyy")
+"texture": SubResource("AtlasTexture_pgx1y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gklnu")
+"texture": SubResource("AtlasTexture_w5gc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k2dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6tgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4k2dl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brcut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1lql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21buq")
 }],
 "loop": true,
-"name": &"Shoot",
+"name": &"Corkscrew",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6d1nd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkc2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r567b")
+}],
+"loop": true,
+"name": &"Linear",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_plxdt"]
 radius = 11.0
 
-[node name="Bullet" type="Node2D" unique_id=1335090651 node_paths=PackedStringArray("entityAnimation")]
+[node name="Bullet" type="Node2D" unique_id=1335090651 node_paths=PackedStringArray("DpmMovementBullet", "entityAnimation", "BulletArea")]
 script = ExtResource("1_wocwt")
+DpmMovementBullet = NodePath("DPMMovement")
 entityAnimation = NodePath("AnimatedSprite2D")
+BulletArea = NodePath("Area2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=487215797]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_7di8l")
-animation = &"Shoot"
+animation = &"Linear"
+frame_progress = 0.4906836
 script = ExtResource("3_biy0t")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=510759407]
 rotation = -1.5707964
-collision_layer = 2
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=803575829]
 shape = SubResource("CircleShape2D_plxdt")

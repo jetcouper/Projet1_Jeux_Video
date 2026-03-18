@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using static IWeaponSpawner;
 
 public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
 {
@@ -23,10 +24,10 @@ public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
         player = MedWeaponSpawner.GetPlayer();
     }
 
-    public void Spawn(float typeWeapon, int count = 0)
-    {
-        Node2D weapon = WeaponScene.Instantiate<Node2D>();
-        AddChild(weapon);
+	public void Spawn(Pattern pattern = Pattern.None, Node2D target = null)
+	{
+		Node2D weapon = WeaponScene.Instantiate<Node2D>();
+		AddChild(weapon);
 
         if (weapon is IUseable usable)
         {

@@ -1,5 +1,7 @@
 using System;
 using Godot;
+using static DpmMovementBullet;
+using static IWeaponSpawner;
 
 public partial class Bullet : Node2D, IUseable
 {
@@ -8,11 +10,14 @@ public partial class Bullet : Node2D, IUseable
 	private DpmMovementBullet DpmMovementBullet;
 
 	[Export]
-	EntityAnimation entityAnimation;
+	private EntityAnimation entityAnimation;
+
+	[Export]
+	private Area2D BulletArea;
 
 	public float startingPosition;
 
-	public float AngularSpeed;
+	public Pattern BulletPattern;
 
 	public Node2D Player
 	{
@@ -20,16 +25,38 @@ public partial class Bullet : Node2D, IUseable
 		set { DpmMovementBullet.Player = value; }
 	}
 
-	public void Use()
+	public Node2D TargetNode;
+
+	public override void _Ready() {
+		base._Ready();
+		BulletArea.AreaEntered += OnBulletHit;
+	}
+
+    public void Use()
 	{
 		DpmMovementBullet.startingPosition = startingPosition;
-		DpmMovementBullet.AngularSpeed = AngularSpeed;
+		DpmMovementBullet.BulletPattern = BulletPattern;
+		DpmMovementBullet.TargetNode = TargetNode;
 		DpmMovementBullet.StartSwing();
-		entityAnimation.Play("Shoot");
+		if (BulletPattern == Pattern.Linear)
+		{
+			entityAnimation.Play("Linear");
+		}
+		else if (BulletPattern == Pattern.Corkscrew)
+		{
+			entityAnimation.Play("Corkscrew");
+		}
 	}
 
 	public void setPlayer(Node2D player)
 	{
 		Player = player;
+	}
+	private void OnBulletHit(Area2D area)
+	{
+		if (area.GetParent() is Ennemy)
+		{
+			QueueFree();
+		}
 	}
 }

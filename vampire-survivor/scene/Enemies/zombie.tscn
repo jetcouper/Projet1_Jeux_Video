@@ -452,7 +452,7 @@ animation = &"Haut"
 
 [node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=1123885198 node_paths=PackedStringArray("_Cible", "_Life")]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 5
 script = ExtResource("7_vnedq")
 _Cible = NodePath("..")
 _Life = NodePath("../DPM_LIFE_AND_VISUAL")

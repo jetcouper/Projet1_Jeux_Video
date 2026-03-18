@@ -63,35 +63,36 @@ public partial class MedPositions : Node2D
                 {
                     var enemies = MedWaveManager.GatherAllEnemies();
 
-                    node = enemies
-                        .OrderBy(e => e.GlobalPosition.DistanceTo(InPosition))
-                        .FirstOrDefault();
-                }
-                break;
-            case EAlgoSelectionObjet.eMedCrystal:
-                {
-                    node = medCrystal;
-                }
-                break;
-            case EAlgoSelectionObjet.eCollisionLayer:
-                {
-                    node = CollisionLayer;
-                }
-                break;
-            case EAlgoSelectionObjet.eFloorLayer:
-                {
-                    node = FloorLayer;
-                }
-                break;
-            default:
-            case EAlgoSelectionObjet.eHandleDeath:
-                {
-                    medCrystal.HandleDeath(InPosition);
-
-                    node = null;
-                }
-                break;
-        }
+					node = enemies
+						.Where(IsInstanceValid)
+						.OrderBy(e => e.GlobalPosition.DistanceTo(InPosition))
+						.FirstOrDefault();
+				}
+				break;
+			case EAlgoSelectionObjet.eMedCrystal:
+				{
+					node = medCrystal;
+				}
+				break;
+			case EAlgoSelectionObjet.eCollisionLayer:
+				{
+					node = CollisionLayer;
+				}
+				break;
+			case EAlgoSelectionObjet.eFloorLayer:
+				{
+					node = FloorLayer;
+				}
+				break;
+			default:
+			case EAlgoSelectionObjet.eHandleDeath:
+				{
+					medCrystal.HandleDeath(InPosition);
+					
+					node = null;
+				}
+				break;
+		}
 
         return node;
     }

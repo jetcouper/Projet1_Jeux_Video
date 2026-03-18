@@ -87,11 +87,9 @@ public partial class DpmMovementAx : Node2D
 		NodeToControl.Visible = true;
 		Tween tween = CreateTween();
 
-	NodeToControl.RotationDegrees = -225f;
-
-	tween.TweenProperty(NodeToControl, "rotation_degrees", -45f, 0.2f)
-		.SetTrans(Tween.TransitionType.Expo)
-		.SetEase(Tween.EaseType.Out);
+		tween.TweenProperty(NodeToControl, "rotation_degrees", -45f, 0.2f)
+			.SetTrans(Tween.TransitionType.Expo)
+			.SetEase(Tween.EaseType.Out);
 
 		await ToSignal(tween, Tween.SignalName.Finished);
 

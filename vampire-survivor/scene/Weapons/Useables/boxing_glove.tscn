@@ -16,6 +16,8 @@ DpmMovementGlove = NodePath("DPMMovementGlove")
 texture = ExtResource("2_jai7g")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=245980671]
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1000599608]
 position = Vector2(3.3333335, 15.333334)

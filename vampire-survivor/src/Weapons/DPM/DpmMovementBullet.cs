@@ -1,49 +1,87 @@
 using System;
 using Godot;
+using static IWeaponSpawner;
 
 public partial class DpmMovementBullet : Node2D
 {
-    [ExportGroup("External")]
-    [Export]
-    public Node2D NodeToControl;
+	[ExportGroup("External")]
+	[Export]
+	public Node2D NodeToControl;
 
-    public Node2D Player;
+	public float spinSpeed = 0f; // set in StartSwing if corkscrew pattern, otherwise 0 for a bullet that goes straight
 
-    public float DistFromPlayer = 50f;
+	public float spinRadius = 50f; // How wide the corkscrew is
 
-    public float AngularSpeed;
+	private float spinAngle = 0f;
 
-    private float _speed = 50f;
+	public Node2D Player;
 
-    public float startingPosition;
+	private float _distFromPlayer = 50f;
+	private float _speed = 50f;
 
-    private Vector2 _originPosition;
+	public float startingPosition;
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-        MoveBullet(delta);
-    }
+	private Vector2 _originPosition;
 
-    public void StartSwing()
-    {
-        _originPosition = Player.GlobalPosition;
-        Vector2 offset = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition));
-        NodeToControl.GlobalPosition = _originPosition + offset * DistFromPlayer;
+	public Pattern BulletPattern;
 
-        NodeToControl.Rotation = startingPosition + 55;
-    }
+	public Node2D TargetNode;
 
-    private void MoveBullet(double delta)
-    {
-        startingPosition += AngularSpeed * (float)delta;
-        DistFromPlayer += _speed * (float)delta;
+	public Vector2 _lastDirection;
 
-        // Move bullet straight along its angle
-        Vector2 offset =
-            new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition)) * DistFromPlayer;
-        NodeToControl.GlobalPosition = _originPosition + offset;
+	public override void _Process(double delta)
+	{
+		base._Process(delta);
+		MoveBullet(delta);
+	}
 
-        NodeToControl.Rotation = startingPosition + 55;
-    }
+	public void StartSwing()
+	{
+		if (BulletPattern == Pattern.Corkscrew)
+		{
+			spinSpeed = 10f;
+		}
+		
+		_originPosition = Player.GlobalPosition;
+		if (TargetNode != null)
+		{
+			NodeToControl.GlobalPosition = Player.GlobalPosition + new Vector2(0, -10);
+		}
+		else 
+		{
+			_lastDirection = new Vector2(Mathf.Cos(startingPosition), Mathf.Sin(startingPosition)).Normalized();
+			NodeToControl.GlobalPosition = _originPosition + _lastDirection * _distFromPlayer;
+		}
+
+		MoveBullet(0);
+		NodeToControl.Rotation = startingPosition + 55;
+	}
+
+	private void MoveBullet(double delta)
+	{
+		if (TargetNode != null && IsInstanceValid(TargetNode))
+		{
+			_lastDirection = (TargetNode.GlobalPosition - NodeToControl.GlobalPosition).Normalized();
+		}
+		else
+		{
+			TargetNode = null;
+		}
+
+		if (BulletPattern == Pattern.Corkscrew)
+			{
+				spinAngle += spinSpeed * (float)delta;
+
+				NodeToControl.GlobalPosition += _lastDirection * _speed * (float)delta;
+				NodeToControl.Rotation += spinSpeed * (float)delta;
+
+				NodeToControl.GlobalPosition += _lastDirection * _speed * (float)delta + _lastDirection * (float)delta;
+
+				NodeToControl.Rotation += spinSpeed * (float)delta;
+			}
+			else
+			{
+				NodeToControl.GlobalPosition += _lastDirection * _speed * (float)delta;
+			}
+		}
 }

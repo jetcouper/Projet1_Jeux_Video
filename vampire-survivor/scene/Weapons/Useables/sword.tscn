@@ -18,7 +18,8 @@ rotation = -0.7853982
 texture = ExtResource("1_6wdhb")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=803515282]
-collision_layer = 6
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=272166434]
 position = Vector2(0, 2.3841858e-07)

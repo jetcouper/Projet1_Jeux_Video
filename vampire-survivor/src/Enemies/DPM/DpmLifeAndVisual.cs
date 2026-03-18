@@ -97,5 +97,6 @@ public partial class DpmLifeAndVisual : Node
     {
         DeathAnimation.AnimationFinished -= OnDeathAnimationFinished;
         DeathAnimation.QueueFree();
+        RootToEliminate.QueueFree();
     }
 }

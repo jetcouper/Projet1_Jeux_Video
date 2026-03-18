@@ -1,7 +1,9 @@
 using System;
+using System.Runtime;
 using System.Runtime.Intrinsics.Arm;
 using Godot;
 using Utils;
+using static IWeaponSpawner;
 using static MedPositions;
 
 public partial class MedWeaponSpawner : Node2D
@@ -26,15 +28,19 @@ public partial class MedWeaponSpawner : Node2D
 
     private bool isActivated = false;
 
-    public enum EAlgoSelectionCible
-    {
-        eSword,
-        eAxe,
-        eLinearSprayBullets,
-        eCircularSprayBullets,
-        eLinearSpiralBullets,
-        eCircularSpiralBullets,
-    }
+	private Node2D joueur;
+
+	public enum EAlgoSelectionCible
+	{
+		eSword,
+		eAxe,
+		eLinearSprayBullets,
+		eCorkScrewSprayBullets,
+		eLinearSpiralBullets,
+		eCorkScrewSpiralBullets,
+		eLinearSeekingBullets,
+		eCorkScrewSeekingBullets,
+	}
 
     public override void _Ready()
     {
@@ -42,64 +48,98 @@ public partial class MedWeaponSpawner : Node2D
         Spawn();
     }
 
-    public Node2D GetPlayer()
-    {
-        return MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
-    }
+	public Node2D GetPlayer()
+	{
+		if (joueur == null)
+		{
+			joueur = MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
+		}
+		return joueur;
+	}
 
-    public void Spawn()
-    {
-        switch (InAlgoSelectionWeapon)
-        {
-            case EAlgoSelectionCible.eSword:
-                {
-                    SpawnerSword?.Spawn(0);
-                    activeWeapon = SpawnerSword;
+	public void Spawn()
+	{
+		
+		switch (InAlgoSelectionWeapon)
+		{
+			case EAlgoSelectionCible.eSword:
+				{
+					SpawnerSword?.Spawn(Pattern.None);
+					activeWeapon = SpawnerSword;
+					
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eAxe:
+				{
+					SpawnerAxe?.Spawn(Pattern.None);
+					activeWeapon = SpawnerAxe;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eLinearSprayBullets:
+				{
+					BulletSpawner?.Spawn(Pattern.Linear);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eCorkScrewSprayBullets:
+				{
+					BulletSpawner?.Spawn(Pattern.Corkscrew);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eLinearSpiralBullets:
+				{
+					BulletSpawner?.SpawnSequential(Pattern.Linear);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eCorkScrewSpiralBullets:
+				{
+					BulletSpawner?.SpawnSequential(Pattern.Corkscrew);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eLinearSeekingBullets:
+				{
+					BulletSpawner?.SpawnTargeted(Pattern.Linear);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eCorkScrewSeekingBullets:
+				{
+					BulletSpawner?.SpawnTargeted(Pattern.Corkscrew);
+					activeWeapon = BulletSpawner;
+					GameisActivated();
+				}
+				break;
+			default:
+				break;
+		}
+	}
 
-                    if (isActivated)
-                        SpawnerSword?.Activate();
-                }
-                break;
-            case EAlgoSelectionCible.eAxe:
-                {
-                    SpawnerAxe?.Spawn(0);
-                    activeWeapon = SpawnerAxe;
-                    if (isActivated)
-                        SpawnerAxe?.Activate();
-                }
-                break;
-            case EAlgoSelectionCible.eLinearSprayBullets:
-                {
-                    BulletSpawner?.Spawn(0);
-                    activeWeapon = BulletSpawner;
-                }
-                break;
-            case EAlgoSelectionCible.eCircularSprayBullets:
-                {
-                    BulletSpawner?.Spawn(1);
-                    activeWeapon = BulletSpawner;
-                }
-                break;
-            case EAlgoSelectionCible.eLinearSpiralBullets:
-                {
-                    BulletSpawner?.SpawnSequential(0);
-                    activeWeapon = BulletSpawner;
-                }
-                break;
-            case EAlgoSelectionCible.eCircularSpiralBullets:
-                {
-                    BulletSpawner?.SpawnSequential(1);
-                    activeWeapon = BulletSpawner;
-                }
-                break;
-            default:
-                break;
-        }
-    }
+	public void Activate()
+	{
+		isActivated = true;
+		activeWeapon?.Activate();
+	}
 
-    public void Activate()
-    {
-        isActivated = true;
-        activeWeapon?.Activate();
-    }
+	public void GameisActivated()
+	{
+		if (isActivated) 
+		{			
+			activeWeapon.Activate();
+		}
+	}
+
+	public Node2D GetTarget()
+	{
+		return MedPositions.choisirObjet(EAlgoSelectionObjet.eEnemiPlusProche, joueur.GlobalPosition);
+	}
 }

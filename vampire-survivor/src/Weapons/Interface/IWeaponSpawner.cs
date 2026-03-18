@@ -3,6 +3,14 @@ using System;
 
 public interface IWeaponSpawner
 {
-    void Spawn(float typeWeapon, int count = 0);
+    
+    public enum Pattern
+    {
+        Linear,
+        Corkscrew,
+        None,
+    }
+    
+    void Spawn(Pattern pattern = Pattern.None, Node2D target = null);
     void Activate();
 }
