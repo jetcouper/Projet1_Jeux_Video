@@ -446,6 +446,7 @@ _Poursuite = NodePath("DPM_Poursuite")
 _Life = NodePath("DPM_LIFE_AND_VISUAL")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2057114842]
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_mxc1a")
 animation = &"Haut"
 

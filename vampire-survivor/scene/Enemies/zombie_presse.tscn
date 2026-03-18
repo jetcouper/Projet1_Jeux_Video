@@ -441,6 +441,7 @@ animations = [{
 }]
 
 [node name="ZombiePresse" type="Node2D" unique_id=1217042035 node_paths=PackedStringArray("_Poursuite", "_Life")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_vny1d")
 _Poursuite = NodePath("DPM_Poursuite")
 _Life = NodePath("DPM_LIFE_AND_VISUAL")
