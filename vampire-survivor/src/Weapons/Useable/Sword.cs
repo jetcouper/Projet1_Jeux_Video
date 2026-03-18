@@ -9,10 +9,10 @@ public partial class Sword : Node2D, IUseable
     private DpmMovementSword DpmMovementSword;
 
     public Node2D Player
-    {
-        get { return DpmMovementSword.EnsureValid().Player; }
-        set { DpmMovementSword.EnsureValid().Player = value; }
-    }
+	{
+		get { return DpmMovementSword.Player; }
+		set { DpmMovementSword.Player = value; }
+	}
 
     public void Use()
     {

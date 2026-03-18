@@ -7,6 +7,9 @@ public partial class DpmMovementAx : Node2D
 	[ExportGroup("External")]
 	[Export] public Node2D NodeToControl;
 
+	[Export]
+	public CollisionShape2D CollisionShape;
+
 	[Export] public Timer TimerHold;
 
 	[Export] public float DistanceFromPlayer = 50f;
@@ -20,8 +23,7 @@ public partial class DpmMovementAx : Node2D
 	private Vector2 _playerOffset = new Vector2(0, -10);
 
 	public override void _Ready()
-	{
-		NodeToControl.Visible = false;
+	{DisableCollision();
 
 		TimerHold.OneShot = true;
 		TimerHold.WaitTime = 0.75f;
@@ -48,7 +50,7 @@ public partial class DpmMovementAx : Node2D
 		if (!Niveau.IsGameStarted)
 			return;
 
-		NodeToControl.Visible = false;
+		DisableCollision();
 		_angle = 0f;
 		Positionning();
 		WeaponAppear();
@@ -83,8 +85,7 @@ public partial class DpmMovementAx : Node2D
 
 	public async void WeaponAppear()
 	{
-		GD.Print("WeaponAppear");
-		NodeToControl.Visible = true;
+		EnableCollision();
 		Tween tween = CreateTween();
 
 		tween.TweenProperty(NodeToControl, "rotation_degrees", -45f, 0.2f)
@@ -108,7 +109,19 @@ public partial class DpmMovementAx : Node2D
 
 		await ToSignal(tween, Tween.SignalName.Finished);
 
-		NodeToControl.Visible = false; 
+		DisableCollision();	
+	}
+
+	private void EnableCollision()
+	{
+		NodeToControl.Visible = true;
+		CollisionShape.Disabled = false;
+	}
+
+	private void DisableCollision()
+	{
+		NodeToControl.Visible = false;
+		CollisionShape.Disabled = true;
 	}
 
 }

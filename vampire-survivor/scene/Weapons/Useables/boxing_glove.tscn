@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://65ffbjav7xsu" path="res://src/Weapons/DPM/DpmMovementGlove.cs" id="3_71618"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_71618"]
-radius = 158.66667
+radius = 16.719917
 
 [node name="BoxingGlove" type="Node2D" unique_id=502006205 node_paths=PackedStringArray("DpmMovementGlove")]
 scale = Vector2(1.5, 1.5)
@@ -13,6 +13,7 @@ script = ExtResource("1_bxnje")
 DpmMovementGlove = NodePath("DPMMovementGlove")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=918623916]
+scale = Vector2(0.05, 0.05)
 texture = ExtResource("2_jai7g")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=245980671]
@@ -20,11 +21,14 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1000599608]
-position = Vector2(3.3333335, 15.333334)
+position = Vector2(0, 0.666667)
 shape = SubResource("CircleShape2D_71618")
 
-[node name="DPMMovementGlove" type="Node2D" parent="." unique_id=1408884230]
+[node name="DPMMovementGlove" type="Node2D" parent="." unique_id=1408884230 node_paths=PackedStringArray("NodeToControl", "CollisionShape", "TimerHold")]
 position = Vector2(3.3333335, 15.333334)
 script = ExtResource("3_71618")
+NodeToControl = NodePath("..")
+CollisionShape = NodePath("../Area2D/CollisionShape2D")
+TimerHold = NodePath("../Timer")
 
 [node name="Timer" type="Timer" parent="." unique_id=764025420]

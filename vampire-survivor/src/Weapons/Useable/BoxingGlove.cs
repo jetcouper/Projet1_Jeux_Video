@@ -7,10 +7,15 @@ public partial class BoxingGlove : Node2D, IUseable
 	[Export]
 	private DpmMovementGlove DpmMovementGlove;
 
-	private Node2D Player;
+	public Node2D Player
+	{
+		get { return DpmMovementGlove.Player; }
+		set { DpmMovementGlove.Player = value; }
+	}
 
 	public void Use()
 	{
+		GD.Print("Player: ", Player);
 		DpmMovementGlove.StartSwing();
 	}
 

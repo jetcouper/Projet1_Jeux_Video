@@ -8,25 +8,30 @@ using static MedPositions;
 
 public partial class MedWeaponSpawner : Node2D
 {
-    [ExportGroup("Internal")]
-    [Export]
-    private DcmSimpleWeaponSpawner SpawnerSword;
+	[ExportGroup("External")]
+	[Export]
+	public MedPositions MedPositions;
 
-    [Export]
-    private DcmSimpleWeaponSpawner SpawnerAxe;
+	[ExportGroup("Internal")]
+	[Export]
+	private DcmSimpleWeaponSpawner SpawnerSword;
 
-    [Export]
-    private DcmBulletSpawner BulletSpawner;
+	[Export]
+	private DcmSimpleWeaponSpawner SpawnerAxe;
 
-    [Export]
-    public EAlgoSelectionCible InAlgoSelectionWeapon;
+	[Export]
+	private DcmSimpleWeaponSpawner SpawnerBoxingGlove;
+	
+	[Export]
+	private DcmBulletSpawner BulletSpawner;
 
-    [Export]
-    public MedPositions MedPositions;
+	[Export]
+	public EAlgoSelectionCible InAlgoSelectionWeapon;
 
-    private IWeaponSpawner activeWeapon;
+	
+	private IWeaponSpawner activeWeapon;
 
-    private bool isActivated = false;
+	private bool isActivated = false;
 
 	private Node2D joueur;
 
@@ -34,6 +39,7 @@ public partial class MedWeaponSpawner : Node2D
 	{
 		eSword,
 		eAxe,
+		eBoxingGlove,
 		eLinearSprayBullets,
 		eCorkScrewSprayBullets,
 		eLinearSpiralBullets,
@@ -42,11 +48,11 @@ public partial class MedWeaponSpawner : Node2D
 		eCorkScrewSeekingBullets,
 	}
 
-    public override void _Ready()
-    {
-        base._Ready();
-        Spawn();
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		Spawn();
+	}
 
 	public Node2D GetPlayer()
 	{
@@ -74,6 +80,14 @@ public partial class MedWeaponSpawner : Node2D
 				{
 					SpawnerAxe?.Spawn(Pattern.None);
 					activeWeapon = SpawnerAxe;
+					GameisActivated();
+				}
+				break;
+			case EAlgoSelectionCible.eBoxingGlove:
+				{
+					SpawnerBoxingGlove?.Spawn(Pattern.None);
+					activeWeapon = SpawnerBoxingGlove;
+					
 					GameisActivated();
 				}
 				break;

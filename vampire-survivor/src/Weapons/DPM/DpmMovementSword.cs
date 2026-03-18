@@ -8,6 +8,9 @@ public partial class DpmMovementSword : Node2D
 	public Node2D NodeToControl;
 
 	[Export]
+	public CollisionShape2D CollisionShape;
+
+	[Export]
 	public Timer TimerSwing;
 
 	[Export]
@@ -26,7 +29,7 @@ public partial class DpmMovementSword : Node2D
 	public override void _Ready()
 	{
 		base._Ready();
-		NodeToControl.Visible = false;
+		DisableCollision();
 
 		TimerSwing.Timeout += Swing;
 		TimerSwing.OneShot = false;
@@ -34,7 +37,7 @@ public partial class DpmMovementSword : Node2D
 
 		TimerHold.OneShot = true;
 		TimerHold.WaitTime = 0.75f;
-		TimerHold.Timeout += RestartSwing;
+		TimerHold.Timeout += StartSwing;
 	}
 
 	public void StartSwing()
@@ -58,15 +61,14 @@ public partial class DpmMovementSword : Node2D
 
 	private async void Swing()
 	{
+		DisableCollision();
+
 		if (steps >= maxSteps)
 		{
 			TimerSwing.Stop();
-			NodeToControl.Visible = false;
 			TimerHold.Start();
 			return;
 		}
-
-		NodeToControl.Visible = false;
 
 		_lastDirection *= -1;
 
@@ -79,13 +81,9 @@ public partial class DpmMovementSword : Node2D
 		steps++;
 	}
 
-	public void RestartSwing()
-	{
-		StartSwing();
-	}
-
 	public void Positionning()
 	{
+		GD.Print(Player);
 		NodeToControl.GlobalPosition =
 			Player.GlobalPosition
 			+ _playerOffset
@@ -94,7 +92,7 @@ public partial class DpmMovementSword : Node2D
 
 	public void WeaponAppear()
 	{
-		NodeToControl.Visible = true;
+		EnableCollision();
 		Tween tween = CreateTween();
 		tween
 			.TweenProperty(NodeToControl, "scale", new Vector2(1.5f, 1.5f), 0.25f)
@@ -105,5 +103,17 @@ public partial class DpmMovementSword : Node2D
 			.TweenProperty(NodeToControl, "scale", Vector2.One, 0.15f)
 			.SetTrans(Tween.TransitionType.Quad)
 			.SetEase(Tween.EaseType.In);
+	}
+
+	private void EnableCollision()
+	{
+		NodeToControl.Visible = true;
+		CollisionShape.Disabled = false;
+	}
+
+	private void DisableCollision()
+	{
+		NodeToControl.Visible = false;
+		CollisionShape.Disabled = true;
 	}
 }

@@ -6,62 +6,62 @@ using Utils;
 
 public partial class MedPositions : Node2D
 {
-    [ExportGroup("External")]
-    [Export]
-    public TileMapLayer CollisionLayer;
+	[ExportGroup("External")]
+	[Export]
+	public TileMapLayer CollisionLayer;
 
-    [Export]
-    public TileMapLayer FloorLayer;
+	[Export]
+	public TileMapLayer FloorLayer;
 
-    [ExportGroup("Internal")]
-    [Export]
-    private Joueur Joueur;
+	[ExportGroup("Internal")]
+	[Export]
+	private Joueur Joueur;
 
-    [Export]
-    private MedWaveManager MedWaveManager;
+	[Export]
+	private MedWaveManager MedWaveManager;
 
-    [Export]
-    private MedCrystal medCrystal;
+	[Export]
+	private MedCrystal medCrystal;
 
-    [Export]
-    private MedWeaponSpawner MedWeaponSpawner;
+	[Export]
+	private MedWeaponSpawner MedWeaponSpawner;
 
-    public enum EAlgoSelectionObjet
-    {
-        ePlayer,
-        eEnemiPlusProche,
-        eMedCrystal,
-        eCollisionLayer,
-        eFloorLayer,
-        eHandleDeath,
-    }
+	public enum EAlgoSelectionObjet
+	{
+		ePlayer,
+		eEnemiPlusProche,
+		eMedCrystal,
+		eCollisionLayer,
+		eFloorLayer,
+		eHandleDeath,
+	}
 
-    public override void _Ready()
-    {
-        base._Ready();
-        Niveau.OnGameStarted += OnGameStartedHandler;
-    }
+	public override void _Ready()
+	{
+		base._Ready();
+		Niveau.OnGameStarted += OnGameStartedHandler;
+	}
 
-    private void OnGameStartedHandler() //Listener pour le démarrage du jeu (dans le niveau)
-    {
-        MedWeaponSpawner.Activate();
-        Niveau.OnGameStarted -= OnGameStartedHandler;
-    }
+	private void OnGameStartedHandler() //Listener pour le démarrage du jeu (dans le niveau)
+	{
+		MedWeaponSpawner.Activate();
+		Niveau.OnGameStarted -= OnGameStartedHandler;
+	}
 
-    public Node2D choisirObjet(EAlgoSelectionObjet InAlgoSelectionObjet, Vector2 InPosition)
-    {
-        Node2D node = null;
+	public Node2D choisirObjet(EAlgoSelectionObjet InAlgoSelectionObjet, Vector2 InPosition)
+	{
+		Node2D node = null;
 
-        switch (InAlgoSelectionObjet)
-        {
-            case EAlgoSelectionObjet.ePlayer:
-                {
-                    node = Joueur;
-                }
-                break;
-            case EAlgoSelectionObjet.eEnemiPlusProche:
-                {
-                    var enemies = MedWaveManager.GatherAllEnemies();
+		switch (InAlgoSelectionObjet)
+		{
+			case EAlgoSelectionObjet.ePlayer:
+				{
+					node = Joueur;
+				}
+				break;
+			case EAlgoSelectionObjet.eEnemiPlusProche:
+				{
+					var enemies = MedWaveManager.GatherAllEnemies();
 
 					node = enemies
 						.Where(IsInstanceValid)
@@ -94,6 +94,6 @@ public partial class MedPositions : Node2D
 				break;
 		}
 
-        return node;
-    }
+		return node;
+	}
 }

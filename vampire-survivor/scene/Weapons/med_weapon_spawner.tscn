@@ -5,14 +5,16 @@
 [ext_resource type="PackedScene" uid="uid://duce0ycqjhn00" path="res://scene/Weapons/Useables/sword.tscn" id="2_jfcux"]
 [ext_resource type="PackedScene" uid="uid://bebif4hcw0rwu" path="res://scene/Weapons/Useables/axe.tscn" id="3_geqoc"]
 [ext_resource type="PackedScene" uid="uid://dx6w4lygl8kk5" path="res://scene/Weapons/dcm_bullet_spawner.tscn" id="5_5gcqr"]
+[ext_resource type="PackedScene" uid="uid://bj64ddcv3rxts" path="res://scene/Weapons/Useables/boxing_glove.tscn" id="5_l0quh"]
 [ext_resource type="PackedScene" uid="uid://rwo4xux3hx65" path="res://scene/Weapons/Useables/bullet.tscn" id="6_80fxc"]
 
-[node name="MED_WeaponSpawner" type="Node2D" unique_id=1602847216 node_paths=PackedStringArray("SpawnerSword", "SpawnerAxe", "BulletSpawner")]
+[node name="MED_WeaponSpawner" type="Node2D" unique_id=1602847216 node_paths=PackedStringArray("SpawnerSword", "SpawnerAxe", "SpawnerBoxingGlove", "BulletSpawner")]
 script = ExtResource("1_80fxc")
 SpawnerSword = NodePath("SwordSpawner")
 SpawnerAxe = NodePath("AxeSpawner")
-BulletSpawner = NodePath("BullerSpawner")
-InAlgoSelectionWeapon = 1
+SpawnerBoxingGlove = NodePath("BoxingGloveSpawner")
+BulletSpawner = NodePath("BulletSpawner")
+InAlgoSelectionWeapon = 2
 
 [node name="SwordSpawner" parent="." unique_id=1886240174 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("1_mjexd")]
 position = Vector2(1.3333335, 0)
@@ -23,6 +25,10 @@ MedWeaponSpawner = NodePath("..")
 WeaponScene = ExtResource("3_geqoc")
 MedWeaponSpawner = NodePath("..")
 
-[node name="BullerSpawner" parent="." unique_id=368652204 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("5_5gcqr")]
+[node name="BoxingGloveSpawner" parent="." unique_id=1327181754 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("1_mjexd")]
+WeaponScene = ExtResource("5_l0quh")
+MedWeaponSpawner = NodePath("..")
+
+[node name="BulletSpawner" parent="." unique_id=368652204 node_paths=PackedStringArray("MedWeaponSpawner") instance=ExtResource("5_5gcqr")]
 WeaponScene = ExtResource("6_80fxc")
 MedWeaponSpawner = NodePath("..")

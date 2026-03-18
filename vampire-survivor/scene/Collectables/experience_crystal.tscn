@@ -53,12 +53,13 @@ sprite_frames = SubResource("SpriteFrames_8yen0")
 autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=318033111]
-collision_layer = 4
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=635366551]
 shape = SubResource("CircleShape2D_n2jwh")
 
 [node name="GatherArea" type="Area2D" parent="." unique_id=1025320084]
+collision_layer = 8
 
 [node name="GatherRadius" type="CollisionShape2D" parent="GatherArea" unique_id=966274383]
 scale = Vector2(5, 5)
