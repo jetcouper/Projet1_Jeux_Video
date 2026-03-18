@@ -47,16 +47,28 @@ public partial class Bullet : Node2D, IUseable
 			entityAnimation.Play("Corkscrew");
 		}
 	}
+	private void OnBulletHit(Area2D area)
+	{
+		if (area.GetParent() is Ennemy)
+		{
+			DpmMovementBullet.isHit = true;
+			entityAnimation.Scale = new Vector2(0.025f, 0.025f);
+			entityAnimation.SpeedScale = 5.0f;
+			entityAnimation.Play("Collision");
+			entityAnimation.AnimationFinished += removeBullet;
+		}
+	}
 
 	public void setPlayer(Node2D player)
 	{
 		Player = player;
 	}
-	private void OnBulletHit(Area2D area)
+
+	private void removeBullet()
 	{
-		if (area.GetParent() is Ennemy)
-		{
-			QueueFree();
-		}
+		GD.Print("Bullet removed");
+		entityAnimation.AnimationFinished -= removeBullet;
+		entityAnimation.Stop();
+		QueueFree();
 	}
 }

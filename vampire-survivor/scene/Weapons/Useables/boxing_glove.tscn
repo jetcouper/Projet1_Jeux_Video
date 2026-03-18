@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://bj64ddcv3rxts"]
 
-[ext_resource type="Script" uid="uid://beqx562nlpnee" path="res://src/Weapons/Useable/BoxingGlove.cs" id="1_bxnje"]
+[ext_resource type="Script" uid="uid://bgag34g8ivl4r" path="res://src/Weapons/Useable/SimpleWeapon.cs" id="1_71618"]
 [ext_resource type="Texture2D" uid="uid://dggi8tj0xdt20" path="res://Pictures/Weapons/boxing glove.png" id="2_jai7g"]
 [ext_resource type="Script" uid="uid://65ffbjav7xsu" path="res://src/Weapons/DPM/DpmMovementGlove.cs" id="3_71618"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_71618"]
 radius = 16.719917
 
-[node name="BoxingGlove" type="Node2D" unique_id=502006205 node_paths=PackedStringArray("DpmMovementGlove")]
+[node name="BoxingGlove" type="Node2D" unique_id=502006205 node_paths=PackedStringArray("MovementNode")]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_bxnje")
-DpmMovementGlove = NodePath("DPMMovementGlove")
+script = ExtResource("1_71618")
+MovementNode = NodePath("DPMMovementGlove")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=918623916]
 scale = Vector2(0.05, 0.05)

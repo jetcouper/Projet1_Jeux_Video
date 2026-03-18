@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-public partial class DpmMovementSword : Node2D
+public partial class DpmMovementSword : Node2D, IDPMSimpleMovement
 {
 	[ExportGroup("External")]
 	[Export]
@@ -16,7 +16,7 @@ public partial class DpmMovementSword : Node2D
 	[Export]
 	public Timer TimerHold;
 
-	public Node2D Player;
+	public Node2D Player { get; set; }
 
 	[Export]
 	public float DistFromPlayer = 50f;

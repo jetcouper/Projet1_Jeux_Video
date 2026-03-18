@@ -3,7 +3,7 @@ using System.Formats.Asn1;
 using System.Threading.Tasks;
 using Godot;
 
-public partial class DpmMovementGlove : Node2D
+public partial class DpmMovementGlove : Node2D, IDPMSimpleMovement
 {
 	[ExportGroup("External")]
 	[Export]
@@ -18,7 +18,7 @@ public partial class DpmMovementGlove : Node2D
 	[Export]
 	public float DistanceFromPlayer = 50f;
 
-	public Node2D Player;
+	public Node2D Player { get; set; }  
 
 	private Vector2[] directions = new Vector2[]
 	{

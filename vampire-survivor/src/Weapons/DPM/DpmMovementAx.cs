@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 
-public partial class DpmMovementAx : Node2D
+public partial class DpmMovementAx : Node2D, IDPMSimpleMovement
 {
 	[ExportGroup("External")]
 	[Export] public Node2D NodeToControl;
@@ -15,7 +15,7 @@ public partial class DpmMovementAx : Node2D
 	[Export] public float DistanceFromPlayer = 50f;
 	[Export] public float SwingSpeed = 180f;
 
-	public Node2D Player;
+	public Node2D Player { get; set; }
 
 	private float _angle = 0f;
 	private bool _isSwinging = false;

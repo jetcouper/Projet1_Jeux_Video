@@ -25,4 +25,4 @@ MedPosition = NodePath("..")
 
 [node name="MED_WeaponSpawner" parent="." unique_id=1602847216 node_paths=PackedStringArray("MedPositions") instance=ExtResource("5_p2wgv")]
 MedPositions = NodePath("..")
-InAlgoSelectionWeapon = 4
+InAlgoSelectionWeapon = 8

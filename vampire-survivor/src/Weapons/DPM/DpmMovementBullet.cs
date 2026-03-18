@@ -29,6 +29,8 @@ public partial class DpmMovementBullet : Node2D
 
 	public Vector2 _lastDirection;
 
+	public bool isHit = false;
+
 	public override void _Process(double delta)
 	{
 		base._Process(delta);
@@ -59,6 +61,9 @@ public partial class DpmMovementBullet : Node2D
 
 	private void MoveBullet(double delta)
 	{
+		if (isHit)
+			return;
+		
 		if (TargetNode != null && IsInstanceValid(TargetNode))
 		{
 			_lastDirection = (TargetNode.GlobalPosition - NodeToControl.GlobalPosition).Normalized();
