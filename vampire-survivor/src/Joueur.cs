@@ -38,7 +38,20 @@ public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
     public int MaxHealth = 5;
     public int Health;
 
-    public int score = 0;
+    public int Xp = 0;
+
+    [Export]
+    public int XpForNextLevel = 10;
+    public int Level = 1;
+
+    [Signal]
+    public delegate void HealthChangedEventHandler();
+
+    [Signal]
+    public delegate void XpChangedEventHandler();
+
+    [Signal]
+    public delegate void LevelUpSignalEventHandler();
 
     public override void _Ready()
     {
@@ -58,15 +71,29 @@ public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
         _camera.Zoom = new Vector2(CameraZoom, CameraZoom);
     }
 
-    public void addScore(int scoreToAdd)
+    public void AddXp(int XpToAdd)
     {
-        score += scoreToAdd;
+        Xp += XpToAdd;
+        if (Xp >= XpForNextLevel)
+            LevelUp();
+        EmitSignal(SignalName.XpChanged);
+    }
+
+    public void LevelUp()
+    {
+        Level += 1;
+        EmitSignal(SignalName.LevelUpSignal);
+        XpForNextLevel += (int)MathF.Round(XpForNextLevel * 1.1f);
+        MaxHealth += 1;
+        Heal(1);
+
+        //Interesting stuff that happens when you level up
     }
 
     public void Heal(int quantity)
     {
         Health = Mathf.Min(Health + quantity, MaxHealth);
-        GD.Print("Vie: " + Health + "/" + MaxHealth);
+        EmitSignal(SignalName.HealthChanged);
     }
 
     public void ApplySpeedBoost(float multiplier, float duration)
@@ -78,7 +105,7 @@ public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
     public void TakeDamage(int quantity)
     {
         Health -= quantity;
-        GD.Print("Vie: " + Health + "/" + MaxHealth);
+        EmitSignal(SignalName.HealthChanged);
         if (Health <= 0)
             Die();
     }
