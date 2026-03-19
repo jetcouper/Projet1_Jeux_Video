@@ -6,6 +6,9 @@ public partial class ItemTeleporter : Area2D
     public TileMapLayer FloorLayer;
 
     [Export]
+    public TileMapLayer ObstacleLayer;
+
+    [Export]
     public float MinDistance = 200f;
 
     [Export]
@@ -40,9 +43,15 @@ public partial class ItemTeleporter : Area2D
             Vector2 testPos = origin + Vector2.FromAngle(randomAngle) * randomDist;
 
             Vector2I tileCoord = FloorLayer.LocalToMap(FloorLayer.ToLocal(testPos));
-            if (FloorLayer.GetCellSourceId(tileCoord) != -1)
-                return testPos;
 
+            if (FloorLayer.GetCellSourceId(tileCoord) != -1)
+            {
+                if (ObstacleLayer == null || ObstacleLayer.GetCellSourceId(tileCoord) == -1)
+                {
+                    Vector2 centeredPos = FloorLayer.ToGlobal(FloorLayer.MapToLocal(tileCoord));
+                    return centeredPos;
+                }
+            }
             tentatives++;
         }
         return null;

@@ -1080,11 +1080,12 @@ region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
 script = ExtResource("10_4btnw")
 node = NodePath(".")
 
-[node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
+[node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer", "ObstacleLayer")]
 rotation = -0.00070787914
 script = ExtResource("23_u60jg")
 SpawneeScenes = Array[PackedScene]([ExtResource("28_f0m11"), ExtResource("28_csqtu"), ExtResource("16_y0lgb")])
 FloorLayer = NodePath("../TileMapLayerSol")
+ObstacleLayer = NodePath("../TileMapLayerCollision")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
 
