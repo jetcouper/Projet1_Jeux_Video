@@ -41,6 +41,7 @@ public partial class SimplePlayer : Node
     // Speed boost with item
     private float _speedMultiplier = 1f;
     private float _boostTimer = 0f;
+    private float _spikeHitCooldown = 1.0f; // Cooldown de 0.5 secondes entre les dégâts de pics
 
     public override void _Ready() { }
 
@@ -61,10 +62,7 @@ public partial class SimplePlayer : Node
         }
 
         _inputVector = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        // if (_inputVector.Length() < 1.0f)
-        // {
-        //     return;
-        // }
+
         _inputVector = _inputVector.Normalized();
 
         if (_inputVector == Vector2.Zero)
@@ -112,11 +110,17 @@ public partial class SimplePlayer : Node
         {
             NodeToControl.GlobalPosition = prochainePosition;
         }
+        _spikeHitCooldown -= (float)InDelta;
         Vector2I tileCoordSpike = spikeLayer.LocalToMap(spikeLayer.ToLocal(prochainePosition));
         if (spikeLayer.GetCellSourceId(tileCoordSpike) != -1)
         {
-            EmitSignal(SignalName.SpikeHit);
-            NodeToControl.GlobalPosition = prochainePosition;
+            if (_spikeHitCooldown <= 0f)
+            {
+                EmitSignal(SignalName.SpikeHit);
+                _spikeHitCooldown = 1.0f;
+            }
+            Vector2 tileSize = (Vector2)spikeLayer.TileSet.TileSize;
+            NodeToControl.GlobalPosition -= _inputVector * tileSize;
         }
 
         NodeToControl.GlobalPosition = new Vector2(

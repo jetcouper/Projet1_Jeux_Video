@@ -4,6 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://chq1o0fsffqpd" path="res://Pictures/Farm RPG FREE 16x16 - Tiny Asset Pack/Character/Idle.png" id="2_7j7mc"]
 [ext_resource type="Script" uid="uid://283t4avf0ebq" path="res://Library/Util/SimplePlayer.cs" id="2_mc3kx"]
 [ext_resource type="Texture2D" uid="uid://n0hjwl5kbivq" path="res://Pictures/Farm RPG FREE 16x16 - Tiny Asset Pack/Character/Walk.png" id="3_wr1qv"]
+[ext_resource type="Script" uid="uid://nhi5c876d7rb" path="res://src/Enemies/DPM/DpmDamagePhysical.cs" id="4_jkutp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkutp"]
+atlas = ExtResource("2_7j7mc")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8hfmd"]
 atlas = ExtResource("3_wr1qv")
@@ -121,6 +126,14 @@ region = Rect2(160, 32, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jkutp")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8hfmd")
 }, {
 "duration": 1.0,
@@ -231,23 +244,23 @@ animations = [{
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r0tex"]
 
-[node name="Joueur" type="Node2D" unique_id=249153935 node_paths=PackedStringArray("SimplePlayer")]
+[node name="Joueur" type="Node2D" unique_id=249153935 node_paths=PackedStringArray("SimplePlayer", "AnimatedSprite2D")]
 script = ExtResource("1_nhxrk")
 SimplePlayer = NodePath("DPM_SimpleMouvement")
+AnimatedSprite2D = NodePath("AnimatedSprite2D")
 CameraZoom = 6.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=80082269]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_euu4v")
-animation = &"down"
-frame = 3
-frame_progress = 0.5274788
+animation = &"die"
 offset = Vector2(0, -10)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=96940721]
+[node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=96940721]
 collision_mask = 8
+script = ExtResource("4_jkutp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1627499915]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DPM_DAMAGE_PHYSICAL" unique_id=1627499915]
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_r0tex")
 
