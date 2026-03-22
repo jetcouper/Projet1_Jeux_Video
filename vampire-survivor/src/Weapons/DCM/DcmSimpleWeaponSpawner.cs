@@ -24,10 +24,10 @@ public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
         player = MedWeaponSpawner.GetPlayer();
     }
 
-	public void Spawn(Pattern pattern = Pattern.None, Node2D target = null)
-	{
-		Node2D weapon = WeaponScene.Instantiate<Node2D>();
-		AddChild(weapon);
+    public void Spawn(Pattern pattern = Pattern.None, Node2D target = null)
+    {
+        Node2D weapon = WeaponScene.Instantiate<Node2D>();
+        AddChild(weapon);
 
         if (weapon is IUseable usable)
         {
@@ -39,5 +39,14 @@ public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
     public void Activate()
     {
         activeWeapon?.Use();
+    }
+
+    public void RemoveActiveWeapon()
+    {
+        if (activeWeapon is Node node && IsInstanceValid(node))
+        {
+            node.QueueFree();
+            activeWeapon = null;
+        }
     }
 }

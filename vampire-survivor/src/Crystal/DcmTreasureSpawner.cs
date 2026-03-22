@@ -2,45 +2,45 @@ using Godot;
 
 public partial class DcmTreasureSpawner : Node2D, ISpawnable
 {
-	[Export]
+    [Export]
     private PackedScene TresorScene;
 
-	[Export]
-	private TileMapLayer validTiles;
-	[Export]
-	private float SpawnDistance = 100f;
-	[Export]
-	private double SpawnInterval = 10.0; //en secondes
+    [Export]
+    private TileMapLayer validTiles;
+    [Export]
+    private float SpawnDistance = 100f;
+    [Export]
+    private double SpawnInterval = 10.0; //en secondes
 
-	private double IntervalCounter = 0;
+    private double IntervalCounter = 0;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		IntervalCounter = SpawnInterval;
-	}
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        IntervalCounter = SpawnInterval;
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-		IntervalCounter -= delta;
-		if (IntervalCounter <= 0)
-		{
-			if (FindValidPosition() is Vector2 pos)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+    {
+        IntervalCounter -= delta;
+        if (IntervalCounter <= 0)
+        {
+            if (FindValidPosition() is Vector2 pos)
                 SpawnAt(pos);
-			IntervalCounter = SpawnInterval;
-		}
-	}
-	public void SpawnAt(Vector2 position)
-	{
+            IntervalCounter = SpawnInterval;
+        }
+    }
+    public void SpawnAt(Vector2 position)
+    {
 
-		Node2D tresorInstance = TresorScene.Instantiate<Node2D>();
-		tresorInstance.GlobalPosition = position;
-		CallDeferred(Node.MethodName.AddChild, tresorInstance);
-		
-		
-	}
-	private Vector2? FindValidPosition()
+        Node2D tresorInstance = TresorScene.Instantiate<Node2D>();
+        tresorInstance.GlobalPosition = position;
+        CallDeferred(Node.MethodName.AddChild, tresorInstance);
+
+
+    }
+    private Vector2? FindValidPosition()
     {
         Camera2D camera = GetViewport().GetCamera2D();
         Vector2 cameraCenter = camera != null ? camera.GlobalPosition : Vector2.Zero;

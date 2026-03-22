@@ -19,7 +19,7 @@ public partial class HUD : Node
         HealthBar.MinValue = 0;
         HealthBar.MaxValue = player.MaxHealth;
         HealthBar.Value = player.Health;
-        GD.Print(player.Health,player.MaxHealth );
+        GD.Print(player.Health, player.MaxHealth);
 
         XpBar = GetNode<TextureProgressBar>("%XpBar");
         XpBar.MinValue = 0;

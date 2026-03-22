@@ -8,152 +8,171 @@ using static MedPositions;
 
 public partial class MedWeaponSpawner : Node2D
 {
-	[ExportGroup("External")]
-	[Export]
-	public MedPositions MedPositions;
+    [ExportGroup("External")]
+    [Export]
+    public MedPositions MedPositions;
 
-	[ExportGroup("Internal")]
-	[Export]
-	private DcmSimpleWeaponSpawner SpawnerSword;
+    [ExportGroup("Internal")]
+    [Export]
+    private DcmSimpleWeaponSpawner SpawnerSword;
 
-	[Export]
-	private DcmSimpleWeaponSpawner SpawnerAxe;
+    [Export]
+    private DcmSimpleWeaponSpawner SpawnerAxe;
 
-	[Export]
-	private DcmSimpleWeaponSpawner SpawnerBoxingGlove;
-	
-	[Export]
-	private DcmBulletSpawner BulletSpawner;
+    [Export]
+    private DcmSimpleWeaponSpawner SpawnerBoxingGlove;
 
-	[Export]
-	public EAlgoSelectionCible InAlgoSelectionWeapon;
+    [Export]
+    private DcmBulletSpawner BulletSpawner;
 
-	
-	private IWeaponSpawner activeWeapon;
+    public EAlgoSelectionCible InAlgoSelectionWeapon;
 
-	private bool isActivated = false;
 
-	private Node2D joueur;
+    private IWeaponSpawner activeWeapon;
 
-	public enum EAlgoSelectionCible
-	{
-		eSword,
-		eAxe,
-		eBoxingGlove,
-		eLinearSprayBullets,
-		eCorkScrewSprayBullets,
-		eLinearSpiralBullets,
-		eCorkScrewSpiralBullets,
-		eLinearSeekingBullets,
-		eCorkScrewSeekingBullets,
-	}
+    private bool isActivated = false;
 
-	public override void _Ready()
-	{
-		base._Ready();
-		Spawn();
-	}
+    private Node2D joueur;
 
-	public Node2D GetPlayer()
-	{
-		if (joueur == null)
-		{
-			joueur = MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
-		}
-		return joueur;
-	}
+    public enum EAlgoSelectionCible
+    {
+        eSword,
+        eAxe,
+        eBoxingGlove,
+        eLinearSprayBullets,
+        eCorkScrewSprayBullets,
+        eLinearSpiralBullets,
+        eCorkScrewSpiralBullets,
+        eLinearSeekingBullets,
+        eCorkScrewSeekingBullets,
+    }
 
-	public void Spawn()
-	{
-		
-		switch (InAlgoSelectionWeapon)
-		{
-			case EAlgoSelectionCible.eSword:
-				{
-					SpawnerSword?.Spawn(Pattern.None);
-					activeWeapon = SpawnerSword;
-					
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eAxe:
-				{
-					SpawnerAxe?.Spawn(Pattern.None);
-					activeWeapon = SpawnerAxe;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eBoxingGlove:
-				{
-					SpawnerBoxingGlove?.Spawn(Pattern.None);
-					activeWeapon = SpawnerBoxingGlove;
-					
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eLinearSprayBullets:
-				{
-					BulletSpawner?.Spawn(Pattern.Linear);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eCorkScrewSprayBullets:
-				{
-					BulletSpawner?.Spawn(Pattern.Corkscrew);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eLinearSpiralBullets:
-				{
-					BulletSpawner?.SpawnSequential(Pattern.Linear);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eCorkScrewSpiralBullets:
-				{
-					BulletSpawner?.SpawnSequential(Pattern.Corkscrew);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eLinearSeekingBullets:
-				{
-					BulletSpawner?.SpawnTargeted(Pattern.Linear);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			case EAlgoSelectionCible.eCorkScrewSeekingBullets:
-				{
-					BulletSpawner?.SpawnTargeted(Pattern.Corkscrew);
-					activeWeapon = BulletSpawner;
-					GameisActivated();
-				}
-				break;
-			default:
-				break;
-		}
-	}
+    public override void _Ready()
+    {
+        var values = Enum.GetValues(typeof(EAlgoSelectionCible));
+        var random = new Random();
+        InAlgoSelectionWeapon = (EAlgoSelectionCible)values.GetValue(random.Next(values.Length));
+        base._Ready();
+        Spawn();
+    }
 
-	public void Activate()
-	{
-		isActivated = true;
-		activeWeapon?.Activate();
-	}
+    public Node2D GetPlayer()
+    {
+        if (joueur == null)
+        {
+            joueur = MedPositions.choisirObjet(EAlgoSelectionObjet.ePlayer, new(0, 0));
+        }
+        return joueur;
+    }
 
-	public void GameisActivated()
-	{
-		if (isActivated) 
-		{			
-			activeWeapon.Activate();
-		}
-	}
+    public void Spawn()
+    {
+        if (SpawnerSword != null)
+            SpawnerSword.RemoveActiveWeapon();
+        if (SpawnerAxe != null)
+            SpawnerAxe.RemoveActiveWeapon();
+        if (SpawnerBoxingGlove != null)
+            SpawnerBoxingGlove.RemoveActiveWeapon();
+        if (BulletSpawner != null)
+            BulletSpawner.RemoveActiveWeapon();
+        activeWeapon = null;
 
-	public Node2D GetTarget()
-	{
-		return MedPositions.choisirObjet(EAlgoSelectionObjet.eEnemiPlusProche, joueur.GlobalPosition);
-	}
+        switch (InAlgoSelectionWeapon)
+        {
+            case EAlgoSelectionCible.eSword:
+                {
+                    SpawnerSword?.Spawn(Pattern.None);
+                    activeWeapon = SpawnerSword;
+
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eAxe:
+                {
+                    SpawnerAxe?.Spawn(Pattern.None);
+                    activeWeapon = SpawnerAxe;
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eBoxingGlove:
+                {
+                    SpawnerBoxingGlove?.Spawn(Pattern.None);
+                    activeWeapon = SpawnerBoxingGlove;
+
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eLinearSprayBullets:
+                {
+                    BulletSpawner?.Spawn(Pattern.Linear);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eCorkScrewSprayBullets:
+                {
+                    BulletSpawner?.Spawn(Pattern.Corkscrew);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eLinearSpiralBullets:
+                {
+                    BulletSpawner?.SpawnSequential(Pattern.Linear);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eCorkScrewSpiralBullets:
+                {
+                    BulletSpawner?.SpawnSequential(Pattern.Corkscrew);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+            case EAlgoSelectionCible.eLinearSeekingBullets:
+                {
+                    BulletSpawner?.SpawnTargeted(Pattern.Linear);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+            default:
+            case EAlgoSelectionCible.eCorkScrewSeekingBullets:
+                {
+                    BulletSpawner?.SpawnTargeted(Pattern.Corkscrew);
+                    activeWeapon = BulletSpawner;
+                    GameisActivated();
+                }
+                break;
+        }
+    }
+
+    public void Activate()
+    {
+        isActivated = true;
+        activeWeapon?.Activate();
+    }
+
+    public void GameisActivated()
+    {
+        if (isActivated)
+        {
+            activeWeapon.Activate();
+        }
+    }
+
+    public Node2D GetTarget()
+    {
+        return MedPositions.choisirObjet(EAlgoSelectionObjet.eEnemiPlusProche, joueur.GlobalPosition);
+    }
+
+    public void ChangeWeapon(Vector2 position)
+    {
+        var values = Enum.GetValues(typeof(EAlgoSelectionCible));
+        var random = new Random();
+        var randomValue = (EAlgoSelectionCible)values.GetValue(random.Next(values.Length));
+        InAlgoSelectionWeapon = randomValue;
+        Spawn();
+    }
 }

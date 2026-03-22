@@ -5,109 +5,110 @@ using Godot;
 
 public partial class DpmMovementGlove : Node2D, IDPMSimpleMovement
 {
-	[ExportGroup("External")]
-	[Export]
-	public Node2D NodeToControl;
-	
-	[Export]
-	public CollisionShape2D CollisionShape;
+    [ExportGroup("External")]
+    [Export]
+    public Node2D NodeToControl;
 
-	[Export]
-	public Timer TimerHold;
+    [Export]
+    public CollisionShape2D CollisionShape;
 
-	[Export]
-	public float DistanceFromPlayer = 50f;
+    [Export]
+    public Timer TimerHold;
 
-	public Node2D Player { get; set; }  
+    [Export]
+    public float DistanceFromPlayer = 50f;
 
-	private Vector2[] directions = new Vector2[]
-	{
-		new Vector2(1, 0),   // Right
+    public Node2D Player { get; set; }
+
+    private Vector2[] directions = new Vector2[]
+    {
+        new Vector2(1, 0),   // Right
 		new Vector2(0, 1),   // Down
 		new Vector2(-1, 0),  // Left
 		new Vector2(0, -1)   // Up
 	};
 
-	private int attackDirection = 0; 
+    private int attackDirection = 0;
 
-	private Vector2 _lastDirection = new Vector2(1, 0);
-	private float _speed = 25f;
+    private Vector2 _lastDirection = new Vector2(1, 0);
+    private float _speed = 25f;
 
-	private int _steps = 0;
-	private int _maxSteps = 4;
-
-	
-	private Vector2 _playerOffset = new Vector2(0, -10);
+    private int _steps = 0;
+    private int _maxSteps = 4;
 
 
-	public override void _Ready() {
-		base._Ready();
-		DisableCollision();
-	}
-	public async void StartSwing()
-	{
-		if (!Niveau.IsGameStarted)
-			return;
+    private Vector2 _playerOffset = new Vector2(0, -10);
 
 
-		NodeToControl.Rotation = Mathf.DegToRad(90);
-		TimerHold.OneShot = true;
-		TimerHold.WaitTime = 0.75f;
-		TimerHold.Timeout += Swing;
+    public override void _Ready()
+    {
+        base._Ready();
+        DisableCollision();
+    }
+    public async void StartSwing()
+    {
+        if (!Niveau.IsGameStarted)
+            return;
 
-		Swing();
-	}
 
-	private async void Swing(){
-		
-		for (int i = 0; i < 4; i++)
-		{
-			Vector2 dir = directions[attackDirection];
-			Vector2 startPos = Player.GlobalPosition + dir * DistanceFromPlayer + _playerOffset;
-			Vector2 endPos = startPos + dir * _speed;
+        NodeToControl.Rotation = Mathf.DegToRad(90);
+        TimerHold.OneShot = true;
+        TimerHold.WaitTime = 0.75f;
+        TimerHold.Timeout += Swing;
 
-			NodeToControl.GlobalPosition = startPos;
-			await TweenAppear(NodeToControl);
+        Swing();
+    }
 
-			// Tween the glove forward
-			var tween = CreateTween();
-			tween.TweenProperty(NodeToControl, "global_position", endPos, 0.08f);
-			await ToSignal(tween, "finished");
+    private async void Swing()
+    {
 
-			await TweenDisappear(NodeToControl);
-		}
+        for (int i = 0; i < 4; i++)
+        {
+            Vector2 dir = directions[attackDirection];
+            Vector2 startPos = Player.GlobalPosition + dir * DistanceFromPlayer + _playerOffset;
+            Vector2 endPos = startPos + dir * _speed;
 
-		
-		attackDirection = (attackDirection + 1) % 4;
-		NodeToControl.Rotation += Mathf.DegToRad(90);
-		TimerHold.Start();
-	}
+            NodeToControl.GlobalPosition = startPos;
+            await TweenAppear(NodeToControl);
 
-	private async Task TweenAppear(Node2D node)
-	{
-		EnableCollision();
-		var tween = CreateTween();
-		tween.TweenProperty(NodeToControl, "modulate:a", 1.0f, 0.08f);
-		await ToSignal(tween, "finished");
-	}
+            var tween = CreateTween();
+            tween.TweenProperty(NodeToControl, "global_position", endPos, 0.08f);
+            await ToSignal(tween, "finished");
 
-	private async Task TweenDisappear(Node2D node)
-	{
-		var tween = CreateTween();
-		tween.TweenProperty(NodeToControl, "modulate:a", 0.0f, 0.08f);
-		await ToSignal(tween, "finished");
-		DisableCollision();
-	}
+            await TweenDisappear(NodeToControl);
+        }
 
-	private void EnableCollision()
-	{
-		NodeToControl.Visible = true;
-		CollisionShape.Disabled = false;
-	}
 
-	private void DisableCollision()
-	{
-		NodeToControl.Visible = false;
-		CollisionShape.Disabled = true;
-	}
+        attackDirection = (attackDirection + 1) % 4;
+        NodeToControl.Rotation += Mathf.DegToRad(90);
+        TimerHold.Start();
+    }
+
+    private async Task TweenAppear(Node2D node)
+    {
+        EnableCollision();
+        var tween = CreateTween();
+        tween.TweenProperty(NodeToControl, "modulate:a", 1.0f, 0.08f);
+        await ToSignal(tween, "finished");
+    }
+
+    private async Task TweenDisappear(Node2D node)
+    {
+        var tween = CreateTween();
+        tween.TweenProperty(NodeToControl, "modulate:a", 0.0f, 0.08f);
+        await ToSignal(tween, "finished");
+        DisableCollision();
+    }
+
+    private void EnableCollision()
+    {
+        NodeToControl.Visible = true;
+        CollisionShape.Disabled = false;
+    }
+
+    private void DisableCollision()
+    {
+        NodeToControl.Visible = false;
+        CollisionShape.Disabled = true;
+    }
 }
