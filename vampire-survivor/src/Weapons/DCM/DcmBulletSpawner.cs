@@ -24,7 +24,8 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
     public async void Spawn(Pattern typeWeapon, Node2D target = null)
     {
-        spawnToken++;
+        //Utilisation de l'IA pour les tokens de spawn afin d'assurer que les anciennes tâches de spawn ne continuent pas à faire spawn des projectiles après un changement d'arme ou une désactivation du spawner 
+		spawnToken++;
         int myToken = spawnToken;
         isSpawning = true;
         float angleStep = 2 * Mathf.Pi / 12;
@@ -32,10 +33,13 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
         {
             for (int i = 0; i < 12; i++)
             {
-                if (!isSpawning || myToken != spawnToken) break;
+                
+				if (!isSpawning || myToken != spawnToken) break;
+
                 float angle = i * angleStep;
                 SpawnBullet(typeWeapon, angle);
             }
+			
             if (!isSpawning || myToken != spawnToken) break;
             await ToSignal(GetTree().CreateTimer(2.5f), "timeout");
         }
@@ -43,7 +47,8 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
     public async void SpawnSequential(Pattern typeWeapon, Node2D target = null)
     {
-        spawnToken++;
+        //Utilisation de l'IA pour les tokens de spawn afin d'assurer que les anciennes tâches de spawn ne continuent pas à faire spawn des projectiles après un changement d'arme ou une désactivation du spawner 
+		spawnToken++;
         int myToken = spawnToken;
         isSpawning = true;
         float delay = 1.5f;
@@ -61,7 +66,8 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
     public async void SpawnTargeted(Pattern typeWeapon)
     {
-        spawnToken++;
+        //Utilisation de l'IA pour les tokens de spawn afin d'assurer que les anciennes tâches de spawn ne continuent pas à faire spawn des projectiles après un changement d'arme ou une désactivation du spawner 
+		spawnToken++;
         int myToken = spawnToken;
         isSpawning = true;
         float delay = 1.5f;
@@ -115,7 +121,8 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
 
     public void RemoveActiveWeapon()
     {
-        isSpawning = false;
+        //Utilisation de l'IA pour les tokens de spawn afin d'assurer que les anciennes tâches de spawn ne continuent pas à faire spawn des projectiles après un changement d'arme ou une désactivation du spawner 
+		isSpawning = false;
         spawnToken++;
         if (activeWeapon is Node node && IsInstanceValid(node))
         {
