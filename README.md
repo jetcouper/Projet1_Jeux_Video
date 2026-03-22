@@ -2,7 +2,7 @@
 Projet 1 de Vampire survivor sur Godot
 
 # Git               Nom       Prenom         Nbre soumissions Git
-WhatyouEgg17        Dupras    Charlotte
+WhatyouEgg17        Dupras    Charlotte          25
 Paul-EdouardFort    Fortin    Paul-Édouard
 EddyHUART           Huart     Eddy               24
 jetcouper           Dextraze  Antoine 
