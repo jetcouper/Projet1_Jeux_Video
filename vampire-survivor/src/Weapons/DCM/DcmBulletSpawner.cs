@@ -98,7 +98,6 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
                 player = MedWeaponSpawner.GetPlayer();
             }
             Node2D weapon = WeaponScene.Instantiate<Node2D>();
-            AddChild(weapon);
 
             if (weapon is Bullet bullet)
             {
@@ -108,8 +107,10 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
                 bullet.setPlayer(player);
                 bullet.TargetNode = TargetNode;
                 activeWeapon = bullet;
-                activeWeapon.Use();
+                bullet.TreeEntered += () => bullet.Use();
             }
+
+            CallDeferred(Node.MethodName.AddChild, weapon);
         }
     }
 

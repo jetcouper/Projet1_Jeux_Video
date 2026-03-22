@@ -23,6 +23,9 @@ public partial class DpmDamagePhysical : Area2D
         if (_Life != null && _Life.IsDead)
             return;
 
+        if (InArea.GetParent() is Joueur)
+            return;
+
         _Cible.EnsureValid();
 
         //Récupère le noeud parent de ce qui a touché

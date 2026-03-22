@@ -7,8 +7,10 @@ public partial class DcmTreasureSpawner : Node2D, ISpawnable
 
     [Export]
     private TileMapLayer validTiles;
+
     [Export]
     private float SpawnDistance = 100f;
+
     [Export]
     private double SpawnInterval = 10.0; //en secondes
 
@@ -31,15 +33,14 @@ public partial class DcmTreasureSpawner : Node2D, ISpawnable
             IntervalCounter = SpawnInterval;
         }
     }
+
     public void SpawnAt(Vector2 position)
     {
-
         Node2D tresorInstance = TresorScene.Instantiate<Node2D>();
         tresorInstance.GlobalPosition = position;
         CallDeferred(Node.MethodName.AddChild, tresorInstance);
-
-
     }
+
     private Vector2? FindValidPosition()
     {
         Camera2D camera = GetViewport().GetCamera2D();

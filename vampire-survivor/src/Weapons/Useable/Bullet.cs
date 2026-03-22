@@ -31,7 +31,6 @@ public partial class Bullet : Node2D, IUseable
     {
         base._Ready();
         BulletArea.AreaEntered += OnBulletHit;
-        
     }
 
     public void Use()
@@ -49,8 +48,11 @@ public partial class Bullet : Node2D, IUseable
             entityAnimation.Play("Corkscrew");
         }
     }
+
     private void OnBulletHit(Area2D area)
     {
+        if (DpmMovementBullet.isHit)
+            return;
         if (area.GetParent() is Ennemy)
         {
             DpmMovementBullet.isHit = true;

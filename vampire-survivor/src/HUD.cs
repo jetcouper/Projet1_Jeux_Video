@@ -25,8 +25,6 @@ public partial class HUD : Node
         XpBar.MinValue = 0;
         XpBar.MaxValue = player.XpForNextLevel;
         XpBar.Value = player.Xp;
-
-
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
