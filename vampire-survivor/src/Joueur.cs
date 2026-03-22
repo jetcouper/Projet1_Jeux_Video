@@ -71,6 +71,7 @@ public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
     {
         base._Ready();
         SimplePlayer.EnsureValid().SpikeHit += () => TakeDamage(1);
+        GetNode<Area2D>("DPM_DAMAGE_PHYSICAL").AreaEntered += OnEnemyContact;
         Niveau.OnVictoire += Victory;
         CollisionLayer =
             MedPositions.choisirObjet(EAlgoSelectionObjet.eCollisionLayer, GlobalPosition)
@@ -120,6 +121,12 @@ public partial class Joueur : Node2D, IHealable, IBoostable, ITeleportable
     {
         SimplePlayer.EnsureValid().ApplySpeedBoost(multiplier, duration);
         GD.Print("Speed boost!");
+    }
+
+    private void OnEnemyContact(Area2D area)
+    {
+        if (area.GetParent() is Ennemy enemy)
+            TakeDamage(1, enemy.GlobalPosition);
     }
 
     public void TakeDamage(int quantity, Vector2? attackerPosition = null)

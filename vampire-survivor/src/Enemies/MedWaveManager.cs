@@ -161,7 +161,7 @@ public partial class MedWaveManager : Node
 
     public IEnumerable<Ennemy> GatherAllEnemies()
     {
-        var allEnemies = new List<Node2D>();
+        var allEnemies = new List<Ennemy>();
 
         // List of all spawners
         var spawners = new DcmEnemySpawner[]
@@ -170,20 +170,21 @@ public partial class MedWaveManager : Node
             ZombiePresseSpawner,
             TortueSpawner,
             GeneSpawner,
-            BossSpawner
+            BossSpawner,
         };
 
         foreach (var spawner in spawners)
         {
-            if (spawner == null) continue;
+            if (spawner == null)
+                continue;
 
             // Iterate over all children of the spawner
             foreach (Node2D child in spawner.GetChildren())
             {
                 // Check type — assuming your Enemy class is called Enemy
-                if (child is Ennemy)
+                if (child is Ennemy enemy)
                 {
-                    allEnemies.Add(child);
+                    allEnemies.Add(enemy);
                 }
             }
         }

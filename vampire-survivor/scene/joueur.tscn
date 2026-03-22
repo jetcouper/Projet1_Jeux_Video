@@ -257,8 +257,7 @@ animation = &"die"
 offset = Vector2(0, -10)
 
 [node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=96940721]
-collision_mask = 8
-script = ExtResource("4_jkutp")
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DPM_DAMAGE_PHYSICAL" unique_id=1627499915]
 position = Vector2(0, -9)

@@ -1082,12 +1082,11 @@ region_rect = Rect2(5.697197, 9.520092, 64.04478, 40.147472)
 script = ExtResource("10_4btnw")
 node = NodePath(".")
 
-[node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer", "ObstacleLayer")]
+[node name="DCM_Item_Spawner" type="Node2D" parent="." unique_id=898497096 node_paths=PackedStringArray("FloorLayer")]
 rotation = -0.00070787914
 script = ExtResource("23_u60jg")
 SpawneeScenes = Array[PackedScene]([ExtResource("28_f0m11"), ExtResource("28_csqtu"), ExtResource("16_y0lgb")])
 FloorLayer = NodePath("../TileMapLayerSol")
-ObstacleLayer = NodePath("../TileMapLayerCollision")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
 
@@ -1103,7 +1102,7 @@ TresorScene = ExtResource("18_pwjk0")
 validTiles = NodePath("../TileMapLayerSol")
 
 [node name="Timer_jeu" type="Timer" parent="." unique_id=380723743]
-wait_time = 15.0
+wait_time = 300.0
 one_shot = true
 
 [node name="CanvasLayerPartie" type="CanvasLayer" parent="." unique_id=528673410 groups=["hud"]]
@@ -1112,8 +1111,9 @@ visible = false
 [node name="timerLabel" type="Label" parent="CanvasLayerPartie" unique_id=1225710372]
 texture_filter = 1
 offset_left = 10.0
+offset_top = 100.0
 offset_right = 50.0
-offset_bottom = 67.0
+offset_bottom = 167.0
 theme_override_font_sizes/font_size = 48
 
 [node name="CanvasLayerDebut" type="CanvasLayer" parent="." unique_id=118808257 groups=["debut"]]
