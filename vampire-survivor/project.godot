@@ -24,6 +24,13 @@ window/size/viewport_height=1080
 
 project/assembly_name="Vampire_Survivor"
 
+[global_group]
+
+debut=""
+hud=""
+finVictoire=""
+finDefaite=""
+
 [layer_names]
 
 2d_render/layer_1="Player"

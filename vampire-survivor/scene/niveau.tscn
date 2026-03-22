@@ -768,8 +768,10 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Niveau" type="Node2D" unique_id=899712626]
+[node name="Niveau" type="Node2D" unique_id=899712626 node_paths=PackedStringArray("_timer", "_timerLabel")]
 script = ExtResource("1_tror8")
+_timer = NodePath("Timer_jeu")
+_timerLabel = NodePath("CanvasLayerPartie/timerLabel")
 
 [node name="TileMapLayerSol" type="TileMapLayer" parent="." unique_id=433406639]
 z_index = -1
@@ -1089,12 +1091,115 @@ ObstacleLayer = NodePath("../TileMapLayerCollision")
 SpawnIntervalMin = 8.0
 SpawnIntervalMax = 12.0
 
-[node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer", "FloorLayer") instance=ExtResource("23_fe3a4")]
+[node name="MED_Positions" parent="." unique_id=531024973 node_paths=PackedStringArray("CollisionLayer", "FloorLayer", "SpikeLayer") instance=ExtResource("23_fe3a4")]
 scale = Vector2(1.0200002, 1.0200002)
 CollisionLayer = NodePath("../TileMapLayerCollision")
 FloorLayer = NodePath("../TileMapLayerSol")
+SpikeLayer = NodePath("../TileMapLayerSpike")
 
 [node name="DCM_Treasure_Spawner" type="Node2D" parent="." unique_id=1588904850 node_paths=PackedStringArray("validTiles")]
 script = ExtResource("18_y0lgb")
 TresorScene = ExtResource("18_pwjk0")
 validTiles = NodePath("../TileMapLayerSol")
+
+[node name="Timer_jeu" type="Timer" parent="." unique_id=380723743]
+wait_time = 15.0
+one_shot = true
+
+[node name="CanvasLayerPartie" type="CanvasLayer" parent="." unique_id=528673410 groups=["hud"]]
+visible = false
+
+[node name="timerLabel" type="Label" parent="CanvasLayerPartie" unique_id=1225710372]
+texture_filter = 1
+offset_left = 10.0
+offset_right = 50.0
+offset_bottom = 67.0
+theme_override_font_sizes/font_size = 48
+
+[node name="CanvasLayerDebut" type="CanvasLayer" parent="." unique_id=118808257 groups=["debut"]]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerDebut" unique_id=1172471724]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012617188, 0.012617188, 0.012617188, 0.59607846)
+
+[node name="messageDebutLabel" type="Label" parent="CanvasLayerDebut" unique_id=1571754822]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.5
+offset_top = -11.5
+offset_right = 190.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 72
+text = "Appuyer sur la barre d'espace pour commencer..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayerFinVictoire" type="CanvasLayer" parent="." unique_id=1712343922 groups=["finVictoire"]]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerFinVictoire" unique_id=1192054806]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012617188, 0.012617188, 0.012617188, 0.54901963)
+
+[node name="messageFinLabel" type="Label" parent="CanvasLayerFinVictoire" unique_id=1178712864]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -49.5
+offset_right = 302.0
+offset_bottom = 49.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "Vous avez gagner"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayerFinDefaite" type="CanvasLayer" parent="." unique_id=1239858818 groups=["finDefaite"]]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayerFinDefaite" unique_id=1569929089]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012617188, 0.012617188, 0.012617188, 0.54901963)
+
+[node name="messageFinLabel" type="Label" parent="CanvasLayerFinDefaite" unique_id=1985463403]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "Vous avez perdu."
+horizontal_alignment = 1
+vertical_alignment = 1

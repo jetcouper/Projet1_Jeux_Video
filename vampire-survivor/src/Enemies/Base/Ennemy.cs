@@ -44,6 +44,14 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
         tween.TweenProperty(this, "modulate:a", 1.0f, 0.6f);
     }
 
+    public void Detruire()
+    {
+        if (IsDead)
+            return;
+
+        _Life?.EnsureValid().TakeDamage(9999); // Inflige des dégâts massifs pour garantir la mort
+    }
+
     public void NotifyDeath()
     {
         Spawner?.HandleDeath(GlobalPosition);

@@ -49,6 +49,7 @@ public partial class MedWaveManager : Node
     public override void _Ready()
     {
         CurrentPhase = EGamePhase.eWave1_Zombie;
+        Niveau.OnVictoire += OnPlayerVictoryHandler;
 
         _spawnTimer = new Timer
         {
@@ -149,7 +150,16 @@ public partial class MedWaveManager : Node
         _spawnTimer.WaitTime = (float)GD.RandRange(SpawnInterval.X, SpawnInterval.Y);
     }
 
-    public List<Node2D> GatherAllEnemies()
+    public void OnPlayerVictoryHandler()
+    {
+        _spawnTimer.Stop();
+        foreach (var enemy in GatherAllEnemies())
+        {
+            enemy.Detruire();
+        }
+    }
+
+    public IEnumerable<Ennemy> GatherAllEnemies()
     {
         var allEnemies = new List<Node2D>();
 

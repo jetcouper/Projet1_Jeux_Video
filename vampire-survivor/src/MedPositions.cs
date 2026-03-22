@@ -13,6 +13,9 @@ public partial class MedPositions : Node2D
     [Export]
     public TileMapLayer FloorLayer;
 
+    [Export]
+    public TileMapLayer SpikeLayer;
+
     [ExportGroup("Internal")]
     [Export]
     private Joueur Joueur;
@@ -33,6 +36,7 @@ public partial class MedPositions : Node2D
         eMedCrystal,
         eCollisionLayer,
         eFloorLayer,
+        eSpikeLayer,
         eHandleDeath,
         eChangeWeapon,
     }
@@ -92,6 +96,11 @@ public partial class MedPositions : Node2D
             case EAlgoSelectionObjet.eFloorLayer:
                 {
                     node = FloorLayer;
+                }
+                break;
+            case EAlgoSelectionObjet.eSpikeLayer:
+                {
+                    node = SpikeLayer;
                 }
                 break;
             default:
