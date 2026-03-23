@@ -42,12 +42,5 @@ public partial class DcmSimpleWeaponSpawner : Node2D, IWeaponSpawner
         activeWeapon?.Use();
     }
 
-    public void RemoveActiveWeapon()
-    {
-        if (activeWeapon is Node node && IsInstanceValid(node))
-        {
-            node.QueueFree();
-            activeWeapon = null;
-        }
-    }
+   
 }

@@ -67,16 +67,6 @@ public partial class MedWeaponSpawner : Node2D
 
     public void Spawn()
     {
-        if (SpawnerSword != null)
-            SpawnerSword.RemoveActiveWeapon();
-        if (SpawnerAxe != null)
-            SpawnerAxe.RemoveActiveWeapon();
-        if (SpawnerBoxingGlove != null)
-            SpawnerBoxingGlove.RemoveActiveWeapon();
-        if (BulletSpawner != null)
-            BulletSpawner.RemoveActiveWeapon();
-        activeWeapon = null;
-
         switch (InAlgoSelectionWeapon)
         {
             case EAlgoSelectionCible.eSword:
