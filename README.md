@@ -6,5 +6,5 @@ Projet 1 de Vampire survivor sur Godot
 |WhatyouEgg17       |Dupras    |Charlotte      |25                  |
 |Paul-EdouardFort   |Fortin    |Paul-Édouard   |11                  |
 |EddyHUART          |Huart     |Eddy           |24                  |
-|jetcouper          |Dextraze  |Antoine        |                    |
+|jetcouper          |Dextraze  |Antoine        |27                  |
 
