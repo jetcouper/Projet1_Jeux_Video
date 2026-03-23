@@ -42,13 +42,19 @@ public partial class ItemTeleporter : Area2D
             float randomDist = (float)GD.RandRange(MinDistance, MaxDistance);
             Vector2 testPos = origin + Vector2.FromAngle(randomAngle) * randomDist;
 
-            Vector2I tileCoord = FloorLayer.LocalToMap(FloorLayer.ToLocal(testPos));
+            Vector2I floorCoord = FloorLayer.LocalToMap(FloorLayer.ToLocal(testPos));
 
-            if (FloorLayer.GetCellSourceId(tileCoord) != -1)
+            if (FloorLayer.GetCellSourceId(floorCoord) != -1)
             {
-                if (ObstacleLayer == null || ObstacleLayer.GetCellSourceId(tileCoord) == -1)
+                bool safeFromObstacle =
+                    ObstacleLayer == null
+                    || ObstacleLayer.GetCellSourceId(
+                        ObstacleLayer.LocalToMap(ObstacleLayer.ToLocal(testPos))
+                    ) == -1;
+
+                if (safeFromObstacle)
                 {
-                    Vector2 centeredPos = FloorLayer.ToGlobal(FloorLayer.MapToLocal(tileCoord));
+                    Vector2 centeredPos = FloorLayer.ToGlobal(FloorLayer.MapToLocal(floorCoord));
                     return centeredPos;
                 }
             }

@@ -92,7 +92,7 @@ public partial class DcmBulletSpawner : Node2D, IWeaponSpawner
                 bullet.TreeEntered += () => bullet.Use();
             }
 
-            AddChild(weapon);
+            CallDeferred(Node.MethodName.AddChild, weapon);
         }
     }
 

@@ -66,6 +66,11 @@ public partial class Niveau : Node2D
         }
     }
 
+    public static void TriggerVictoire()
+    {
+        OnVictoire?.Invoke();
+    }
+
     public void _onTimer_timeout()
     {
         _partieTerminee = true;

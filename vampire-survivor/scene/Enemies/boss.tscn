@@ -449,10 +449,13 @@ animations = [{
 script = ExtResource("1_tcgrh")
 _Poursuite = NodePath("DPM_Poursuite")
 _Life = NodePath("DPM_LIFE_AND_VISUAL")
+IsBoss = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2057114842]
 sprite_frames = SubResource("SpriteFrames_mxc1a")
-animation = &"Haut"
+animation = &"Bas"
+frame = 3
+frame_progress = 0.63294274
 
 [node name="DPM_DAMAGE_PHYSICAL" type="Area2D" parent="." unique_id=1123885198 node_paths=PackedStringArray("_Cible", "_Life")]
 collision_layer = 2

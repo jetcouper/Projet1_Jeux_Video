@@ -24,6 +24,9 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
 
     public IDeathHandler gestionnaireMort;
 
+    [Export]
+    public bool IsBoss = false;
+
     public bool IsDead
     {
         get { return _Life.EnsureValid().IsDead; }
@@ -31,6 +34,7 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
 
     public override void _Ready()
     {
+        AddToGroup("enemies");
         Position += new Vector2(0, 20);
         Modulate = new Color(1, 1, 1, 0);
 
@@ -55,6 +59,8 @@ public partial class Ennemy : Node2D, IKillable, ITargetable
     public void NotifyDeath()
     {
         Spawner?.HandleDeath(GlobalPosition);
+        if (IsBoss)
+            Niveau.TriggerVictoire();
     }
 
     public void SetTarget(Node2D target)
